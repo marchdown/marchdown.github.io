@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>marchdown</title>
+<style>
+  :root{--bg:#08080a;--fg:#d8d4cc;--mut:#5d5a54;--acc:#b9a06b}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);
+       font:18px/1.8 "Cormorant Garamond","EB Garamond",Garamond,Georgia,serif;
+       min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+       padding:10vh 7vw;max-width:760px;margin:auto}
+  h1{font-weight:300;font-size:clamp(40px,9vw,84px);line-height:.98;letter-spacing:-1px;margin:0}
+  .name{color:var(--fg)}
+  .glyph{color:var(--acc);font-style:italic}
+  .creed{font-size:clamp(20px,3vw,26px);font-style:italic;color:var(--mut);max-width:30ch;margin:1.4em 0}
+  .creed em{color:var(--fg);font-style:normal}
+  .body{max-width:54ch;color:#aaa6a0}
+  .body a{color:var(--acc);text-decoration:none;border-bottom:1px solid #2a2820}
+  .body a:hover{color:#fff}
+  nav{margin-top:3em;font-size:15px;letter-spacing:.04em}
+  nav a{color:var(--mut);text-decoration:none;margin-right:1.6em;border-bottom:1px solid transparent}
+  nav a:hover{color:var(--acc);border-color:var(--acc)}
+  .rule{width:48px;height:1px;background:var(--acc);margin:2.5em 0;opacity:.6}
+  footer{margin-top:6em;font:11px/1.6 ui-monospace,monospace;color:#3a3833;letter-spacing:.05em}
+  footer a{color:#3a3833}
+</style>
+</head>
+<body>
+  <h1><span class="name">march</span><span class="glyph">·</span><span class="name">down</span></h1>
+  <p class="creed">Tools as <em>incantations</em> — say precisely what should exist, and it does.</p>
+  <div class="rule"></div>
+  <p class="body">A toolsmith working out of <em>Hyperstitia</em>, in Pardes. Twelve years and
+  a hundred and fifty repositories of small, exact instruments — across
+  <a href="https://github.com/marchdown?tab=repositories">Swift, Rust, Clojure, Elixir, Haskell</a>.
+  Spec before code: the discipline is naming the thing before summoning it.
+  Lately: language-model gateways (<a href="https://github.com/marchdown/gemini-gate">gemini-gate</a>),
+  terrain made audible (<a href="https://github.com/marchdown/topo-sonify">topo-sonify</a>),
+  and ghosts pulled from old phones (<a href="https://github.com/marchdown/Orpheus">Orpheus</a>).</p>
+  <nav>
+    <a href="https://github.com/marchdown">github</a>
+    <a href="mailto:uprootiny@gmail.com">mail</a>
+    <a href="https://hyperstitious.org">hyperstitious.org</a>
+    <a href="https://dissemblage.art">dissemblage.art</a>
+  </nav>
+  <footer>
+    open source — <a href="https://github.com/marchdown/marchdown.github.io">improve this page</a>
+    · 2026-06-17 · 79bc67f
+  </footer>
+</body>
+</html>

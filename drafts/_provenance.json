@@ -1,0 +1,12 @@
+{
+  "project_name": "marchdown.github.io",
+  "repo_path": "/Users/uprootiny/marchdown.github.io",
+  "git_remote": "https://github.com/marchdown/marchdown.github.io",
+  "git_branch": "main",
+  "git_commit": "79bc67f",
+  "generated_at": "2026-06-17",
+  "generator": "Claude Code (Opus 4.8 1M)",
+  "session_source": "claude-code",
+  "session_locator": "/Users/uprootiny/.claude/projects/-Users-uprootiny-marchdown-github-io",
+  "notes": "Six candidate portfolio/CV designs. Facts sourced from public GitHub API (users/marchdown + repo list). Slots marked {{ }} require the owner's input (real name, work history, education)."
+}

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pavel Vasilyev — CV</title>
+<style>
+  :root{--ink:#1d2226;--mut:#5c656e;--faint:#8b949d;--line:#e4e7ea;--acc:#2b3a4a;
+        --side:#f4f6f7;--bg:#eef0f1;--paper:#ffffff}
+  @media(prefers-color-scheme:dark){:root{--ink:#e8eaec;--mut:#9aa3ac;--faint:#6a727a;
+        --line:#2a2f34;--acc:#9fc1dc;--side:#161a1e;--bg:#0c0e10;--paper:#15191c}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:14.5px/1.55 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       -webkit-font-smoothing:antialiased}
+  .sheet{max-width:860px;margin:5vh auto;background:var(--paper);display:grid;
+         grid-template-columns:248px 1fr;border:1px solid var(--line);
+         box-shadow:0 30px 70px -40px #0007;overflow:hidden}
+
+  /* ---- sidebar ---- */
+  aside{background:var(--side);padding:30px 24px;border-right:1px solid var(--line)}
+  aside h1{font-size:23px;line-height:1.1;margin:0 0 2px;color:var(--ink);letter-spacing:-.01em}
+  aside .handle{display:block;font-size:13px;color:var(--mut);margin-bottom:14px}
+  aside h3{font:700 10.5px/1 -apple-system,sans-serif;text-transform:uppercase;letter-spacing:.13em;
+           color:var(--acc);margin:20px 0 8px}
+  aside p,aside li{font-size:12.7px;color:var(--mut);margin:.2em 0}
+  aside a{color:var(--mut);text-decoration:none;border-bottom:1px solid var(--line);word-break:break-word}
+  aside a:hover{color:var(--acc)}
+  aside ul{list-style:none;margin:.2em 0;padding:0}
+  .tag{color:var(--ink)}
+  .avail{display:inline-block;font:700 10px/1 -apple-system,sans-serif;color:#fff;
+         background:var(--acc);padding:.5em .7em;border-radius:3px;text-transform:uppercase;
+         letter-spacing:.1em;margin-bottom:6px}
+  @media(prefers-color-scheme:dark){.avail{color:#0c0e10}}
+
+  /* ---- main ---- */
+  main{padding:30px 32px 28px}
+  main .role-title{font-size:15.5px;color:var(--acc);font-weight:700;margin:0}
+  h2{font:700 11px/1 -apple-system,sans-serif;text-transform:uppercase;letter-spacing:.14em;
+     color:var(--ink);margin:22px 0 9px;padding-bottom:6px;border-bottom:2px solid var(--acc)}
+  main p{margin:.4em 0}
+  .summary{font-size:14.2px;color:var(--ink)}
+  .job{margin:0 0 11px}
+  .job .top{display:flex;justify-content:space-between;align-items:baseline;gap:1em;flex-wrap:wrap}
+  .job .what{font-weight:700}
+  .job .org{font-weight:400;color:var(--mut)}
+  .job .when{font-size:12.3px;color:var(--mut);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .job p{margin:.2em 0 0;color:var(--mut);font-size:13.4px}
+  .proj{font-size:13.2px;margin:.25em 0}
+  .proj b{color:var(--ink)}
+  .proj a{color:var(--acc)}
+  .slot{background:#fbeecb;color:#7a5a00;padding:0 .35em;border-radius:2px;font-size:11px}
+
+  @media(max-width:620px){.sheet{grid-template-columns:1fr}aside{border-right:0;border-bottom:1px solid var(--line)}}
+
+  footer{max-width:860px;margin:12px auto 7vh;padding:0 8px;color:var(--faint);
+         font:10px/1.5 ui-monospace,monospace}
+
+  @media print{
+    @page{margin:12mm}
+    body{background:#fff}
+    .sheet{box-shadow:none;border:0;margin:0;max-width:none}
+    aside{background:#f4f6f7 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .note-print-hide{display:none}
+    .job{break-inside:avoid}
+    footer{margin:10px 0 0}
+  }
+</style>
+</head>
+<body>
+  <div class="sheet">
+    <aside>
+      <span class="avail">Open to work</span>
+      <h1>Pavel Vasilyev</h1>
+      <span class="handle">· marchdown</span>
+
+      <h3>Contact</h3>
+      <p><a href="mailto:uprootiny@gmail.com">uprootiny@gmail.com</a></p>
+      <p>Jerusalem, Israel</p>
+      <p><a href="https://github.com/marchdown">github.com/marchdown</a></p>
+      <p><a href="https://hyperstitious.org">hyperstitious.org</a></p>
+
+      <h3>Core skills</h3>
+      <ul>
+        <li><span class="tag">Applied statistics &amp; ML</span></li>
+        <li><span class="tag">LLM / agent orchestration</span></li>
+        <li><span class="tag">Oversight &amp; verification</span></li>
+        <li><span class="tag">Developer tooling</span></li>
+        <li><span class="tag">Type theory &amp; proof assistants</span></li>
+      </ul>
+
+      <h3>Languages (code)</h3>
+      <p>Swift · Rust · Clojure · Elixir / Erlang · Haskell · Nix · TypeScript · Agda · C</p>
+
+      <h3>ML stack</h3>
+      <p>Python · PyTorch · TensorFlow · scikit-learn · pandas · AWS (EC2 / S3 / SageMaker / Terraform)</p>
+
+      <h3>Education</h3>
+      <p><span class="tag">MSc Computational Linguistics</span><br>RSUH, Moscow · 2015</p>
+      <p><span class="tag">BSc Nuclear Physics</span><br>Czech Technical University, Prague · 2009</p>
+
+      <h3>Languages (spoken)</h3>
+      <p>English · Hebrew · Russian · working German &amp; French</p>
+    </aside>
+
+    <main>
+      <h2>Profile</h2>
+      <p class="summary">Machine-learning engineer and software toolsmith with fifteen years across
+        financial ML, NLP, and the human oversight of AI systems. I design the review and
+        verification that keep model output correct and accountable, and build the infrastructure it
+        runs on. Polyglot by habit — the right tool per problem, not one hammer — and spec-first:
+        decide precisely what must exist, then build the short, careful version.</p>
+
+      <h2>Experience <span class="note-print-hide" style="font-weight:400;letter-spacing:0;text-transform:none;color:var(--faint)">— selected highlights</span></h2>
+
+      <div class="job">
+        <div class="top"><span class="what">LLM Engineer <span class="org">— Move38 (contract)</span></span><span class="when">2026</span></div>
+        <p>Delivered an LLM feature end to end in a focused engagement — serving infrastructure,
+          prompt design, and the user-facing interaction.</p>
+      </div>
+      <div class="job">
+        <div class="top"><span class="what">Dissemblage.art <span class="org">— self-directed</span></span><span class="when">2024 – 2025</span></div>
+        <p>An ongoing series of LLM-aided art experiments — generative models as creative material.</p>
+      </div>
+      <div class="job">
+        <div class="top"><span class="what">Chief Technology Officer <span class="org">— LevEhad (NGO), Israel</span></span><span class="when">2024</span></div>
+        <p>Owned all IT infrastructure for the organisation and directed its technical development.</p>
+      </div>
+      <div class="job">
+        <div class="top"><span class="what">AI Architect <span class="org">— Stamina AI</span></span><span class="when">2023</span></div>
+        <p>Designed LLM and chatbot systems with ontology-backed grounding and vector-store retrieval.</p>
+      </div>
+      <div class="job">
+        <div class="top"><span class="what">Research Lead <span class="org">— Spring Research</span></span><span class="when">2021 – 2022</span></div>
+        <p>Led the research team modelling the financial markets: ML pipelines, market-regime
+          detection, and time-series representation learning — owning research direction and
+          deployments on AWS / SageMaker.</p>
+      </div>
+      <div class="job">
+        <div class="top"><span class="what">Independent practice <span class="org">— consultant &amp; open-source author</span></span><span class="when">2010 – present</span></div>
+        <p>Consulting and advisory between salaried roles, including my own software practice —
+          alongside a continuous open-source body (~152 repositories, eight+ languages).</p>
+      </div>
+      <div class="job">
+        <div class="top"><span class="what">Earlier <span class="org">— data science, NLP &amp; software</span></span><span class="when">2009 – 2019</span></div>
+        <p>Roles across Tel Aviv, Hong Kong and Prague — Nestlogic, Maverick Medical AI, Athena
+          Portfolio Solutions, Ten-X, Verba, Finfon. Financial-news NLP and signal extraction,
+          medical-text models, computer vision, and corpus-linguistics engines.</p>
+      </div>
+
+      <h2>Selected open-source <span class="note-print-hide" style="font-weight:400;letter-spacing:0;text-transform:none;color:var(--faint)">— github.com/marchdown</span></h2>
+      <p class="proj"><b><a href="https://github.com/marchdown/co-loop">co-loop</a></b> — collaboration scaffold for agentic fork → branch → merge flows.</p>
+      <p class="proj"><b><a href="https://github.com/marchdown/gemini-gate">gemini-gate</a></b> · <b><a href="https://github.com/marchdown/inference_harness">inference_harness</a></b> — Elixir LLM gateway, routing &amp; inference rig.</p>
+      <p class="proj"><b><a href="https://github.com/marchdown/Orpheus">Orpheus</a></b> — Swift; recovers Voice Memos from encrypted iOS backups.</p>
+      <p class="proj"><b><a href="https://github.com/marchdown/topo-sonify">topo-sonify</a></b> · <b><a href="https://github.com/marchdown/spec-before-code">spec-before-code</a></b> — Rust; sonification &amp; the spec-first discipline as a tool. <a href="https://github.com/marchdown?tab=repositories">Full record →</a></p>
+    </main>
+  </div>
+  <footer>
+    Pavel Vasilyev · CV (professional edition) · marchdown.github.io · main@79bc67f ·
+    built 2026-06-28 by Claude Code · Opus 4.8 (1M) · ⌘P → Save as PDF
+  </footer>
+</body>
+</html>

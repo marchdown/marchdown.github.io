@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>marchdown.github.io — pick a draft</title>
+<style>
+  :root{--bg:#0f1115;--card:#171a21;--fg:#e7eaef;--mut:#9aa3b0;--acc:#6d8bff;--line:#242a35}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);
+       font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+       max-width:900px;padding:7vh 5vw 12vh;margin:auto}
+  h1{font-size:28px;margin:0 0 .2em}
+  p.lede{color:var(--mut);max-width:60ch}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:2em}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;
+        text-decoration:none;color:inherit;transition:.15s}
+  .card:hover{border-color:var(--acc);transform:translateY(-2px)}
+  .n{font:12px/1 ui-monospace,monospace;color:var(--acc);letter-spacing:.1em}
+  .card h2{margin:.4em 0 .2em;font-size:19px}
+  .card p{margin:0;color:var(--mut);font-size:14px}
+  .how{margin-top:3em;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 24px}
+  code{background:#0b0d11;padding:.15em .45em;border-radius:5px;font-size:13px}
+  footer{margin-top:3em;color:var(--mut);font-size:12px}
+  footer a{color:var(--mut)}
+</style>
+</head>
+<body>
+  <h1>Six drafts for marchdown.github.io</h1>
+  <p class="lede">All built from your real public GitHub footprint (152 repos, Hyperstitia/Pardes,
+  open to work, the polyglot + spec-first story). Open each, then tell me which to ship as the
+  live <code>index.html</code> — or mix elements between them.</p>
+
+  <div class="grid">
+    <a class="card" href="draft-1-terminal.html"><span class="n">DRAFT 1</span><h2>Terminal</h2><p>Monospace shell session — <code>whoami</code>, <code>ls selected/</code>. Hacker-craft tone.</p></a>
+    <a class="card" href="draft-2-resume.html"><span class="n">DRAFT 2 ★</span><h2>Résumé — "human in the loop"</h2><p>Contents <em>diffuse → sharpen</em> live — the page shows the oversight rather than claiming it. Reads as dozens of real contributions across levels, each linked; humble tone. Has a <a href="book.html">book-a-session</a> subpage (pick a slot, commit crypto). Prints grounded.</p></a>
+    <a class="card" href="draft-3-workshop.html"><span class="n">DRAFT 3</span><h2>Workshop / Garden</h2><p>Dark + gold. Leans into the sprawl — projects clustered by theme as cards.</p></a>
+    <a class="card" href="draft-4-hyperstition.html"><span class="n">DRAFT 4</span><h2>Hyperstition</h2><p>Literary one-screen. Garamond, sparse, "tools as incantations." Most distinctive.</p></a>
+    <a class="card" href="draft-5-cards.html"><span class="n">DRAFT 5</span><h2>Cards</h2><p>Modern portfolio, light/dark aware. Avatar, badges, project grid with language chips.</p></a>
+    <a class="card" href="draft-6-indexcard.html"><span class="n">DRAFT 6</span><h2>Index card</h2><p>Ultra-minimal single screen — name, one sentence, three links. Fastest to read.</p></a>
+  </div>
+
+  <div class="how">
+    <strong>To go live:</strong> tell me a pick (e.g. "ship draft 3") and I'll copy it to the repo
+    root as <code>index.html</code>, fill any <code>{{ }}</code> slots you give me (real name, role,
+    education), and commit. GitHub Pages then serves your choice at marchdown.github.io.
+  </div>
+
+  <footer>
+    Open source — <a href="https://github.com/marchdown/marchdown.github.io">repo</a>.
+    Generated 2026-06-17 from public GitHub data · commit 79bc67f · Claude Code (Opus 4.8). See <code>_provenance.json</code>.
+  </footer>
+</body>
+</html>

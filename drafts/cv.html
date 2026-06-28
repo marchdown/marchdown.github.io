@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pavel Vasilyev — Curriculum Vitae</title>
+<style>
+  :root{--ink:#1a1a18;--mut:#5b5e62;--faint:#8d9096;--line:#dad7cf;--rule:#1a1a18;
+        --bg:#f6f4ef;--paper:#fffdf9;--slot:#fbeecb;--slotink:#7a5a00}
+  @media(prefers-color-scheme:dark){:root{--ink:#e9e6df;--mut:#a39e94;--faint:#6f6b64;
+        --line:#2c2c29;--rule:#cfccc3;--bg:#0e0f0d;--paper:#141512;--slot:#2b2410;--slotink:#e3b341}}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:15px/1.62 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+       font-feature-settings:"kern" 1,"liga" 1,"clig" 1,"onum" 1,"pnum" 1;
+       -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+
+  .sheet{max-width:800px;margin:5vh auto;background:var(--paper);
+         padding:56px 64px 44px;border:1px solid var(--line);box-shadow:0 30px 70px -40px #0007}
+
+  /* non-printing provenance note */
+  .status{max-width:800px;margin:3vh auto -2vh;padding:13px 18px;
+          border:1px solid var(--line);color:var(--mut);
+          font:13px/1.55 system-ui,sans-serif}
+  .status b{color:var(--ink);font-weight:600}
+  .status code{background:var(--slot);color:var(--slotink);padding:0 .35em;
+               font:12px/1.5 ui-monospace,monospace}
+
+  header{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;
+         gap:.7em;border-bottom:1px solid var(--rule);padding-bottom:13px}
+  h1{font-size:31px;line-height:1.02;margin:0;letter-spacing:-.012em;font-weight:600}
+  h1 .handle{font-size:16px;color:var(--mut);font-weight:400;letter-spacing:0}
+  .title{color:var(--mut);font-style:italic;margin:.55em 0 0;font-size:15px;max-width:46ch}
+  .avail{font:600 10px/1 system-ui,sans-serif;color:var(--ink);background:none;
+         border:1px solid var(--ink);padding:.5em .7em;text-transform:uppercase;
+         letter-spacing:.13em;white-space:nowrap}
+  .contact{margin-top:11px;font:13px/1.7 system-ui,sans-serif;color:var(--mut);
+           font-feature-settings:"tnum" 1}
+  .contact a{color:var(--mut);text-decoration:none;border-bottom:1px solid var(--line)}
+  .contact a:hover{color:var(--ink)}
+  .contact span.sep{margin:0 .55em;color:var(--faint)}
+
+  h2{font:600 11px/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.16em;
+     color:var(--ink);margin:24px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+  h2 .note{letter-spacing:0;text-transform:none}
+  p{margin:.5em 0}
+  .lede{font-size:15px}
+  a{color:var(--ink)}
+
+  .role{display:flex;justify-content:space-between;align-items:baseline;gap:1em;
+        flex-wrap:wrap;margin-top:.7em}
+  .role+ul{margin-top:.2em}
+  .role .what{font-weight:600}
+  .role .what .org{font-weight:400;color:var(--mut)}
+  .role .when{color:var(--mut);font:12.5px/1.5 system-ui,sans-serif;white-space:nowrap;
+              font-variant-numeric:tabular-nums lining-nums;letter-spacing:.01em}
+  ul{margin:.3em 0 .2em;padding-left:1.15em}
+  li{padding:.1em 0}
+  li .lang,li .where{color:var(--mut);font-style:italic}
+  .span{color:var(--mut);font-style:italic;font-size:14px;margin:.15em 0 0}
+  .twocol{columns:2;column-gap:2.4em}
+  @media(max-width:560px){.twocol{columns:1}}
+
+  .slot{background:var(--slot);color:var(--slotink);padding:.05em .4em;
+        font:13px/1.5 system-ui,sans-serif;white-space:nowrap}
+  .note{color:var(--faint);font:12px/1.5 system-ui,sans-serif;font-style:italic}
+
+  .grid{display:grid;grid-template-columns:max-content 1fr;gap:.22em 1.4em;
+        font-size:14px;margin:.3em 0}
+  .grid dt{color:var(--mut)}
+  .grid dd{margin:0}
+
+  footer{max-width:800px;margin:14px auto 8vh;padding:0 64px;
+         color:var(--faint);font:10.5px/1.6 ui-monospace,monospace}
+  footer a{color:var(--faint)}
+
+  @media print{
+    @page{margin:18mm 16mm}
+    body{background:#fff;font-size:10.6pt;line-height:1.5}
+    .status,.note-print-hide{display:none}
+    .sheet{box-shadow:none;border:0;margin:0;max-width:none;padding:0}
+    h1{font-size:23pt}
+    a{color:var(--ink);text-decoration:none}
+    .contact a{border-bottom:0}
+    .slot{background:none;color:var(--ink);border-bottom:1px dotted #999}
+    .role{break-inside:avoid}
+    h2{break-after:avoid}
+    footer{margin:16px 0 0;padding:0}
+  }
+</style>
+</head>
+<body>
+
+  <div class="status note-print-hide">
+    <b>What this is.</b> A CV built from <b>verifiable facts</b> — the public
+    <a href="https://github.com/marchdown">github.com/marchdown</a> footprint plus your confirmed
+    roles and degrees. Experience is a <b>curated selection</b>, not an exhaustive log. It prints to
+    two clean pages: <b>⌘P → Save as PDF</b>, and it's ready to send.
+  </div>
+
+  <article class="sheet">
+    <header>
+      <div>
+        <h1>Pavel Vasilyev <span class="handle">· marchdown</span></h1>
+        <p class="title">Polyglot software engineer &amp; toolsmith — applied ML, and the human
+          oversight of LLM &amp; agent systems</p>
+      </div>
+      <span class="avail">Open to work</span>
+    </header>
+    <p class="contact">
+      <a href="mailto:uprootiny@gmail.com">uprootiny@gmail.com</a><span class="sep">·</span>
+      <a href="https://github.com/marchdown">github.com/marchdown</a><span class="sep">·</span>
+      <a href="https://hyperstitious.org">hyperstitious.org</a><span class="sep">·</span>
+      Jerusalem, Israel
+    </p>
+
+    <h2>Profile</h2>
+    <p class="lede">
+      I build small, exact tools — usually one per problem, often in a different language than the
+      last — and I work as the human in the loop on systems that use them: reviewing what language
+      models and agents produce, and making it correct, grounded, and accountable before it ships.
+      The hard part is never the typing; it is deciding precisely what must exist.
+      <strong>Spec before code.</strong> Fifteen years across machine learning and data science,
+      LLM/agent infrastructure, developer tooling, and formal methods — on GitHub since 2010, with
+      roughly 152 public repositories.
+    </p>
+
+    <h2>What I do</h2>
+    <ul>
+      <li><strong>Oversight &amp; adversarial verification</strong> — the human in the loop on LLM
+        and agent systems: checking what a model actually produces, not a sample of it; running
+        independent passes prompted to refute rather than confirm; pushing coverage until new
+        findings stop appearing.</li>
+      <li><strong>Applied statistics &amp; machine learning</strong> — the quantitative foundation
+        under the rest: time-series and statistical modelling, ML pipelines, and the judgement to
+        know when a result is real rather than an artefact of the method.</li>
+      <li><strong>Grounding &amp; provenance</strong> — every claim checked against its source
+        before it ships, and every artifact traceable back to repo, commit, agent, and session.</li>
+      <li><strong>Spec-first tool-building</strong> — building the gateways, inference harnesses,
+        and verification flows the review work runs on.</li>
+    </ul>
+
+    <h2>Experience <span class="note">— selected highlights, not a complete history</span></h2>
+
+    <div class="role"><span class="what">LLM Engineer <span class="org">— Move38 (contract)</span></span><span class="when">2026</span></div>
+    <ul>
+      <li>Took an LLM feature from infrastructure to shipped interaction single-handedly: stood up
+        the serving infrastructure, designed and arranged the prompts, and polished the user-facing
+        interaction end-to-end.</li>
+    </ul>
+
+    <div class="role"><span class="what"><a href="https://dissemblage.art">Dissemblage.art</a> <span class="org">— self-directed, LLM-aided art experiments</span></span><span class="when">2024&nbsp;—&nbsp;2025</span></div>
+    <ul>
+      <li>An ongoing series of LLM-aided art experiments — language and generative models as
+        material, probing what they produce and how a human shapes it into something that holds.</li>
+    </ul>
+
+    <div class="role"><span class="what">Chief Technology Officer <span class="org">— LevEhad (NGO), Israel</span></span><span class="when">2024</span></div>
+    <ul>
+      <li>Owned the organisation's IT infrastructure end-to-end and set the direction of its
+        development across a focused engagement.</li>
+    </ul>
+
+    <div class="role"><span class="what">AI Architect <span class="org">— Stamina AI</span></span><span class="when">2023</span></div>
+    <ul>
+      <li>Architected LLM and chatbot systems — ontology-backed grounding, retrieval over vector
+        stores, and the conversational interfaces on top.</li>
+    </ul>
+
+    <div class="role"><span class="what">Research Lead <span class="org">— Spring Research</span></span><span class="when">2021&nbsp;—&nbsp;2022</span></div>
+    <ul>
+      <li>Led the research team modelling the financial markets: designed and ran the ML pipelines,
+        detected market regimes to find windows of predictability, and built representations from
+        heterogeneous time series — owning the team's research direction and its deployments
+        (AWS/SageMaker, Python ML stack).</li>
+    </ul>
+
+    <div class="role"><span class="what">Independent practice <span class="org">— consultant, toolsmith &amp; open-source author</span></span><span class="when">2010&nbsp;—&nbsp;present</span></div>
+    <ul>
+      <li>Self-directed consulting and advisory between salaried roles, including running my own
+        software practice — alongside a continuous body of open-source work (~152 repositories,
+        eight+ languages, worked spec-first; see <em>Selected work</em>).</li>
+    </ul>
+
+    <div class="role"><span class="what">Earlier <span class="org">— data science, NLP &amp; software roles</span></span><span class="when">2009&nbsp;—&nbsp;2019</span></div>
+    <ul>
+      <li>Data-scientist, NLP-engineer and software roles across Tel&nbsp;Aviv, Hong&nbsp;Kong and
+        Prague — <span class="where">Nestlogic, Maverick Medical AI, Athena Portfolio Solutions,
+        Ten-X, Verba, Finfon</span>. Financial-news NLP and signal extraction, medical-text models,
+        computer vision, and corpus-linguistics engines.</li>
+    </ul>
+
+    <h2>Selected work <span class="note">— open source, github.com/marchdown</span></h2>
+    <ul>
+      <li><a href="https://github.com/marchdown/co-loop">co-loop</a> <span class="lang">— collaboration scaffold for agentic fork → branch → merge/pull flows</span></li>
+      <li><a href="https://github.com/marchdown/gemini-gate">gemini-gate</a> <span class="lang">— Elixir · language-model gateway and routing layer</span></li>
+      <li><a href="https://github.com/marchdown/inference_harness">inference_harness</a> <span class="lang">— Elixir · rig for running model inference workloads</span></li>
+      <li><a href="https://github.com/marchdown/corpora">corpora</a> <span class="lang">— Swift/Elixir · corpus tooling (corpora-kernel, corpora-bridge)</span></li>
+      <li><a href="https://github.com/marchdown/Orpheus">Orpheus</a> <span class="lang">— Swift · recovers Voice Memos from encrypted iOS backups via libimobiledevice</span></li>
+      <li><a href="https://github.com/marchdown/topo-sonify">topo-sonify</a> <span class="lang">— Rust · sonifies topographic data; terrain you can hear</span></li>
+      <li><a href="https://github.com/marchdown/spec-before-code">spec-before-code</a> <span class="lang">— Rust · the spec-first discipline, encoded as a tool</span></li>
+      <li><a href="https://github.com/marchdown/nixbloom">nixbloom</a> <span class="lang">— Nix · ephemeral NixOS-based workspaces</span></li>
+      <li><a href="https://github.com/marchdown?tab=repositories">the full record</a> <span class="lang">— 150+ repositories since 2010</span></li>
+    </ul>
+
+    <h2>Skills &amp; tools</h2>
+    <div class="twocol">
+      <p><strong>Languages:</strong> Swift · Rust · Clojure · Elixir / Erlang · Haskell · Nix ·
+        TypeScript · Agda · C (GDScript / C++ when the platform insists)</p>
+      <p><strong>Domains:</strong> applied statistics &amp; machine learning · LLM &amp; agent
+        orchestration · oversight &amp; verification · developer tooling · audio &amp; sonification ·
+        type theory &amp; proof assistants</p>
+    </div>
+
+    <h2>Education</h2>
+    <div class="role"><span class="what">MSc Computational Linguistics <span class="org">— RSUH, Moscow</span></span><span class="when">2015</span></div>
+    <div class="role"><span class="what">BSc Nuclear Physics <span class="org">— Czech Technical University, Prague</span></span><span class="when">2009</span></div>
+    <p class="span">Self-directed — ongoing study in type theory, proof assistants, and language
+      design (see <a href="https://github.com/marchdown/agda-proofs">agda-proofs</a>,
+      <a href="https://github.com/marchdown/harmony">harmony</a>).</p>
+
+    <h2>Languages</h2>
+    <p>English · Hebrew · Russian — working knowledge of German &amp; French.</p>
+
+    <h2>Contact &amp; collaboration</h2>
+    <dl class="grid">
+      <dt>Email</dt><dd><a href="mailto:uprootiny@gmail.com">uprootiny@gmail.com</a></dd>
+      <dt>GitHub</dt><dd><a href="https://github.com/marchdown">github.com/marchdown</a></dd>
+      <dt>Web</dt><dd><a href="https://hyperstitious.org">hyperstitious.org</a></dd>
+      <dt>Collaborate</dt><dd><a href="https://github.com/marchdown/co-loop">co-loop</a> — fork the seed, run your agent, we loop</dd>
+    </dl>
+  </article>
+
+  <footer>
+    marchdown.github.io · main@79bc67f · github.com/marchdown/marchdown.github.io<br>
+    CV assembled 2026-06-21, revised 2026-06-28 by Claude Code · Opus 4.8 (1M) ·
+    public GitHub data + owner-confirmed roles/degrees · complete ·
+    session ~/.claude/projects/-Users-uprootiny-marchdown-github-io
+  </footer>
+
+</body>
+</html>

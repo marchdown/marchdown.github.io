@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>marchdown — the workshop</title>
+<style>
+  :root{--bg:#16140f;--card:#1f1c15;--fg:#e8e2d4;--mut:#9a9382;--acc:#c8a45a;--line:#322d22}
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(120% 80% at 50% 0%,#221e16,var(--bg));
+       color:var(--fg);font:16px/1.6 "Iowan Old Style",Palatino,Georgia,serif;
+       padding:8vh 5vw 12vh;max-width:1000px;margin:auto}
+  .lede{font-size:clamp(28px,5vw,46px);line-height:1.15;letter-spacing:-.5px;margin:0 0 .3em}
+  .lede b{color:var(--acc);font-weight:600}
+  .meta{color:var(--mut);font-size:15px;max-width:60ch}
+  .meta a{color:var(--fg)}
+  .count{display:flex;gap:2.5em;margin:2.5em 0;flex-wrap:wrap}
+  .count div{font-size:13px;color:var(--mut);font-family:system-ui,sans-serif;letter-spacing:.05em}
+  .count b{display:block;font:600 30px/1 "Iowan Old Style",serif;color:var(--acc)}
+  h2{font:600 13px/1 system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;
+     color:var(--mut);margin:3em 0 1em}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;
+        transition:.15s}
+  .card:hover{border-color:var(--acc);transform:translateY(-2px)}
+  .card h3{margin:0 0 .2em;font-size:17px}
+  .card h3 a{color:var(--fg);text-decoration:none}
+  .card:hover h3 a{color:var(--acc)}
+  .card p{margin:.2em 0 0;color:var(--mut);font-size:14px}
+  .card .lang{font:11px/1 system-ui,sans-serif;color:var(--acc);letter-spacing:.06em;text-transform:uppercase}
+  footer{margin-top:5em;border-top:1px solid var(--line);padding-top:1.2em;
+         font:12px/1.6 system-ui,sans-serif;color:var(--mut)}
+  footer a{color:var(--mut)}
+</style>
+</head>
+<body>
+  <p class="lede">A working <b>garden of tools</b>.<br>One problem, one sharp instrument, repeat.</p>
+  <p class="meta"><b>marchdown</b> — polyglot toolsmith at Hyperstitia, in Pardes. I build spec-first:
+  the slow part is deciding precisely what must exist; the code that follows is short and meticulous.
+  Open to work. <a href="https://github.com/marchdown">github.com/marchdown</a></p>
+
+  <div class="count">
+    <div><b>152</b>public repos</div>
+    <div><b>2010</b>tending since</div>
+    <div><b>6+</b>working languages</div>
+  </div>
+
+  <h2>Agents &amp; inference</h2>
+  <div class="grid">
+    <div class="card"><span class="lang">Elixir</span><h3><a href="https://github.com/marchdown/gemini-gate">gemini-gate</a></h3><p>LLM gateway / routing.</p></div>
+    <div class="card"><span class="lang">Elixir</span><h3><a href="https://github.com/marchdown/inference_harness">inference_harness</a></h3><p>Model inference rig.</p></div>
+    <div class="card"><span class="lang">Swift / Elixir</span><h3><a href="https://github.com/marchdown/corpora">corpora</a></h3><p>Corpus tooling &amp; bridge.</p></div>
+    <div class="card"><span class="lang">Shell</span><h3><a href="https://github.com/marchdown/fleet">fleet</a></h3><p>Agent fleet orchestration.</p></div>
+  </div>
+
+  <h2>Audio &amp; sonification</h2>
+  <div class="grid">
+    <div class="card"><span class="lang">Rust</span><h3><a href="https://github.com/marchdown/topo-sonify">topo-sonify</a></h3><p>Terrain turned into sound.</p></div>
+    <div class="card"><span class="lang">Swift</span><h3><a href="https://github.com/marchdown/shimmer">shimmer</a></h3><p>Audio sketchpad.</p></div>
+    <div class="card"><span class="lang">Swift</span><h3><a href="https://github.com/marchdown/Orpheus">Orpheus</a></h3><p>Recovers Voice Memos from iOS backups.</p></div>
+  </div>
+
+  <h2>Craft &amp; discipline</h2>
+  <div class="grid">
+    <div class="card"><span class="lang">Rust</span><h3><a href="https://github.com/marchdown/spec-before-code">spec-before-code</a></h3><p>The method, made a tool.</p></div>
+    <div class="card"><span class="lang">Clojure</span><h3><a href="https://github.com/marchdown/scout">scout</a></h3><p>Exploration utility.</p></div>
+    <div class="card"><span class="lang">Swift</span><h3><a href="https://github.com/marchdown/atanor">atanor</a></h3><p>The slow furnace.</p></div>
+  </div>
+
+  <footer>
+    Open source — <a href="https://github.com/marchdown/marchdown.github.io">improve this page</a>.
+    Built 2026-06-17 from public GitHub data · commit 79bc67f · Claude Code (Opus 4.8).
+  </footer>
+</body>
+</html>

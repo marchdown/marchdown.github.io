@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>marchdown — a garden in deep zoom</title>
+<style>
+  :root{ --fg:#d8d4cc; --acc:#b9a06b; --mut:#5d5a54; }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:#05060a;color:var(--fg);overflow:hidden;
+            font:14px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;
+            -webkit-font-smoothing:antialiased;cursor:grab}
+  body.dragging{cursor:grabbing}
+  body.focusing{cursor:auto}
+
+  #stars{position:fixed;inset:0;z-index:0;display:block}
+
+  /* the zoom stage — all rings live here, panned as one */
+  #field{position:fixed;inset:0;z-index:1;overflow:hidden}
+  #cam{position:absolute;left:50%;top:50%;will-change:transform}
+
+  .ring{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform,opacity}
+
+  /* brachiating SVG tree — branches sway forever (compositor-only) */
+  .tree{position:absolute;left:0;top:0;overflow:visible;transform:translate(-50%,-50%)}
+  .joint{animation:sway var(--d,5s) ease-in-out infinite alternate;animation-delay:var(--delay,0s)}
+  @keyframes sway{from{transform:rotate(calc(var(--a) * -1))}to{transform:rotate(var(--a))}}
+  /* limbs shimmer — opacity breathes on each limb, staggered by its joint's vars */
+  .limb{stroke:var(--acc);fill:none;stroke-linecap:round;opacity:.55;
+        animation:limbShimmer var(--d,5s) ease-in-out infinite alternate;animation-delay:var(--delay,0s)}
+  .twig{stroke:#6f6347;fill:none;stroke-linecap:round;opacity:.4;
+        animation:limbShimmer var(--d,5s) ease-in-out infinite alternate;animation-delay:var(--delay,0s)}
+  @keyframes limbShimmer{from{opacity:.22;stroke:#6f6347}to{opacity:.75;stroke:var(--acc)}}
+  .bud{fill:var(--acc);animation:twinkle var(--d,4s) ease-in-out infinite alternate}
+  @keyframes twinkle{from{opacity:.25;r:1}to{opacity:.95}}
+
+  /* the fruit: a live interface or report, hung from a tip and swinging */
+  .fruit{position:absolute;left:0;top:0;width:var(--w,340px);height:var(--h,230px);
+         transform-origin:50% -42px;animation:swing var(--sw,7s) ease-in-out infinite alternate;
+         animation-delay:var(--swd,0s)}
+  @keyframes swing{from{transform:translate(-50%,0) rotate(-1.6deg)}to{transform:translate(-50%,0) rotate(1.6deg)}}
+  .stem{position:absolute;left:50%;bottom:100%;width:1px;height:46px;background:linear-gradient(#6f6347,transparent);transform:translateX(-.5px)}
+  .pane{position:absolute;inset:0;border:1px solid #2a2820;border-radius:9px;overflow:hidden;
+        background:#070809;box-shadow:0 18px 60px -20px #000,0 0 0 1px #0000;}
+  .ring.live .pane{border-color:#3c5a4e;box-shadow:0 22px 80px -16px #000,0 0 60px -22px var(--acc)}
+  .pane iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#0b0d11;pointer-events:none}
+  .ring.interactive .pane iframe{pointer-events:auto}
+  .cap{position:absolute;left:8px;bottom:6px;z-index:2;font-size:10px;letter-spacing:.08em;
+       color:var(--mut);text-transform:uppercase;pointer-events:none;text-shadow:0 1px 3px #000}
+  .kind{position:absolute;right:8px;top:7px;z-index:2;font-size:9px;letter-spacing:.12em;
+        color:var(--acc);opacity:.7;pointer-events:none}
+
+  /* inline live "report" fruit (not iframes) */
+  .report{position:absolute;inset:0;padding:14px 16px;color:#bdb8ae;overflow:hidden}
+  .report h3{margin:0 0 .6em;font:600 12px/1 ui-monospace,monospace;color:var(--acc);letter-spacing:.1em;text-transform:uppercase}
+  .report .row{display:flex;justify-content:space-between;gap:1em;padding:.18em 0;border-bottom:1px dotted #211f1b;font-size:12px}
+  .report .row b{color:var(--fg);font-weight:600}
+  .report .bar{height:5px;border-radius:3px;background:var(--acc);opacity:.5}
+  .report .mono{font-size:11px;color:var(--mut)}
+  .report .big{font:300 28px/1 ui-monospace,monospace;color:var(--fg);letter-spacing:-1px}
+
+  /* HUD */
+  .hint{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:5;
+        font-size:11px;letter-spacing:.04em;color:var(--mut);background:#0a0b0fcc;
+        border:1px solid #1a1c22;border-radius:99px;padding:.5em 1em;backdrop-filter:blur(6px);
+        transition:opacity .5s;pointer-events:none}
+  .hint b{color:var(--acc)}
+  .hint kbd{color:var(--fg);background:#15171d;border:1px solid #262932;border-radius:4px;padding:0 .35em}
+  .exit{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:6;opacity:0;
+        pointer-events:none;transition:opacity .35s;font-size:11px;color:var(--mut);
+        background:#0a0b0fcc;border:1px solid #1a1c22;border-radius:99px;padding:.5em 1em;backdrop-filter:blur(6px)}
+  body.focusing .exit{opacity:1;pointer-events:auto;cursor:pointer}
+  body.focusing .hint{opacity:0}
+
+  footer{position:fixed;left:14px;bottom:12px;z-index:5;font-size:10px;line-height:1.5;
+         color:#34322d;letter-spacing:.04em;max-width:42ch}
+  footer a{color:#46443d;text-decoration:none}
+  footer a:hover{color:var(--acc)}
+  .brand{position:fixed;left:16px;top:14px;z-index:5;font:300 19px/1 "Cormorant Garamond",Garamond,serif;
+         letter-spacing:1px;color:#7a756b;pointer-events:none}
+  .brand b{color:var(--fg);font-weight:300}
+  .brand i{color:var(--acc);font-style:normal}
+
+  @media (prefers-reduced-motion:reduce){
+    .joint,.fruit{animation:none}
+    .hint{display:none}
+  }
+</style>
+</head>
+<body>
+  <canvas id="stars"></canvas>
+  <div id="field"><div id="cam"></div></div>
+
+  <div class="brand"><b>march</b><i>·</i><b>down</b></div>
+  <div class="hint"><b>scroll</b> to fall · <b>drag</b> to drift · <b>click</b> a fruit to land on it · <kbd>space</kbd> pause · <kbd>esc</kbd> back</div>
+  <div class="exit" id="exit">↥ back to the drift &nbsp;·&nbsp; <kbd>esc</kbd></div>
+
+  <footer id="prov"></footer>
+
+<script>
+//=====================================================================
+//  marchdown.github.io — "the garden in deep zoom"
+//  An endless, navigable zoom through a self-similar starfield. Branching
+//  SVG limbs sway (brachiate) and carry live interfaces & reports as fruit.
+//  Idle  → slow inward drift, seamless loop. Scroll/drag/click → you steer.
+//=====================================================================
+
+const PROV = {
+  project:"marchdown.github.io", commit:"79bc67f", branch:"main",
+  remote:"github.com/marchdown/marchdown.github.io",
+  generated:"2026-06-19", generator:"Claude Code · Opus 4.8 (1M)",
+  session:"~/.claude/projects/-Users-uprootiny-marchdown-github-io"
+};
+
+//---- the six fruit: real, live pieces of the work -------------------
+// kind:"iframe" mounts a sibling draft; kind:"report" renders live inline.
+const FRUIT = [
+  { kind:"iframe", cap:"diffusion cv",  tag:"interface", src:"drafts/draft-2-resume.html",      w:380, h:300 },
+  { kind:"iframe", cap:"hyperstition",  tag:"interface", src:"drafts/draft-4-hyperstition.html", w:360, h:250 },
+  { kind:"iframe", cap:"terminal",      tag:"interface", src:"drafts/draft-1-terminal.html",     w:360, h:250 },
+  { kind:"iframe", cap:"card portfolio",tag:"interface", src:"drafts/draft-5-cards.html",        w:380, h:280 },
+  { kind:"report", cap:"corpus report", tag:"report",    build:reportRepos,  w:320, h:230 },
+  { kind:"report", cap:"live status",   tag:"report",    build:reportStatus, w:320, h:200 },
+];
+
+//---- geometry of the endless zoom ----------------------------------
+const K = 2.45;          // scale ratio between adjacent rings
+const L = FRUIT.length;  // ring count == fruit count (each fruit unique, never duplicated)
+const AUTO = 0.05;       // idle drift speed, in log-K depth units / second (≈120s full loop)
+const P_READ = 1.75;     // depth at which a focused fruit sits comfortably readable
+const BASE = 150;        // px scale of a ring at depth p=0 (multiplied by K^p)
+
+let phase = 0.0001;      // master depth. ring i sits at depth ((phase+i) mod L)
+let phaseTarget = null;  // when steering/focusing, ease toward this
+let pan = {x:0, y:0}, panTarget = null;
+let mode = "auto";       // auto | manual | focus
+let focusIdx = -1;
+let idleUntil = 0;       // wall-clock-ish accumulator gate for resuming drift
+let paused = false;
+let phaseVel = AUTO;     // smoothed, drives starfield speed
+
+const reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+//---- build the SVG trees + fruit -----------------------------------
+const cam = document.getElementById("cam");
+const rings = FRUIT.map((f,i)=>buildRing(f,i));
+
+function buildRing(f, i){
+  const el = document.createElement("div");
+  el.className = "ring"; el.dataset.idx = i;
+  // deterministic per-ring character
+  const seed = (i*2654435761) >>> 0;
+  const rnd = mulberry32(seed);
+  const rot = (rnd()*2-1) * 26;                 // whole-tree lean
+  // --- tree ---
+  const NS="http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(NS,"svg");
+  svg.setAttribute("class","tree");
+  svg.setAttribute("width","640"); svg.setAttribute("height","640");
+  svg.setAttribute("viewBox","-320 -320 640 640");
+  svg.style.transform = `translate(-50%,-50%) rotate(${rot}deg)`;
+  const trunkLen = 92 + rnd()*22;
+  const tipXY = grow(svg, NS, rnd, 0, trunkLen, -90, 4, 7);   // returns a chosen tip for the fruit
+  cam.appendChild(el); el.appendChild(svg);
+
+  // --- fruit hung at a tip ---
+  const fruit = document.createElement("div");
+  fruit.className = "fruit";
+  fruit.style.setProperty("--w", f.w+"px");
+  fruit.style.setProperty("--h", f.h+"px");
+  fruit.style.setProperty("--sw", (6+rnd()*4).toFixed(2)+"s");
+  fruit.style.setProperty("--swd", (-rnd()*3).toFixed(2)+"s");
+  // offset (ring-local px) of the fruit from ring centre — gives each tree spread
+  const ox = tipXY.x, oy = tipXY.y - 30;
+  el._off = {x:ox, y:oy};
+  fruit.style.left = ox+"px"; fruit.style.top = oy+"px";
+  fruit.innerHTML = `<div class="stem"></div>
+     <div class="pane"></div>
+     <span class="cap">${f.cap}</span><span class="kind">${f.tag}</span>`;
+  const pane = fruit.querySelector(".pane");
+  if(f.kind==="iframe"){
+    const ifr = document.createElement("iframe");
+    ifr.loading="lazy"; ifr.setAttribute("scrolling","no"); ifr.title=f.cap; ifr.src=f.src;
+    pane.appendChild(ifr);
+  } else {
+    const r = document.createElement("div"); r.className="report"; pane.appendChild(r);
+    f.build(r);
+  }
+  el.appendChild(fruit);
+
+  // click anywhere on the ring → land on this fruit
+  el.addEventListener("pointerdown", e=>{ el._downAt = {x:e.clientX,y:e.clientY}; });
+  el.addEventListener("click", e=>{
+    const d = el._downAt; if(d && Math.hypot(e.clientX-d.x, e.clientY-d.y) > 6) return; // was a drag
+    focusRing(i);
+  });
+  return el;
+}
+
+// recursive brachiating tree; records candidate tips, returns the one to hang fruit on
+function grow(svg, NS, rnd, depth, len, ang, maxDepth, jointDur){
+  // a <g> joint that sways, then a limb drawn upward, then children at its end
+  const joint = document.createElementNS(NS,"g");
+  joint.setAttribute("class","joint");
+  joint.style.setProperty("--a", (3 + rnd()*5 + depth*1.2).toFixed(1)+"deg");
+  joint.style.setProperty("--d", (jointDur + rnd()*3).toFixed(2)+"s");
+  joint.style.setProperty("--delay", (-rnd()*4).toFixed(2)+"s");
+  joint.setAttribute("transform", `rotate(${ang+90})`);     // orient this limb
+  svg.appendChild ? svg.appendChild(joint) : svg.append(joint);
+
+  const a = (ang+90)*Math.PI/180;
+  const ex = Math.cos(a-Math.PI/2)*len, ey = Math.sin(a-Math.PI/2)*len;
+  const limb = document.createElementNS(NS,"path");
+  limb.setAttribute("d",`M0 0 L0 ${-len}`);
+  limb.setAttribute("class", depth<maxDepth-2?"limb":"twig");
+  limb.setAttribute("stroke-width", Math.max(0.8, (maxDepth-depth)*1.1).toFixed(1));
+  joint.appendChild(limb);
+
+  // a tip-end group, translated to the limb end, where children grow
+  const end = document.createElementNS(NS,"g");
+  end.setAttribute("transform",`translate(0 ${-len})`);
+  joint.appendChild(end);
+
+  let chosenTip = null;
+  if(depth>=maxDepth-1){
+    const bud = document.createElementNS(NS,"circle");
+    bud.setAttribute("class","bud"); bud.setAttribute("r", (2.5-depth*0.2).toFixed(1));
+    end.appendChild(bud);
+    // accumulate world-space tip position by walking rotations — approximate via traversal
+    chosenTip = {gNode:end};
+  } else {
+    const branches = depth===0 ? 1 : (rnd()<0.35?3:2);
+    const spread = 26 + rnd()*16;
+    for(let b=0;b<branches;b++){
+      const off = branches===1 ? (rnd()*2-1)*10 : (b-(branches-1)/2)*spread + (rnd()*2-1)*6;
+      const t = grow(end, NS, rnd, depth+1, len*(0.72+rnd()*0.12), off, maxDepth, jointDur);
+      if(t && (!chosenTip || rnd()<0.5)) chosenTip = t;     // pick a deep tip for the fruit
+    }
+  }
+  if(depth===0){
+    // resolve chosen tip to a ring-local point after layout
+    return resolveTip(svg, chosenTip);
+  }
+  return chosenTip;
+}
+
+// measure a chosen tip's position relative to the ring centre (ring-local px)
+function resolveTip(svg, tip){
+  if(!tip || !tip.gNode) return {x: 0, y:-150};
+  // getBBox/CTM only valid once in DOM; defer to a microtask is overkill — approximate now,
+  // then correct on first frame via getScreenCTM. Provide a sane upfront guess:
+  svg._tipNode = tip.gNode;
+  return {x: 0, y: -150};
+}
+
+//---- live report fruit ---------------------------------------------
+function reportRepos(root){
+  const langs = [["Swift",24],["Rust",16],["Clojure",15],["Elixir",11],["Haskell",7],["Nix",5]];
+  const max = langs[0][1];
+  root.innerHTML = `<h3>corpus · 152 repos</h3>` + langs.map(([k,v])=>
+    `<div class="row"><span>${k}</span><span class="mono">${v}</span></div>
+     <div class="bar" style="width:${Math.round(v/max*100)}%;margin:.1em 0 .5em"></div>`).join("")
+   + `<div class="mono" style="margin-top:.4em">spec before code · since 2010</div>`;
+}
+function reportStatus(root){
+  root.innerHTML = `<h3>live status</h3>
+     <div class="big" id="clk">··:··:··</div>
+     <div class="row"><span>branch</span><b>${PROV.branch}</b></div>
+     <div class="row"><span>commit</span><b>${PROV.commit}</b></div>
+     <div class="row"><span>fps</span><b id="fps">—</b></div>
+     <div class="mono" style="margin-top:.5em">human in the loop · available</div>`;
+}
+
+//---- starfield ------------------------------------------------------
+const cvs = document.getElementById("stars"), ctx = cvs.getContext("2d");
+let stars=[], W=0, Hh=0, DPR=Math.min(2,window.devicePixelRatio||1);
+function resize(){
+  W=innerWidth; Hh=innerHeight; cvs.width=W*DPR; cvs.height=Hh*DPR;
+  cvs.style.width=W+"px"; cvs.style.height=Hh+"px"; ctx.setTransform(DPR,0,0,DPR,0,0);
+  const n = Math.round(Math.min(420, W*Hh/4200));
+  stars = Array.from({length:n}, ()=>({ x:(Math.random()*2-1), y:(Math.random()*2-1),
+    z:Math.random()*0.95+0.05, h:Math.random() }));
+}
+addEventListener("resize", resize); resize();
+
+function drawStars(dt){
+  ctx.clearRect(0,0,W,Hh);
+  const cx=W/2+pan.x*0.04, cy=Hh/2+pan.y*0.04;
+  const v = (paused?0:phaseVel) * dt * 0.55;     // depth velocity → starfield speed
+  for(const s of stars){
+    s.z -= v * s.z;                               // exponential approach = matches K-zoom feel
+    if(s.z<=0.04){ s.z+=0.95; s.x=(Math.random()*2-1); s.y=(Math.random()*2-1); }
+    if(s.z>1.0 ){ s.z-=0.96; s.x=(Math.random()*2-1); s.y=(Math.random()*2-1); }
+    const k = 0.5/s.z;
+    const px=cx + s.x*k*W*0.5, py=cy + s.y*k*Hh*0.5;
+    if(px<-20||px>W+20||py<-20||py>Hh+20) continue;
+    const r = Math.max(0.3, (1-s.z)*2.2);
+    const a = Math.min(1,(1-s.z)*1.3);
+    ctx.globalAlpha = a*0.9;
+    ctx.fillStyle = s.h<0.85 ? "#cfd6e2" : (s.h<0.95?"#b9a06b":"#7fd1b9");
+    ctx.beginPath(); ctx.arc(px,py,r,0,6.283); ctx.fill();
+  }
+  ctx.globalAlpha=1;
+}
+
+//---- interaction ----------------------------------------------------
+const body=document.body;
+addEventListener("wheel", e=>{
+  e.preventDefault();
+  if(mode==="focus") return;
+  mode="manual"; phaseTarget=null;
+  phase += (e.deltaY>0?1:-1) * Math.min(0.18, Math.abs(e.deltaY)*0.0016);
+  idleUntil = 2.2;                 // seconds of stillness before drift resumes
+}, {passive:false});
+
+let drag=null;
+addEventListener("pointerdown", e=>{
+  if(e.target.closest(".ring.interactive")) return;   // let a focused live iframe take it
+  drag={x:e.clientX, y:e.clientY, px:pan.x, py:pan.y, moved:false};
+});
+addEventListener("pointermove", e=>{
+  if(!drag) return;
+  const dx=e.clientX-drag.x, dy=e.clientY-drag.y;
+  if(Math.hypot(dx,dy)>4){ drag.moved=true; body.classList.add("dragging"); }
+  if(mode!=="focus"){ pan.x=drag.px+dx; pan.y=drag.py+dy; panTarget=null; idleUntil=2.2; mode="manual"; }
+});
+addEventListener("pointerup", ()=>{ drag=null; body.classList.remove("dragging"); });
+
+addEventListener("keydown", e=>{
+  if(e.code==="Space"){ e.preventDefault(); paused=!paused; }
+  else if(e.code==="Escape") release();
+  else if(e.key==="+"||e.key==="="){ mode="manual"; phase-=0.25; idleUntil=2.2; }
+  else if(e.key==="-"){ mode="manual"; phase+=0.25; idleUntil=2.2; }
+});
+document.getElementById("exit").addEventListener("click", release);
+
+function focusRing(i){
+  mode="focus"; focusIdx=i; body.classList.add("focusing");
+  // shortest wrap of phase so ring i lands at P_READ
+  const want = P_READ - i;
+  phaseTarget = nearestPhase(phase, want);
+  const off = rings[i]._off;
+  panTarget = { x:-off.x*Math.pow(K,P_READ), y:-off.y*Math.pow(K,P_READ) };
+  rings.forEach(r=>r.classList.remove("interactive"));
+}
+function release(){
+  if(mode!=="focus") return;
+  mode="manual"; const i=focusIdx; focusIdx=-1; body.classList.remove("focusing");
+  if(i>=0) rings[i].classList.remove("interactive");
+  phaseTarget=null; panTarget={x:0,y:0}; idleUntil=2.2;
+}
+function nearestPhase(cur, want){           // choose target congruent mod L closest to cur
+  let t = want; const m=((want-cur)%L+L)%L;
+  t = cur + (m>L/2 ? m-L : m); return t;
+}
+
+//---- main loop ------------------------------------------------------
+let last=0, fpsT=0, fpsN=0, fpsV=0;
+function frame(ts){
+  const dt = last? Math.min(0.05,(ts-last)/1000) : 0.016; last=ts;
+
+  if(!reduce && !paused){
+    if(mode==="auto"){ phase += AUTO*dt; }
+    else if(mode==="manual"){
+      idleUntil -= dt;
+      if(idleUntil<=0){ mode="auto"; if(!panTarget) panTarget={x:0,y:0}; }
+    } else if(mode==="focus" && phaseTarget!=null){
+      phase += (phaseTarget-phase)*Math.min(1,dt*4.5);
+      if(Math.abs(phaseTarget-phase)<0.012){ phase=phaseTarget;
+        rings[focusIdx]?.classList.add("interactive"); }   // hand pointer to the live iframe
+    }
+  }
+  // ease pan toward target if set
+  if(panTarget){ pan.x+=(panTarget.x-pan.x)*Math.min(1,dt*4); pan.y+=(panTarget.y-pan.y)*Math.min(1,dt*4);
+    if(Math.abs(panTarget.x-pan.x)<0.5&&Math.abs(panTarget.y-pan.y)<0.5){pan.x=panTarget.x;pan.y=panTarget.y;
+      if(mode!=="focus") panTarget=null; } }
+
+  // smoothed depth velocity for the starfield
+  const inst = (mode==="focus"||paused)?0:AUTO;
+  phaseVel += ((mode==="manual"?0:inst) - phaseVel)*0.05 + 0; // baseline; manual handled below
+  // (cheap: just track auto baseline; manual scrolls still nudge via phase directly)
+
+  cam.style.transform = `translate(${pan.x}px,${pan.y}px)`;
+
+  // place the rings
+  for(let i=0;i<L;i++){
+    let p = (phase + i) % L; if(p<0) p+=L;
+    const s = BASE/ (BASE) * Math.pow(K, p);        // scale factor (relative to BASE-sized art)
+    const scale = Math.pow(K, p);
+    const a = fade(p);
+    const el = rings[i];
+    el.style.transform = `scale(${scale.toFixed(4)})`;
+    el.style.opacity = a.toFixed(3);
+    el.style.zIndex = Math.round(p*100);
+    el.style.pointerEvents = a>0.12 ? "auto" : "none";
+    el.classList.toggle("live", a>0.55 && p<P_READ+1.1 && p>P_READ-1.1);
+  }
+
+  drawStars(dt);
+
+  // live status fruit
+  fpsN++; fpsT+=dt; if(fpsT>=0.5){ fpsV=Math.round(fpsN/fpsT); fpsN=0; fpsT=0;
+    const f=document.getElementById("fps"); if(f) f.textContent=fpsV;
+    const c=document.getElementById("clk"); if(c){ const d=new Date();
+      c.textContent=[d.getHours(),d.getMinutes(),d.getSeconds()].map(x=>String(x).padStart(2,"0")).join(":"); } }
+
+  requestAnimationFrame(frame);
+}
+function fade(p){
+  // fade in over [0,0.9], fade out over [L-1.6, L]  → recycle at alpha≈0 = seamless
+  const inn = smooth01(p/0.9);
+  const out = 1 - smooth01((p-(L-1.7))/1.7);
+  return Math.max(0, Math.min(1, inn*out));
+}
+function smooth01(x){ x=Math.max(0,Math.min(1,x)); return x*x*(3-2*x); }
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a);
+  t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+
+// correct each fruit's tip position once SVG geometry is laid out
+function correctTips(){
+  rings.forEach((el,i)=>{
+    const svg=el.querySelector("svg"); const tip=svg._tipNode; if(!tip) return;
+    try{
+      const m = tip.getScreenCTM(), sm = svg.getScreenCTM();
+      if(!m||!sm) return;
+      // tip origin in svg-local coords:
+      const pt = svg.createSVGPoint(); pt.x=0; pt.y=0;
+      const local = pt.matrixTransform(m.multiply(sm.inverse()));
+      const off = el._off; off.x=local.x; off.y=local.y;
+      const fr = el.querySelector(".fruit");
+      fr.style.left=off.x+"px"; fr.style.top=(off.y-20)+"px";
+    }catch(_){}
+  });
+}
+
+//---- boot -----------------------------------------------------------
+function boot(){
+  // provenance footer
+  document.getElementById("prov").innerHTML =
+    `<a href="https://${PROV.remote}">${PROV.project}</a> · ${PROV.branch}@${PROV.commit} · `+
+    `built ${PROV.generated} by ${PROV.generator}<br>`+
+    `<span style="color:#2c2a26">session ${PROV.session}</span>`;
+
+  if(reduce){
+    // static composition: spread the fruit readable, no motion
+    phase = 0.0; for(let i=0;i<L;i++){ /* one static layout pass */ }
+    const p0=()=>{ for(let i=0;i<L;i++){ let p=(phase+i)%L; const el=rings[i];
+      el.style.transform=`scale(${Math.pow(K,p).toFixed(3)})`; el.style.opacity=fade(p).toFixed(2); } };
+    setTimeout(()=>{correctTips(); p0();}, 60);
+    drawStars(0);
+    document.querySelector(".hint").style.display="none";
+    return;
+  }
+  requestAnimationFrame(frame);
+  setTimeout(correctTips, 80);      // after iframes/layout settle
+  setTimeout(correctTips, 600);
+  // fade the hint after a bit
+  setTimeout(()=>{ const h=document.querySelector(".hint"); if(!body.classList.contains("focusing")) h.style.opacity=.35; }, 9000);
+}
+boot();
+</script>
+</body>
+</html>

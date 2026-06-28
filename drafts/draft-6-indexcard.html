@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>marchdown</title>
+<style>
+  :root{--bg:#fcfcfa;--fg:#191919;--mut:#888;--acc:#c0392b}
+  @media(prefers-color-scheme:dark){:root{--bg:#101010;--fg:#ededed;--mut:#888;--acc:#ff6b5b}}
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;background:var(--bg);color:var(--fg);
+       font:17px/1.7 ui-sans-serif,-apple-system,"Helvetica Neue",sans-serif;
+       display:grid;place-items:center;padding:6vh 7vw}
+  main{max-width:46ch}
+  h1{font-size:clamp(34px,7vw,52px);font-weight:800;letter-spacing:-1.5px;margin:0 0 .1em}
+  .tag{color:var(--acc);font-weight:700}
+  p{margin:.9em 0;color:var(--fg)}
+  .mut{color:var(--mut)}
+  a{color:var(--fg);text-underline-offset:3px;text-decoration-color:var(--acc)}
+  a:hover{color:var(--acc)}
+  .row{margin-top:1.6em;font-size:15px;color:var(--mut)}
+  .row a{margin-right:1.2em;white-space:nowrap}
+  footer{position:fixed;bottom:1.2em;left:0;right:0;text-align:center;
+         font:11px/1.4 ui-monospace,monospace;color:var(--mut)}
+  footer a{color:var(--mut)}
+</style>
+</head>
+<body>
+  <main>
+    <h1>marchdown</h1>
+    <p>Polyglot <span class="tag">toolsmith</span>. I build small, exact instruments —
+    one per problem, often in a new language — working <span class="tag">spec before code</span>.</p>
+    <p class="mut">150+ repos since 2010 across Swift, Rust, Clojure, Elixir &amp; Haskell:
+    LLM gateways, sonification, and developer tools. Out of Hyperstitia, in Pardes. Open to work.</p>
+    <div class="row">
+      <a href="https://github.com/marchdown">github →</a>
+      <a href="mailto:uprootiny@gmail.com">email →</a>
+      <a href="https://hyperstitious.org">hyperstitious.org →</a>
+    </div>
+  </main>
+  <footer>
+    open source · <a href="https://github.com/marchdown/marchdown.github.io">improve this page</a>
+    · 2026-06-17 · 79bc67f
+  </footer>
+</body>
+</html>

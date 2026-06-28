@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pavel Vasilyev — Curriculum Vitae</title>
+<style>
+  /* Deliberately plain: single column, system font, high contrast, parser-friendly.
+     No columns, no icons, no color — safe for automated CV screening and easy to read aloud. */
+  body{margin:0;background:#fff;color:#111;
+       font:15px/1.6 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  .page{max-width:740px;margin:40px auto;padding:0 28px}
+  h1{font-size:26px;margin:0 0 2px}
+  .sub{font-size:15px;color:#333;margin:0 0 4px}
+  .meta{font-size:14px;color:#333;margin:0 0 18px}
+  .meta a{color:#111}
+  h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:#111;
+     margin:22px 0 4px;padding-bottom:4px;border-bottom:1px solid #bbb}
+  p{margin:.45em 0}
+  .role{display:flex;justify-content:space-between;gap:1em;flex-wrap:wrap;margin-top:.7em;font-weight:700}
+  .role .when{font-weight:400;color:#444;white-space:nowrap}
+  ul{margin:.25em 0 .2em;padding-left:1.2em}
+  li{margin:.12em 0}
+  .muted{color:#444}
+  .slot{background:#fbeecb;padding:0 .3em}
+  footer{max-width:740px;margin:24px auto 60px;padding:0 28px;color:#888;
+         font:11px/1.5 ui-monospace,monospace}
+  @media print{
+    @page{margin:16mm}
+    body{font-size:11pt}
+    .page,footer{margin:0 auto;max-width:none;padding:0}
+    .note-print-hide{display:none}
+    .slot{background:none}
+    a{color:#111;text-decoration:none}
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <h1>Pavel Vasilyev</h1>
+    <p class="sub">Software engineer and AI-oversight specialist</p>
+    <p class="meta">
+      Jerusalem, Israel · <a href="mailto:uprootiny@gmail.com">uprootiny@gmail.com</a> ·
+      <a href="https://github.com/marchdown">github.com/marchdown</a> ·
+      <a href="https://hyperstitious.org">hyperstitious.org</a> · Open to work
+    </p>
+
+    <h2>Summary</h2>
+    <p>I am a software developer with about fifteen years of experience. I can build software in
+      several programming languages and choose the right one for each problem. In recent years I have
+      specialised in the part of AI work where a person has to check, correct, and take
+      responsibility for what a model produces before it is used — quality control and oversight for
+      AI systems — and in building the tools that support that work. I have a strong quantitative
+      background in applied statistics and machine learning, and I work method-first: decide exactly
+      what needs to exist, then build it carefully.</p>
+
+    <h2>Experience</h2>
+    <p class="muted note-print-hide" style="font-style:italic;margin-top:0">Selected highlights — not a complete list of every role.</p>
+
+    <div class="role"><span>LLM Engineer — Move38 (contract)</span><span class="when">2026</span></div>
+    <ul><li>Built an LLM feature from end to end: the serving infrastructure, the prompts, and the
+      user-facing interaction.</li></ul>
+
+    <div class="role"><span>Dissemblage.art — independent</span><span class="when">2024–2025</span></div>
+    <ul><li>A series of art experiments made with the help of language and generative models.</li></ul>
+
+    <div class="role"><span>Chief Technology Officer — LevEhad (non-profit, Israel)</span><span class="when">2024</span></div>
+    <ul><li>Ran all of the organisation's IT infrastructure and led its technical development.</li></ul>
+
+    <div class="role"><span>AI Architect — Stamina AI</span><span class="when">2023</span></div>
+    <ul><li>Designed chatbot and language-model systems, including search over a knowledge base.</li></ul>
+
+    <div class="role"><span>Research Lead — Spring Research</span><span class="when">2021–2022</span></div>
+    <ul><li>Led a research team building machine-learning models of the financial markets, and was
+      responsible for the team's direction and the systems it deployed.</li></ul>
+
+    <div class="role"><span>Independent consultant and open-source developer</span><span class="when">2010–present</span></div>
+    <ul><li>Consulting and advisory work between employed roles, including running my own software
+      practice, alongside a large body of open-source software (about 150 projects).</li></ul>
+
+    <div class="role"><span>Earlier roles — data science, language technology and software</span><span class="when">2009–2019</span></div>
+    <ul><li>Several roles in Tel Aviv, Hong Kong and Prague (Nestlogic, Maverick Medical AI, Athena
+      Portfolio Solutions, Ten-X, Verba, Finfon): financial-news text analysis, medical-text models,
+      computer vision, and language-corpus software.</li></ul>
+
+    <h2>Skills</h2>
+    <p><b>Programming languages:</b> Swift, Rust, Clojure, Elixir/Erlang, Haskell, Nix, TypeScript,
+      Agda, C.</p>
+    <p><b>Machine learning:</b> Python, PyTorch, TensorFlow, scikit-learn, pandas; AWS (EC2, S3,
+      SageMaker, Terraform).</p>
+    <p><b>Areas:</b> applied statistics and machine learning; AI/LLM oversight and verification;
+      developer tooling; type theory and proof assistants.</p>
+
+    <h2>Education</h2>
+    <p>MSc in Computational Linguistics — Russian State University for the Humanities (RSUH),
+      Moscow, 2015.</p>
+    <p>BSc in Nuclear Physics — Czech Technical University, Prague, 2009.</p>
+
+    <h2>Spoken languages</h2>
+    <p>English, Hebrew, Russian; working knowledge of German and French.</p>
+
+    <h2>Selected open-source projects</h2>
+    <ul>
+      <li><a href="https://github.com/marchdown/co-loop">co-loop</a> — a scaffold for collaborating with AI agents.</li>
+      <li><a href="https://github.com/marchdown/gemini-gate">gemini-gate</a> and <a href="https://github.com/marchdown/inference_harness">inference_harness</a> — a language-model gateway and an inference rig (Elixir).</li>
+      <li><a href="https://github.com/marchdown/Orpheus">Orpheus</a> — recovers voice memos from encrypted iPhone backups (Swift).</li>
+      <li><a href="https://github.com/marchdown?tab=repositories">Full record</a> — 150+ repositories since 2010.</li>
+    </ul>
+  </div>
+  <footer>
+    Pavel Vasilyev · CV (plain / ATS edition) · marchdown.github.io · main@79bc67f ·
+    built 2026-06-28 · Claude Code, Opus 4.8 (1M) · Print → Save as PDF
+  </footer>
+</body>
+</html>

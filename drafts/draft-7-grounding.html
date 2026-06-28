@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>marchdown — a sprawl, grounding</title>
+<style>
+  :root{--bg:#06070b;--fg:#e4e0d8;--mut:#74706a;--acc:#b9a06b;--live:#7fd1b9;--line:#1c1e24}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--fg);
+       font:16px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace;-webkit-font-smoothing:antialiased}
+
+  /* ---- the cloud: garden sprawl that settles as you scroll ---- */
+  #sky{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+  .frag{position:absolute;white-space:nowrap;color:var(--mut);font-size:13px;
+        opacity:var(--o,.5);transform:translate(var(--dx,0),var(--dy,0)) rotate(var(--r,0deg));
+        transition:transform .1s linear,opacity .1s linear}
+  .frag b{color:var(--acc);font-weight:400}
+
+  /* progress P drives a CSS var on :root from 0 (sprawl) → 1 (settled) */
+  .lede{position:relative;z-index:2;min-height:96vh;display:flex;flex-direction:column;
+        justify-content:center;max-width:760px;margin:auto;padding:0 7vw}
+  .lede h1{font:300 clamp(36px,8vw,72px)/1 "Cormorant Garamond",Garamond,serif;
+           letter-spacing:1px;margin:0}
+  .lede h1 b{font-weight:300}.lede h1 i{color:var(--acc);font-style:normal}
+  .lede .sub{color:var(--mut);margin:1.4em 0 0;max-width:46ch;font-size:15px}
+  .lede .sub em{color:var(--fg);font-style:normal}
+  .scroll-cue{position:absolute;left:7vw;bottom:5vh;color:var(--mut);font-size:12px;
+              letter-spacing:.1em;animation:bob 2.4s ease-in-out infinite}
+  @keyframes bob{50%{transform:translateY(6px);opacity:.5}}
+
+  /* ---- the settled statement ---- */
+  main{position:relative;z-index:2;max-width:760px;margin:auto;padding:4vh 7vw 16vh}
+  .panel{background:#0a0b10cc;border:1px solid var(--line);border-radius:14px;
+         padding:30px 32px;margin:0 0 18px;backdrop-filter:blur(8px)}
+  .label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin:0 0 .8em}
+  .panel h2{font:400 22px/1.3 "Cormorant Garamond",Garamond,serif;margin:0 0 .4em;color:var(--fg)}
+  .panel p{margin:.5em 0;color:#bdb8ae}
+  .panel a{color:var(--acc);text-decoration:none;border-bottom:1px solid #2a2820}
+  .panel a:hover{color:#fff;border-color:var(--acc)}
+  .row{display:flex;justify-content:space-between;gap:1.5em;padding:.5em 0;border-bottom:1px dotted #1f211a;flex-wrap:wrap}
+  .row:last-child{border:0}
+  .row b{color:var(--fg);font-weight:400}
+  .row span{color:var(--mut);font-size:13px}
+  .langs{display:flex;flex-wrap:wrap;gap:.5em;margin-top:.6em}
+  .langs span{font-size:12px;color:var(--acc);background:#1a160c;padding:.3em .7em;border-radius:6px}
+  .cta{display:inline-block;margin-top:.4em;color:var(--live)!important;border-color:#274a40!important}
+  .avail{display:inline-flex;align-items:center;gap:.6em;color:var(--live);font-size:13px}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--live);box-shadow:0 0 8px var(--live)}
+  footer{position:relative;z-index:2;max-width:760px;margin:auto;padding:0 7vw 8vh;
+         color:#34322d;font-size:11px;line-height:1.6}
+  footer a{color:#46443d;text-decoration:none}footer a:hover{color:var(--acc)}
+
+  @media (prefers-reduced-motion:reduce){
+    #sky{display:none}.scroll-cue{display:none}
+    .lede{min-height:auto;padding-top:12vh}
+  }
+</style>
+</head>
+<body>
+  <div id="sky"></div>
+
+  <section class="lede">
+    <h1><b>march</b><i>·</i><b>down</b></h1>
+    <p class="sub">A garden of a hundred and fifty small tools — and the daily discipline of
+    <em>grounding</em> that sprawl into something exact. Keep scrolling; watch it settle.</p>
+    <div class="scroll-cue">↓ scroll — the cloud grounds into a statement</div>
+  </section>
+
+  <main>
+    <div class="panel">
+      <p class="label">who</p>
+      <h2>A polyglot toolsmith, working out of Hyperstitia · Pardes.</h2>
+      <p>I build small, sharp instruments — usually one per problem, often in a different language
+      than the last. The hard part is never the typing; it's deciding <em>exactly</em> what must
+      exist. <b>Spec before code.</b> On GitHub since 2010, ~152 public repositories.</p>
+      <div class="langs">
+        <span>Swift</span><span>Rust</span><span>Clojure</span><span>Elixir</span>
+        <span>Erlang</span><span>Haskell</span><span>Nix</span><span>TypeScript</span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <p class="label">why &amp; how to work with me</p>
+      <h2>I ground machine output into things you can rely on.</h2>
+      <p>The job I do for a living — taking sprawling, generative output and settling it into
+      something exact and dependable — is the same act this page performs on my own work.
+      If that's the help you need, the loop is simple.</p>
+      <p><a class="cta" href="https://github.com/marchdown/co-loop">→ co-loop: fork the seed, run your agent, we loop</a></p>
+    </div>
+
+    <div class="panel">
+      <p class="label">selected work</p>
+      <div class="row"><b><a href="https://github.com/marchdown/Orpheus">Orpheus</a></b><span>Swift · pulls voice memos out of encrypted iOS backups</span></div>
+      <div class="row"><b><a href="https://github.com/marchdown/gemini-gate">gemini-gate</a></b><span>Elixir · language-model gateway &amp; routing</span></div>
+      <div class="row"><b><a href="https://github.com/marchdown/inference_harness">inference_harness</a></b><span>Elixir · model inference rig</span></div>
+      <div class="row"><b><a href="https://github.com/marchdown/topo-sonify">topo-sonify</a></b><span>Rust · terrain made audible</span></div>
+      <div class="row"><b><a href="https://github.com/marchdown/corpora">corpora</a></b><span>Swift/Elixir · corpus tooling</span></div>
+      <div class="row"><b><a href="https://github.com/marchdown/spec-before-code">spec-before-code</a></b><span>Rust · the discipline, as a tool</span></div>
+    </div>
+
+    <div class="panel">
+      <p class="label">availability &amp; contact</p>
+      <span class="avail"><span class="dot"></span> Open to work · human in the loop</span>
+      <div class="row" style="margin-top:.8em"><span>github</span><b><a href="https://github.com/marchdown">github.com/marchdown</a></b></div>
+      <div class="row"><span>email</span><b><a href="mailto:uprootiny@gmail.com">uprootiny@gmail.com</a></b></div>
+      <div class="row"><span>web</span><b><a href="https://hyperstitious.org">hyperstitious.org</a></b></div>
+    </div>
+  </main>
+
+  <footer id="prov"></footer>
+
+<script>
+//  draft-7 "grounding" — the sprawl settles into a statement as you scroll.
+//  A field of garden-fragments drifts at the top; scroll progress P (0→1) pulls
+//  each fragment toward rest and fades it, revealing the legible panels beneath.
+const PROV={project:"marchdown.github.io",commit:"79bc67f",branch:"main",
+  remote:"github.com/marchdown/marchdown.github.io",generated:"2026-06-21",
+  generator:"Claude Code · Opus 4.8 (1M)",
+  session:"~/.claude/projects/-Users-uprootiny-marchdown-github-io"};
+document.getElementById("prov").innerHTML=
+  `<a href="https://${PROV.remote}">${PROV.project}</a> · ${PROV.branch}@${PROV.commit} · `+
+  `built ${PROV.generated} by ${PROV.generator}<br>`+
+  `draft 7 of the marchdown drafts · <a href="index.html">see all</a>`;
+
+const reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+const sky=document.getElementById("sky");
+const WORDS=["Orpheus","topo-sonify","gemini-gate","shimmer","corpora","scout",
+  "inference_harness","spec-before-code","Swift","Rust","Clojure","Elixir","Erlang",
+  "Haskell","Nix","Hyperstitia","Pardes","co-loop","since 2010","152 repos",
+  "spec before code","one tool per problem","human in the loop","terrain → sound",
+  "fork the seed","run your agent","we loop","sonification","LLM gateway"];
+
+function rnd(s){return function(){s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);
+  t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+const R=rnd(99);
+const frags=[];
+if(!reduce){
+  WORDS.forEach((w,i)=>{
+    const el=document.createElement("div");el.className="frag";
+    el.innerHTML=/[A-Z]|-/.test(w[0])||/^[a-z-]+$/.test(w)&&i<9?`<b>${w}</b>`:w;
+    // home position: scattered across the viewport
+    const hx=R()*100, hy=R()*100, rot=(R()*2-1)*22;
+    el.dataset.hx=hx;el.dataset.hy=hy;el.dataset.rot=rot;
+    el.style.left=hx+"vw";el.style.top=hy+"vh";
+    el.style.setProperty("--r",rot+"deg");
+    sky.appendChild(el);frags.push(el);
+  });
+}
+function update(){
+  const max=document.body.scrollHeight-innerHeight;
+  const P=max>0?Math.min(1,scrollY/(innerHeight*0.9)):0;     // settle within first screen of scroll
+  for(const el of frags){
+    const ease=P*P*(3-2*P);
+    // pull toward a calm center column and fade out as P→1
+    const cx=50, cy=50;
+    const dx=(cx-parseFloat(el.dataset.hx))*ease*0.7;
+    const dy=(cy-parseFloat(el.dataset.hy))*ease*0.7;
+    el.style.setProperty("--dx",dx+"vw");
+    el.style.setProperty("--dy",dy+"vh");
+    el.style.setProperty("--r",(parseFloat(el.dataset.rot)*(1-ease)).toFixed(1)+"deg");
+    el.style.setProperty("--o",(0.5*(1-ease)).toFixed(3));
+  }
+}
+if(!reduce){addEventListener("scroll",update,{passive:true});addEventListener("resize",update);update();}
+</script>
+</body>
+</html>

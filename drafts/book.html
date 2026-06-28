@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book an oversight session — marchdown</title>
+<style>
+  :root{--ink:#1a1a1a;--mut:#6b6b6b;--line:#e6e4de;--acc:#1c5d4a;--bg:#fbfaf7;--sel:#1c5d4a}
+  @media(prefers-color-scheme:dark){:root{--ink:#e9e6df;--mut:#9a958b;--line:#2a2a2a;--acc:#7fd1b9;--bg:#0e0e0d;--sel:#7fd1b9}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:16px/1.6 Georgia,"Times New Roman",serif;max-width:720px;padding:7vh 6vw 14vh;margin:auto}
+  a{color:var(--acc)}
+  .back{font:13px/1 system-ui,sans-serif;color:var(--mut);text-decoration:none}
+  h1{font-size:30px;margin:.3em 0 .1em;letter-spacing:-.5px}
+  .lede{color:var(--mut);max-width:54ch}
+  h2{font:600 12px/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.12em;color:var(--acc);
+     margin:2.4em 0 .8em;border-bottom:1px solid var(--line);padding-bottom:.5em}
+  .step{font-variant-numeric:tabular-nums;color:var(--mut)}
+
+  .opts{display:grid;gap:10px}
+  .opt{border:1px solid var(--line);border-radius:12px;padding:14px 16px;cursor:pointer;
+       display:flex;justify-content:space-between;gap:1em;align-items:baseline;transition:.12s;background:transparent}
+  .opt:hover{border-color:var(--acc)}
+  .opt.sel{border-color:var(--sel);box-shadow:inset 0 0 0 1px var(--sel)}
+  .opt .name{font-weight:600}
+  .opt .desc{display:block;color:var(--mut);font-size:14px;margin-top:.2em;font-weight:400}
+  .opt .price{font:600 14px/1 system-ui,sans-serif;color:var(--acc);white-space:nowrap}
+  .fill{background:#fdf2d8;color:#7a5a00;padding:0 .35em;border-radius:3px;font:13px/1.5 system-ui,sans-serif}
+  @media(prefers-color-scheme:dark){.fill{background:#2b2410;color:#e3b341}}
+
+  .slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+  .slot{border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer;text-align:left;
+        font:14px/1.3 system-ui,sans-serif;background:transparent;color:var(--ink);transition:.12s}
+  .slot:hover{border-color:var(--acc)}
+  .slot.sel{border-color:var(--sel);box-shadow:inset 0 0 0 1px var(--sel)}
+  .slot .d{font-weight:600}
+  .slot .t{color:var(--mut)}
+  .tz{font:12px/1 system-ui,sans-serif;color:var(--mut);margin-top:.6em}
+
+  .chains{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:.8em}
+  .chain{border:1px solid var(--line);border-radius:99px;padding:.4em .9em;cursor:pointer;
+         font:13px/1 system-ui,sans-serif;background:transparent;color:var(--ink)}
+  .chain.sel{border-color:var(--sel);color:var(--acc);font-weight:600}
+  .addr{display:flex;gap:8px;align-items:center;background:rgba(127,127,127,.07);
+        border:1px solid var(--line);border-radius:10px;padding:10px 12px;
+        font:13px/1.4 ui-monospace,monospace;word-break:break-all}
+  .addr button{font:12px/1 system-ui,sans-serif;border:1px solid var(--line);background:transparent;
+        color:var(--acc);border-radius:7px;padding:.4em .7em;cursor:pointer;white-space:nowrap}
+  .amt{margin-top:.6em;color:var(--mut);font-size:14px}
+
+  .confirm{margin-top:1.6em;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .go{font:600 15px/1 system-ui,sans-serif;background:var(--acc);color:#fff;border:0;border-radius:10px;
+      padding:.9em 1.4em;cursor:pointer}
+  .go[disabled]{opacity:.4;cursor:not-allowed}
+  .summary{color:var(--mut);font-size:14px}
+  .note{margin-top:2.4em;color:var(--mut);font-size:14px;max-width:56ch}
+
+  footer{margin-top:3em;border-top:1px solid var(--line);padding-top:1em;color:var(--mut);
+         font:12px/1.5 system-ui,sans-serif}
+  footer a{color:var(--mut)}
+</style>
+</head>
+<body>
+  <a class="back" href="draft-2-resume.html">← back</a>
+  <h1>Book an oversight session</h1>
+  <p class="lede">Pick what you need and a time. A crypto deposit holds the slot; send the
+  transaction hash and I'll confirm by email. Nothing here is automated — it's a person on the other end.</p>
+
+  <h2><span class="step">1 / </span> What</h2>
+  <div class="opts" id="types"></div>
+
+  <h2><span class="step">2 / </span> When</h2>
+  <div class="slots" id="slots"></div>
+  <div class="tz" id="tz"></div>
+
+  <h2><span class="step">3 / </span> Commit crypto</h2>
+  <div class="chains" id="chains"></div>
+  <div class="addr"><span id="addr">—</span><button id="copy">copy</button></div>
+  <div class="amt" id="amt">Amount: the price above, in the chosen asset at send-time.</div>
+
+  <h2><span class="step">4 / </span> Confirm</h2>
+  <div class="confirm">
+    <button class="go" id="go" disabled>Hold this slot →</button>
+    <span class="summary" id="sum">Choose a session and a time.</span>
+  </div>
+  <p class="note">"Hold this slot" opens an email to me with your selection. Paste the deposit
+  tx hash in and send. I confirm manually once it lands. Deposit applies to the session fee;
+  if I can't make the slot work, it's returned.</p>
+
+  <footer>
+    <a href="draft-2-resume.html">← résumé</a> ·
+    Open source — <a href="https://github.com/marchdown/marchdown.github.io">source</a>.
+    Built 2026-06-17. Addresses and rates marked <span class="fill">{{ }}</span> are set by the owner.
+  </footer>
+
+<script>
+const EMAIL="uprootiny@gmail.com";
+
+// {{ }} = owner fills real figures. Kept honest: no invented prices or addresses.
+const TYPES=[
+  {id:"review", name:"Output review", desc:"60 min — I read a model/agent output path with you and flag what won't hold.", price:"{{ price }}"},
+  {id:"audit",  name:"Pipeline audit", desc:"Half day — orchestration patterns, failure modes, a written list of fixes.", price:"{{ price }}"},
+  {id:"retainer", name:"Standing oversight", desc:"Ongoing — I'm the human in the loop on a live pipeline.", price:"{{ rate }}"},
+];
+const CHAINS=[
+  {id:"ETH", label:"ETH / ERC-20", addr:"{{ ETH_ADDRESS }}"},
+  {id:"SOL", label:"SOL",          addr:"{{ SOL_ADDRESS }}"},
+  {id:"BTC", label:"BTC",          addr:"{{ BTC_ADDRESS }}"},
+];
+
+let pick={type:null,slot:null,chain:CHAINS[0]};
+
+// session types
+const typesEl=document.getElementById('types');
+TYPES.forEach(t=>{
+  const d=document.createElement('div'); d.className='opt';
+  d.innerHTML=`<span><span class="name">${t.name}</span><span class="desc">${t.desc}</span></span>`
+    +`<span class="price">${t.price}</span>`;
+  d.onclick=()=>{pick.type=t;[...typesEl.children].forEach(c=>c.classList.remove('sel'));d.classList.add('sel');refresh();};
+  typesEl.appendChild(d);
+});
+
+// timeslots — next 8 weekdays, two times each, in the visitor's own timezone
+const slotsEl=document.getElementById('slots');
+const fmtD=new Intl.DateTimeFormat(undefined,{weekday:'short',month:'short',day:'numeric'});
+const fmtT=new Intl.DateTimeFormat(undefined,{hour:'numeric',minute:'2-digit'});
+let made=0,cursor=new Date(); cursor.setHours(0,0,0,0);
+while(made<8){
+  cursor.setDate(cursor.getDate()+1);
+  const dow=cursor.getDay(); if(dow===0||dow===6) continue;     // weekdays only
+  [11,15].forEach(h=>{
+    const dt=new Date(cursor); dt.setHours(h,0,0,0);
+    const b=document.createElement('button'); b.className='slot';
+    b.innerHTML=`<span class="d">${fmtD.format(dt)}</span><br><span class="t">${fmtT.format(dt)}</span>`;
+    b.onclick=()=>{pick.slot=dt;[...slotsEl.children].forEach(c=>c.classList.remove('sel'));b.classList.add('sel');refresh();};
+    slotsEl.appendChild(b);
+  });
+  made++;
+}
+document.getElementById('tz').textContent="Times shown in your timezone ("
+  + Intl.DateTimeFormat().resolvedOptions().timeZone + ").";
+
+// crypto chains
+const chainsEl=document.getElementById('chains'), addrEl=document.getElementById('addr');
+function drawChain(){addrEl.textContent=pick.chain.addr;
+  [...chainsEl.children].forEach(c=>c.classList.toggle('sel',c.dataset.id===pick.chain.id));}
+CHAINS.forEach(c=>{const b=document.createElement('button');b.className='chain';b.dataset.id=c.id;b.textContent=c.label;
+  b.onclick=()=>{pick.chain=c;drawChain();};chainsEl.appendChild(b);});
+drawChain();
+document.getElementById('copy').onclick=async()=>{
+  try{await navigator.clipboard.writeText(pick.chain.addr);document.getElementById('copy').textContent='copied';
+    setTimeout(()=>document.getElementById('copy').textContent='copy',1200);}catch(e){}
+};
+
+// confirm
+const go=document.getElementById('go'), sum=document.getElementById('sum');
+function refresh(){
+  const ready=pick.type&&pick.slot; go.disabled=!ready;
+  sum.textContent = ready
+    ? `${pick.type.name} · ${fmtD.format(pick.slot)} ${fmtT.format(pick.slot)} · ${pick.chain.id}`
+    : (pick.type? "Now pick a time." : "Choose a session and a time.");
+}
+go.onclick=()=>{
+  if(!pick.type||!pick.slot) return;
+  const when=`${fmtD.format(pick.slot)} ${fmtT.format(pick.slot)} (${Intl.DateTimeFormat().resolvedOptions().timeZone})`;
+  const subj=`Session booking — ${pick.type.name} — ${when}`;
+  const body=
+`Booking request
+
+Session: ${pick.type.name} (${pick.type.price})
+Time:    ${when}
+ISO:     ${pick.slot.toISOString()}
+Deposit: ${pick.chain.label} → ${pick.chain.addr}
+
+Deposit tx hash: __________
+Anything I should look at first:
+`;
+  location.href=`mailto:${EMAIL}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`;
+};
+refresh();
+</script>
+</body>
+</html>

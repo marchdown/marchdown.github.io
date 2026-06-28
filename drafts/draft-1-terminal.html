@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>marchdown — toolsmith</title>
+<style>
+  :root{ --bg:#0c0d10; --fg:#cdd2da; --dim:#6b7280; --grn:#7ee787; --amb:#e3b341; --cyn:#56d4dd; --mag:#d2a8ff; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+       max-width:820px;padding:6vh 5vw 12vh;margin:auto;-webkit-font-smoothing:antialiased}
+  a{color:var(--cyn);text-decoration:none;border-bottom:1px solid #1f2733}
+  a:hover{color:var(--grn);border-color:var(--grn)}
+  .p::before{content:"marchdown@hyperstitia";color:var(--grn)}
+  .p::after{content:" ~ % ";color:var(--dim)}
+  .cmd{color:var(--fg)}
+  h1{font-size:15px;font-weight:400;margin:0}
+  section{margin:1.6em 0}
+  .out{color:var(--fg);white-space:pre-wrap}
+  .k{color:var(--amb)}
+  .c{color:var(--dim)}
+  .tag{color:var(--mag)}
+  ul{list-style:none;padding:0;margin:.3em 0}
+  li{padding:.1em 0}
+  li::before{content:"› ";color:var(--dim)}
+  .fill{color:var(--amb);background:#241f12;padding:0 4px;border-radius:3px}
+  footer{margin-top:5em;border-top:1px solid #1b1f27;padding-top:1em;color:var(--dim);font-size:12px}
+  footer a{color:var(--dim);border:0}
+  .cur{display:inline-block;width:8px;height:1em;background:var(--grn);vertical-align:-2px;animation:b 1.1s step-end infinite}
+  @keyframes b{50%{opacity:0}}
+</style>
+</head>
+<body>
+  <section>
+    <div class="p"><span class="cmd">whoami</span></div>
+    <div class="out"><h1>marchdown — <span class="k">polyglot toolsmith</span> @ Hyperstitia · Pardes</h1>
+<span class="c"># on GitHub since 2010 · 152 public repos · open to work</span></div>
+  </section>
+
+  <section>
+    <div class="p"><span class="cmd">cat about.txt</span></div>
+    <div class="out">I build small, sharp tools — usually one per problem, often in a different
+language than the last. Spec before code: the hard part is deciding exactly
+what needs to exist, then writing the short, meticulous version of it.
+
+Working languages: <span class="tag">Swift · Rust · Clojure · Elixir · Erlang · Haskell</span>
+(TypeScript &amp; GDScript when the platform insists.)</div>
+  </section>
+
+  <section>
+    <div class="p"><span class="cmd">ls -t selected/</span></div>
+    <div class="out"><ul>
+      <li><a href="https://github.com/marchdown/Orpheus">Orpheus</a> <span class="c">— Swift CLI; pulls voice memos out of encrypted iOS backups</span></li>
+      <li><a href="https://github.com/marchdown/topo-sonify">topo-sonify</a> <span class="c">— Rust; turns terrain into sound</span></li>
+      <li><a href="https://github.com/marchdown/shimmer">shimmer</a> <span class="c">— Swift; audio sketchpad</span></li>
+      <li><a href="https://github.com/marchdown/gemini-gate">gemini-gate</a> <span class="c">— Elixir; LLM gateway</span></li>
+      <li><a href="https://github.com/marchdown/inference_harness">inference_harness</a> <span class="c">— Elixir; model inference rig</span></li>
+      <li><a href="https://github.com/marchdown/corpora">corpora</a> <span class="c">— Swift/Elixir; corpus tooling</span></li>
+      <li><a href="https://github.com/marchdown/scout">scout</a> <span class="c">— Clojure</span></li>
+      <li><a href="https://github.com/marchdown/spec-before-code">spec-before-code</a> <span class="c">— Rust; the discipline, as a tool</span></li>
+    </ul></div>
+  </section>
+
+  <section>
+    <div class="p"><span class="cmd">cat experience.txt</span></div>
+    <div class="out"><span class="fill">{{ role / employer / years — fill in }}</span></div>
+  </section>
+
+  <section>
+    <div class="p"><span class="cmd">cat contact.txt</span></div>
+    <div class="out"><a href="https://github.com/marchdown">github.com/marchdown</a> · <a href="mailto:uprootiny@gmail.com">uprootiny@gmail.com</a> · <a href="https://hyperstitious.org">hyperstitious.org</a></div>
+  </section>
+
+  <div class="p"><span class="cur"></span></div>
+
+  <footer>
+    open source · <a href="https://github.com/marchdown/marchdown.github.io">improve this page</a>
+    · built 2026-06-17 from public GitHub data · commit 79bc67f
+  </footer>
+</body>
+</html>

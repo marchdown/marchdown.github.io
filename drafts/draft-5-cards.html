@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>marchdown — portfolio</title>
+<style>
+  :root{--bg:#f5f6f8;--card:#fff;--fg:#15181d;--mut:#5b6571;--acc:#3b5bdb;--line:#e6e9ee}
+  @media(prefers-color-scheme:dark){:root{--bg:#0f1115;--card:#171a21;--fg:#e7eaef;--mut:#9aa3b0;--acc:#6d8bff;--line:#242a35}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);
+       font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+       max-width:980px;padding:7vh 5vw 12vh;margin:auto}
+  .hero{display:flex;gap:1.5em;align-items:center;flex-wrap:wrap}
+  .av{width:84px;height:84px;border-radius:22px;background:linear-gradient(135deg,var(--acc),#9775fa);
+      display:grid;place-items:center;color:#fff;font:700 34px/1 inherit;flex:0 0 auto}
+  h1{margin:0;font-size:30px;letter-spacing:-.5px}
+  .role{color:var(--mut);margin:.2em 0 0}
+  .badge{display:inline-block;margin-top:.5em;font-size:12px;font-weight:600;color:#0a7;background:#0a72;
+         padding:.35em .7em;border-radius:99px}
+  .links{margin:1.4em 0 0;display:flex;gap:.6em;flex-wrap:wrap}
+  .links a{font-size:14px;font-weight:600;color:var(--fg);background:var(--card);border:1px solid var(--line);
+           padding:.5em .9em;border-radius:10px;text-decoration:none}
+  .links a:hover{border-color:var(--acc);color:var(--acc)}
+  p.bio{color:var(--mut);max-width:62ch;margin:1.6em 0 0}
+  h2{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin:3em 0 1em}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;
+        text-decoration:none;color:inherit;display:block;transition:.15s}
+  .card:hover{border-color:var(--acc);box-shadow:0 6px 24px #0001;transform:translateY(-2px)}
+  .card h3{margin:0 0 .3em;font-size:17px}
+  .card p{margin:0;color:var(--mut);font-size:14px}
+  .chips{margin-top:.8em;display:flex;gap:.4em;flex-wrap:wrap}
+  .chip{font-size:11px;font-weight:600;color:var(--acc);background:var(--acc);background:color-mix(in srgb,var(--acc) 12%,transparent);
+        padding:.25em .6em;border-radius:6px}
+  footer{margin-top:5em;border-top:1px solid var(--line);padding-top:1.2em;color:var(--mut);font-size:12px}
+  footer a{color:var(--mut)}
+</style>
+</head>
+<body>
+  <div class="hero">
+    <div class="av">m</div>
+    <div>
+      <h1>{{ Your Name }} <span style="color:var(--mut);font-weight:400">/ marchdown</span></h1>
+      <p class="role">Polyglot software toolsmith · Hyperstitia · Pardes</p>
+      <span class="badge">● Open to work</span>
+    </div>
+  </div>
+
+  <p class="bio">I make small, exact tools — one instrument per problem, frequently in a new language.
+  Spec before code. 150+ public repos since 2010, ranging across developer tooling, LLM/agent
+  infrastructure, and audio.</p>
+
+  <div class="links">
+    <a href="https://github.com/marchdown">GitHub</a>
+    <a href="mailto:uprootiny@gmail.com">Email</a>
+    <a href="https://hyperstitious.org">hyperstitious.org</a>
+  </div>
+
+  <h2>Selected projects</h2>
+  <div class="grid">
+    <a class="card" href="https://github.com/marchdown/Orpheus"><h3>Orpheus</h3><p>Recovers Voice Memos from encrypted iOS backups via libimobiledevice.</p><div class="chips"><span class="chip">Swift</span><span class="chip">CLI</span></div></a>
+    <a class="card" href="https://github.com/marchdown/gemini-gate"><h3>gemini-gate</h3><p>Language-model gateway and routing layer.</p><div class="chips"><span class="chip">Elixir</span><span class="chip">LLM</span></div></a>
+    <a class="card" href="https://github.com/marchdown/inference_harness"><h3>inference_harness</h3><p>Harness for running model inference workloads.</p><div class="chips"><span class="chip">Elixir</span></div></a>
+    <a class="card" href="https://github.com/marchdown/topo-sonify"><h3>topo-sonify</h3><p>Sonifies topographic data — terrain you can hear.</p><div class="chips"><span class="chip">Rust</span><span class="chip">Audio</span></div></a>
+    <a class="card" href="https://github.com/marchdown/shimmer"><h3>shimmer</h3><p>Audio sketchpad.</p><div class="chips"><span class="chip">Swift</span></div></a>
+    <a class="card" href="https://github.com/marchdown/corpora"><h3>corpora</h3><p>Corpus tooling with a Swift/Elixir bridge.</p><div class="chips"><span class="chip">Swift</span><span class="chip">Elixir</span></div></a>
+    <a class="card" href="https://github.com/marchdown/spec-before-code"><h3>spec-before-code</h3><p>The spec-first discipline, encoded as a tool.</p><div class="chips"><span class="chip">Rust</span></div></a>
+    <a class="card" href="https://github.com/marchdown/scout"><h3>scout</h3><p>Exploration utility.</p><div class="chips"><span class="chip">Clojure</span></div></a>
+  </div>
+
+  <h2>Languages</h2>
+  <div class="chips" style="gap:.5em">
+    <span class="chip">Swift</span><span class="chip">Rust</span><span class="chip">Clojure</span>
+    <span class="chip">Elixir</span><span class="chip">Erlang</span><span class="chip">Haskell</span>
+    <span class="chip">Nix</span><span class="chip">TypeScript</span>
+  </div>
+
+  <footer>
+    Open source — <a href="https://github.com/marchdown/marchdown.github.io">improve this page</a>.
+    Built 2026-06-17 from public GitHub data · commit 79bc67f · Claude Code.
+  </footer>
+</body>
+</html>

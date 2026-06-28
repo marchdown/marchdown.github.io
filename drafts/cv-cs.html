@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="cs" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pavel Vasilyev — životopis</title>
+<style>
+  :root{--ink:#1c2024;--mut:#586069;--faint:#8a929b;--line:#e2e5e8;--acc:#1c4e63;
+        --bg:#edeff1;--paper:#ffffff}
+  @media(prefers-color-scheme:dark){:root{--ink:#e7eaec;--mut:#99a1aa;--faint:#6a727a;
+        --line:#2a2f34;--acc:#86c1da;--bg:#0c0e10;--paper:#15191c}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:15px/1.6 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       -webkit-font-smoothing:antialiased}
+  .sheet{max-width:790px;margin:5vh auto;background:var(--paper);padding:48px 56px 40px;
+         border:1px solid var(--line);border-top:4px solid var(--acc);
+         box-shadow:0 30px 70px -40px #0007}
+
+  .draftnote{max-width:790px;margin:3vh auto -2vh;padding:12px 18px;border:1px solid var(--line);
+             color:var(--mut);font-size:13px;line-height:1.55;background:var(--paper)}
+  .draftnote b{color:var(--ink)}
+
+  header{display:flex;justify-content:space-between;align-items:flex-end;gap:.7em;flex-wrap:wrap;
+         border-bottom:1px solid var(--line);padding-bottom:14px}
+  h1{font-size:30px;margin:0;font-weight:700;letter-spacing:-.01em}
+  .title{color:var(--acc);margin:.5em 0 0;font-size:15.5px;max-width:54ch}
+  .avail{font:600 11px/1.3 sans-serif;color:var(--mut);text-align:right;white-space:nowrap}
+  .contact{margin-top:11px;color:var(--mut);font-size:13.5px}
+  .contact a{color:var(--mut);text-decoration:none;border-bottom:1px solid var(--line)}
+  .contact .sep{margin:0 .5em;color:var(--faint)}
+
+  h2{font:700 11px/1 sans-serif;text-transform:uppercase;letter-spacing:.13em;color:var(--acc);
+     margin:23px 0 9px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+  h2 small{font-weight:400;letter-spacing:0;text-transform:none;color:var(--faint)}
+  p{margin:.45em 0}
+  .lede{font-size:15px}
+
+  .job{margin:0 0 11px}
+  .job .top{display:flex;justify-content:space-between;align-items:baseline;gap:1em;flex-wrap:wrap}
+  .job .what{font-weight:700}
+  .job .org{font-weight:400;color:var(--mut)}
+  .job .when{font-size:12.5px;color:var(--mut);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .job p{margin:.2em 0 0;color:var(--mut);font-size:13.6px}
+
+  .twocol{columns:2;column-gap:2.3em}
+  @media(max-width:560px){.twocol{columns:1}}
+  .kv{margin:.3em 0}.kv b{color:var(--ink)}
+  .proj{font-size:13.4px;margin:.25em 0;color:var(--mut)}
+  .proj b{color:var(--ink)}.proj a{color:var(--acc)}
+
+  footer{max-width:790px;margin:12px auto 7vh;padding:0 8px;color:var(--faint);
+         font:10px/1.5 ui-monospace,monospace}
+
+  @media print{
+    @page{margin:14mm}
+    body{background:#fff;font-size:10.6pt}
+    .draftnote,.note-print-hide{display:none}
+    .sheet{box-shadow:none;border:0;border-top:3px solid var(--acc);margin:0;max-width:none;padding:0;padding-top:10px}
+    .contact a{border-bottom:0}a{color:var(--ink);text-decoration:none}
+    .job{break-inside:avoid}h2{break-after:avoid}
+    footer{margin:14px 0 0}
+  }
+</style>
+</head>
+<body>
+
+  <div class="draftnote note-print-hide">
+    <b>Pracovní verze.</b> Koncept vytvořený s pomocí umělé inteligence — fakticky přesný; před
+    odesláním doporučena jazyková korektura rodilým mluvčím. Uložení do PDF: <b>⌘P</b>.
+  </div>
+
+  <article class="sheet">
+    <header>
+      <div>
+        <h1>Pavel Vasilyev</h1>
+        <p class="title">Softwarový inženýr a tvůrce nástrojů — strojové učení a lidský dohled nad
+          systémy umělé inteligence</p>
+      </div>
+      <div class="avail">Otevřený novým příležitostem<br>přesun v rámci EU i práce na dálku</div>
+    </header>
+    <p class="contact">
+      Jeruzalém, Izrael <span class="sep">·</span>
+      <a href="mailto:uprootiny@gmail.com">uprootiny@gmail.com</a> <span class="sep">·</span>
+      <a href="https://github.com/marchdown">github.com/marchdown</a> <span class="sep">·</span>
+      <a href="https://hyperstitious.org">hyperstitious.org</a>
+    </p>
+
+    <h2>Profil</h2>
+    <p class="lede">Softwarový inženýr a tvůrce nástrojů s patnácti lety praxe ve strojovém učení,
+      zpracování přirozeného jazyka a lidském dohledu nad systémy umělé inteligence. Navrhuji procesy
+      kontroly a ověřování, které zajišťují, že výstup modelu je správný, podložený a odpovědný — a
+      stavím infrastrukturu, na níž běží. Programuji v řadě jazyků a volím vždy ten pravý pro daný
+      problém. Pracuji metodicky: nejprve přesně určit, co má vzniknout, a teprve pak to pečlivě
+      postavit.</p>
+
+    <h2>Praxe <small>— vybrané z bohatší historie</small></h2>
+
+    <div class="job">
+      <div class="top"><span class="what">Inženýr LLM <span class="org">— Move38 (kontrakt)</span></span><span class="when">2026</span></div>
+      <p>Dodal jsem funkci založenou na jazykovém modelu od začátku do konce: serverová
+        infrastruktura, návrh promptů a ladění interakce s uživatelem.</p>
+    </div>
+    <div class="job">
+      <div class="top"><span class="what">Dissemblage.art <span class="org">— samostatná tvorba</span></span><span class="when">2024–2025</span></div>
+      <p>Průběžná série uměleckých experimentů s využitím jazykových modelů.</p>
+    </div>
+    <div class="job">
+      <div class="top"><span class="what">Technický ředitel (CTO) <span class="org">— LevEhad (nezisková organizace), Izrael</span></span><span class="when">2024</span></div>
+      <p>Zodpovědnost za veškerou IT infrastrukturu organizace a vedení jejího technického rozvoje.</p>
+    </div>
+    <div class="job">
+      <div class="top"><span class="what">AI architekt <span class="org">— Stamina AI</span></span><span class="when">2023</span></div>
+      <p>Návrh systémů jazykových modelů a chatbotů — ukotvení pomocí ontologií a vyhledávání nad
+        vektorovými databázemi.</p>
+    </div>
+    <div class="job">
+      <div class="top"><span class="what">Vedoucí výzkumu <span class="org">— Spring Research</span></span><span class="when">2020–2022</span></div>
+      <p>Vedl jsem výzkumný tým modelující finanční trhy: budování pipeline strojového učení, detekci
+        tržních režimů a učení reprezentací z heterogenních časových řad — s odpovědností za směr
+        výzkumu i za nasazení (AWS/SageMaker, Python).</p>
+    </div>
+    <div class="job">
+      <div class="top"><span class="what">Samostatná praxe <span class="org">— konzultant a autor open source</span></span><span class="when">2010–dosud</span></div>
+      <p>Konzultace a poradenství mezi zaměstnaneckými rolemi, včetně vedení vlastní softwarové praxe
+        — souběžně s rozsáhlým open-source dílem (~152 repozitářů, více než osm jazyků).</p>
+    </div>
+    <div class="job">
+      <div class="top"><span class="what">Dřívější role <span class="org">— datová věda, NLP a vývoj</span></span><span class="when">2009–2019</span></div>
+      <p>Role v Tel Avivu, Hongkongu a Praze — Nestlogic, Maverick Medical AI, Athena Portfolio
+        Solutions, Ten-X, Verba, Finfon. Analýza finančních textů, modely lékařských textů,
+        počítačové vidění a nástroje pro korpusovou lingvistiku.</p>
+    </div>
+
+    <h2>Dovednosti a nástroje</h2>
+    <div class="twocol">
+      <p class="kv"><b>Programovací jazyky:</b> Swift · Rust · Clojure · Elixir/Erlang · Haskell ·
+        Nix · TypeScript · Agda · C</p>
+      <p class="kv"><b>Strojové učení:</b> Python · PyTorch · TensorFlow · scikit-learn · pandas ·
+        AWS (EC2/S3/SageMaker/Terraform)</p>
+      <p class="kv"><b>Oblasti:</b> aplikovaná statistika a strojové učení · dohled a ověřování
+        systémů AI · zpracování přirozeného jazyka · vývojářské nástroje · teorie typů a důkazové
+        asistenty</p>
+    </div>
+
+    <h2>Vzdělání</h2>
+    <p class="kv"><b>Magisterský titul, počítačová lingvistika</b> — Ruská státní humanitní
+      univerzita (RSUH), Moskva · 2015</p>
+    <p class="kv"><b>Bakalářský titul, jaderná fyzika</b> — České vysoké učení technické v Praze
+      (ČVUT) · 2009</p>
+
+    <h2>Jazyky</h2>
+    <p>Angličtina · hebrejština · ruština · čeština · pracovní znalost němčiny a francouzštiny.</p>
+
+    <h2>Vybrané open-source projekty <small>— github.com/marchdown</small></h2>
+    <p class="proj"><b><a href="https://github.com/marchdown/co-loop">co-loop</a></b> — nástroj pro spolupráci s agenty AI (fork → branch → merge).</p>
+    <p class="proj"><b><a href="https://github.com/marchdown/gemini-gate">gemini-gate</a></b> · <b><a href="https://github.com/marchdown/inference_harness">inference_harness</a></b> — brána k jazykovým modelům a prostředí pro běh inference (Elixir).</p>
+    <p class="proj"><b><a href="https://github.com/marchdown/Orpheus">Orpheus</a></b> — obnova hlasových nahrávek ze šifrovaných záloh iOS (Swift). <a href="https://github.com/marchdown?tab=repositories">Úplný seznam →</a></p>
+
+  </article>
+  <footer>
+    Pavel Vasilyev · životopis (čeština) · marchdown.github.io · built 2026-06-28 by Claude Code ·
+    Opus 4.8 (1M) · koncept ke korektuře · ⌘P → PDF
+  </footer>
+</body>
+</html>

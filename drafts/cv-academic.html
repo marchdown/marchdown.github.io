@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pavel Vasilyev — Curriculum Vitæ (academic)</title>
+<style>
+  :root{--ink:#1a1a18;--mut:#55585c;--faint:#8a8d92;--line:#d9d6cd;--rule:#1a1a18;
+        --bg:#f5f3ee;--paper:#fffdf9}
+  @media(prefers-color-scheme:dark){:root{--ink:#e9e6df;--mut:#a39e94;--faint:#6f6b64;
+        --line:#2c2c29;--rule:#cfccc3;--bg:#0e0f0d;--paper:#141512}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:15px/1.6 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+       font-feature-settings:"kern" 1,"liga" 1,"onum" 1,"pnum" 1;
+       -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  .sheet{max-width:800px;margin:5vh auto;background:var(--paper);padding:54px 64px 44px;
+         border:1px solid var(--line);box-shadow:0 30px 70px -40px #0007}
+
+  .draftnote{max-width:800px;margin:3vh auto -2vh;padding:12px 18px;border:1px solid var(--line);
+             color:var(--mut);font:13px/1.55 system-ui,sans-serif;background:var(--paper)}
+  .draftnote b{color:var(--ink)}
+
+  .head{text-align:center;border-bottom:1px solid var(--rule);padding-bottom:16px}
+  h1{font-size:30px;margin:0;font-weight:600;letter-spacing:.01em}
+  .cvline{font:italic 14px/1 "Iowan Old Style",Georgia,serif;color:var(--mut);margin:.5em 0 .8em}
+  .contact{font:13px/1.7 system-ui,sans-serif;color:var(--mut)}
+  .contact a{color:var(--mut);text-decoration:none;border-bottom:1px solid var(--line)}
+  .contact .sep{margin:0 .5em;color:var(--faint)}
+
+  h2{font:600 12px/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.15em;
+     color:var(--ink);margin:24px 0 9px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+  p{margin:.45em 0}
+  .summary{font-size:15px}
+
+  .entry{margin:.55em 0}
+  .entry .top{display:flex;justify-content:space-between;align-items:baseline;gap:1em;flex-wrap:wrap}
+  .entry .what{font-weight:600}
+  .entry .org{font-weight:400;color:var(--mut)}
+  .entry .when{font:12.5px/1.5 system-ui,sans-serif;color:var(--mut);white-space:nowrap;
+               font-variant-numeric:tabular-nums lining-nums}
+  .entry .d{color:var(--mut);font-size:14px;margin:.12em 0 0}
+  ul{margin:.3em 0 .2em;padding-left:1.2em}
+  li{padding:.1em 0}
+  li .lang,li .tech{color:var(--mut);font-style:italic}
+  .interests{columns:2;column-gap:2.4em;margin:.3em 0}
+  @media(max-width:560px){.interests{columns:1}}
+  .interests p{margin:.18em 0;font-size:14.5px}
+  .kv b{color:var(--ink)}
+
+  footer{max-width:800px;margin:14px auto 8vh;padding:0 64px;color:var(--faint);
+         font:10.5px/1.6 ui-monospace,monospace}
+
+  @media print{
+    @page{margin:18mm 16mm}
+    body{background:#fff;font-size:10.6pt;line-height:1.5}
+    .draftnote,.note-print-hide{display:none}
+    .sheet{box-shadow:none;border:0;margin:0;max-width:none;padding:0}
+    h1{font-size:22pt}
+    a{color:var(--ink);text-decoration:none}.contact a{border-bottom:0}
+    .entry,li{break-inside:avoid}h2{break-after:avoid}
+    footer{margin:16px 0 0;padding:0}
+  }
+</style>
+</head>
+<body>
+
+  <div class="draftnote note-print-hide">
+    <b>Academic CV.</b> Research-first format. Research output is expressed through open-source
+    software and applied/industrial research rather than peer-reviewed venues — represented honestly
+    below. A research statement and references are available on request. <b>⌘P → Save as PDF</b>.
+  </div>
+
+  <article class="sheet">
+    <div class="head">
+      <h1>Pavel Vasilyev</h1>
+      <p class="cvline">Curriculum Vitæ</p>
+      <p class="contact">
+        Jerusalem, Israel <span class="sep">·</span>
+        <a href="mailto:uprootiny@gmail.com">uprootiny@gmail.com</a> <span class="sep">·</span>
+        <a href="https://github.com/marchdown">github.com/marchdown</a> <span class="sep">·</span>
+        <a href="https://hyperstitious.org">hyperstitious.org</a>
+      </p>
+    </div>
+
+    <h2>Research summary</h2>
+    <p class="summary">Computational linguist and software researcher working at the intersection of
+      language, machine learning, and formal methods. My current focus is the human oversight and
+      evaluation of large-language-model and agent systems — the methods and tooling that make
+      machine output correct, grounded, and accountable. I work spec-first, and express research
+      primarily through open-source software and applied research across industry and independent
+      practice.</p>
+
+    <h2>Research interests</h2>
+    <div class="interests">
+      <p>• Computational linguistics &amp; NLP</p>
+      <p>• Oversight &amp; evaluation of LLM / agent systems</p>
+      <p>• Applied statistics &amp; machine learning</p>
+      <p>• Type theory, proof assistants &amp; language design</p>
+      <p>• Representation learning for time series</p>
+      <p>• Sonification &amp; computational sound</p>
+    </div>
+
+    <h2>Education</h2>
+    <div class="entry"><div class="top"><span class="what">M.Sc. in Computational Linguistics <span class="org">— Russian State University for the Humanities (RSUH), Moscow</span></span><span class="when">2015</span></div></div>
+    <div class="entry"><div class="top"><span class="what">B.Sc. in Nuclear Physics <span class="org">— Czech Technical University in Prague (ČVUT)</span></span><span class="when">2009</span></div></div>
+    <p class="d" style="color:var(--mut);font-size:13.5px">Continuing self-directed study in type theory, proof assistants, and programming-language design.</p>
+
+    <h2>Research &amp; professional experience</h2>
+    <div class="entry">
+      <div class="top"><span class="what">Independent Researcher &amp; Software Author</span><span class="when">2010 — present</span></div>
+      <div class="d">Formal methods and language design; methods and tooling for the oversight and
+        evaluation of machine-learning and agent systems; a sustained body of open-source research
+        software (~152 repositories).</div>
+    </div>
+    <div class="entry">
+      <div class="top"><span class="what">Research Lead <span class="org">— Spring Research</span></span><span class="when">2020 — 2022</span></div>
+      <div class="d">Led a team on statistical and machine-learning modelling of financial markets:
+        market-regime detection, representation learning from heterogeneous time series, and
+        topology-inspired methods; responsible for research direction and deployment.</div>
+    </div>
+    <div class="entry">
+      <div class="top"><span class="what">AI Architect <span class="org">— Stamina AI</span></span><span class="when">2023</span></div>
+      <div class="d">Applied research on language-model systems: ontology-grounded retrieval and
+        conversational architectures.</div>
+    </div>
+    <div class="entry">
+      <div class="top"><span class="what">Applied-research roles <span class="org">— NLP, data science &amp; corpus engineering</span></span><span class="when">2009 — 2019</span></div>
+      <div class="d">Medical-text NLP (Maverick Medical AI); financial-news NLP and information
+        extraction (Athena Portfolio Solutions); corpus-linguistics engines (Verba); computer
+        vision (Nestlogic). Tel Aviv, Hong Kong &amp; Prague.</div>
+    </div>
+
+    <h2>Selected software &amp; research artifacts <span class="note-print-hide" style="font:italic 12px serif;color:var(--faint);text-transform:none;letter-spacing:0">— github.com/marchdown</span></h2>
+    <ul>
+      <li><a href="https://github.com/marchdown/agda-proofs">agda-proofs</a> <span class="tech">— formalised proofs in Agda (dependent type theory)</span></li>
+      <li><a href="https://github.com/marchdown/harmony">harmony</a> <span class="tech">— experiments in programming-language design</span></li>
+      <li><a href="https://github.com/marchdown/corpora">corpora</a> <span class="tech">— corpus-linguistics tooling (corpora-kernel, corpora-bridge)</span></li>
+      <li><a href="https://github.com/marchdown/inference_harness">inference_harness</a> · <a href="https://github.com/marchdown/gemini-gate">gemini-gate</a> <span class="tech">— infrastructure for running and routing language-model inference (Elixir)</span></li>
+      <li><a href="https://github.com/marchdown/co-loop">co-loop</a> <span class="tech">— a scaffold for reviewable human–agent collaborative workflows</span></li>
+      <li><a href="https://github.com/marchdown/topo-sonify">topo-sonify</a> <span class="tech">— sonification of topographic data (Rust)</span></li>
+      <li><a href="https://github.com/marchdown?tab=repositories">full record</a> <span class="tech">— ~152 public repositories since 2010</span></li>
+    </ul>
+
+    <h2>Technical skills</h2>
+    <p class="kv"><b>Programming:</b> Swift · Rust · Clojure · Elixir / Erlang · Haskell · Agda · Nix · TypeScript · C</p>
+    <p class="kv"><b>Machine learning &amp; data:</b> Python (PyTorch, TensorFlow, scikit-learn, pandas) · AWS / SageMaker · statistical modelling · time-series · representation learning</p>
+    <p class="kv"><b>Formal methods:</b> Agda · dependent types · proof assistants</p>
+    <p class="kv"><b>NLP:</b> corpus methods · information extraction · LLM / RAG systems · model evaluation</p>
+
+    <h2>Teaching, mentoring &amp; service</h2>
+    <p>Open-source maintainer and collaborator; <a href="https://github.com/marchdown/co-loop">co-loop</a>
+      is built to make human–agent work collaborative and reviewable. Available for supervision,
+      code review, and collaborative research.</p>
+
+    <h2>Languages</h2>
+    <p>English · Hebrew · Russian · Czech · reading and working knowledge of German and French.</p>
+
+    <h2>References</h2>
+    <p>Available on request.</p>
+  </article>
+
+  <footer>
+    Pavel Vasilyev · Curriculum Vitæ (academic) · marchdown.github.io · built 2026-06-28 by
+    Claude Code · Opus 4.8 (1M) · research statement &amp; references on request · ⌘P → PDF
+  </footer>
+</body>
+</html>

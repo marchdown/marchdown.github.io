@@ -65,7 +65,7 @@ performed on his own creativity.
 
 ## Open items (CV)
 - **Hebrew needs native review** by tomorrow's helper — fluency/idiom/term choices (e.g. פרומפטים vs הנחיות).
-- Spring Research dates use 2021–22 (contract start = 1 Oct 2021; old CVs said 2020–22, contradicted) — confirm.
+- Spring Research dates = **2020–2022** (owner started May 2020; contract signed late, Oct 2021 — a red herring). Resolved.
 - Stale in old CVs, intentionally overridden: Tel Aviv→Jerusalem, marchdown@→uprootiny@gmail. Phone omitted (offer).
 - **Remote unresolved:** origin = github.com/marchdown (account SUSPENDED per global policy). Nothing pushed.
   Decide: re-home to GitLab (active host) vs wait. Old populated site lives at ~/Documents/GitHub/marchdown.github.io (2018, stale).

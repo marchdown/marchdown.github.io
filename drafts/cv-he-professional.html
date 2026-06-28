@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>פאבל וסילייב — קורות חיים</title>
+<style>
+  :root{--ink:#1d2226;--mut:#5c656e;--faint:#8b949d;--line:#e4e7ea;--acc:#2b3a4a;
+        --bg:#eef0f1;--paper:#ffffff}
+  @media(prefers-color-scheme:dark){:root{--ink:#e8eaec;--mut:#9aa3ac;--faint:#6a727a;
+        --line:#2a2f34;--acc:#9fc1dc;--bg:#0c0e10;--paper:#15191c}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:15.5px/1.7 "Arial Hebrew","Assistant","Heebo",Arial,sans-serif;
+       -webkit-font-smoothing:antialiased}
+  bdi{unicode-bidi:isolate}
+  .ltr{direction:ltr;unicode-bidi:isolate}
+  .sheet{max-width:780px;margin:5vh auto;background:var(--paper);padding:46px 52px 38px;
+         border:1px solid var(--line);box-shadow:0 30px 70px -40px #0007}
+
+  .draftnote{max-width:780px;margin:3vh auto -2vh;padding:12px 18px;border:1px solid var(--line);
+             color:var(--mut);font-size:13px;line-height:1.6;background:var(--paper)}
+  .draftnote b{color:var(--ink)}
+
+  header{border-bottom:2px solid var(--acc);padding-bottom:14px;
+         display:flex;justify-content:space-between;align-items:flex-end;gap:.7em;flex-wrap:wrap}
+  h1{font-size:30px;margin:0;font-weight:700;letter-spacing:0}
+  h1 .handle{font-size:15px;color:var(--mut);font-weight:400}
+  .title{color:var(--mut);margin:.5em 0 0;font-size:15.5px;max-width:52ch}
+  .avail{font:700 11px/1 sans-serif;color:#fff;background:var(--acc);padding:.5em .8em;
+         border-radius:3px;white-space:nowrap}
+  @media(prefers-color-scheme:dark){.avail{color:#0c0e10}}
+  .contact{margin-top:11px;color:var(--mut);font-size:13.5px}
+  .contact a{color:var(--mut);text-decoration:none;border-bottom:1px solid var(--line)}
+  .contact .sep{margin:0 .5em;color:var(--faint)}
+
+  h2{font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--acc);
+     margin:24px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+  h2 small{font-weight:400;color:var(--faint);font-size:12px}
+  p{margin:.4em 0}
+  .lede{font-size:15.5px}
+
+  .job{margin:0 0 12px}
+  .job .top{display:flex;justify-content:space-between;align-items:baseline;gap:1em;flex-wrap:wrap}
+  .job .what{font-weight:700}
+  .job .org{font-weight:400;color:var(--mut)}
+  .job .when{font-size:13px;color:var(--mut);white-space:nowrap}
+  .job p{margin:.2em 0 0;color:var(--mut);font-size:14px}
+
+  .kv{margin:.3em 0}
+  .kv b{color:var(--ink)}
+  .twocol{columns:2;column-gap:2.2em}
+  @media(max-width:560px){.twocol{columns:1}}
+  .proj{font-size:13.6px;margin:.25em 0;color:var(--mut)}
+  .proj b{color:var(--ink)}
+  .proj a{color:var(--acc)}
+
+  footer{max-width:780px;margin:12px auto 7vh;padding:0 8px;color:var(--faint);
+         font:10px/1.5 ui-monospace,monospace;direction:ltr;text-align:left}
+
+  @media print{
+    @page{margin:14mm}
+    body{background:#fff;font-size:11pt}
+    .draftnote,.note-print-hide{display:none}
+    .sheet{box-shadow:none;border:0;margin:0;max-width:none;padding:0}
+    .contact a{border-bottom:0}
+    a{color:var(--ink);text-decoration:none}
+    .job{break-inside:avoid}
+    footer{margin:14px 0 0}
+  }
+</style>
+</head>
+<body>
+
+  <div class="draftnote note-print-hide">
+    <b>טיוטה.</b> נוסח עברי שנכתב בסיוע בינה מלאכותית — מדויק בעובדות, ומיועד להגהה ולליטוש סגנוני
+    בידי דובר עברית לפני שליחה. <b>⌘P</b> לשמירה כ־PDF.
+  </div>
+
+  <article class="sheet">
+    <header>
+      <div>
+        <h1>פאבל וסילייב <span class="handle">· <bdi class="ltr">marchdown</bdi></span></h1>
+        <p class="title">מהנדס תוכנה ויוצר כלים — סטטיסטיקה יישומית, למידת מכונה, והפיקוח האנושי על
+          מערכות <bdi class="ltr">LLM</bdi> וסוכנים</p>
+      </div>
+      <span class="avail">פתוח להצעות</span>
+    </header>
+    <p class="contact">
+      ירושלים, ישראל <span class="sep">·</span>
+      <bdi class="ltr"><a href="mailto:uprootiny@gmail.com">uprootiny@gmail.com</a></bdi> <span class="sep">·</span>
+      <bdi class="ltr"><a href="https://github.com/marchdown">github.com/marchdown</a></bdi> <span class="sep">·</span>
+      <bdi class="ltr"><a href="https://hyperstitious.org">hyperstitious.org</a></bdi>
+    </p>
+
+    <h2>תקציר</h2>
+    <p class="lede">
+      מהנדס למידת מכונה ויוצר כלי תוכנה, עם חמש־עשרה שנות ניסיון בלמידת מכונה פיננסית, בעיבוד שפה
+      טבעית ובפיקוח האנושי על מערכות בינה מלאכותית. אני מתכנן את תהליכי הבדיקה והאימות שמבטיחים שפלט
+      המודל יהיה נכון, מבוסס ואחראי — ובונה את התשתיות שעליהן הוא פועל. מתכנת רב־לשוני מתוך הרגל: הכלי
+      הנכון לכל בעיה, לא פטיש אחד לכול. עובד לפי העיקרון של <bdi class="ltr">spec&nbsp;before&nbsp;code</bdi> —
+      קודם להגדיר בדיוק מה צריך להתקיים, ואז לבנות את הגרסה הקצרה והמדויקת.
+    </p>
+
+    <h2>ניסיון תעסוקתי <small>— מבחר נקודות ציון, לא רשימה ממצה</small></h2>
+
+    <div class="job">
+      <div class="top"><span class="what">מהנדס <bdi class="ltr">LLM</bdi> <span class="org">— <bdi class="ltr">Move38</bdi> (קבלן)</span></span><span class="when"><bdi class="ltr">2026</bdi></span></div>
+      <p>הובלת פיצ'ר מבוסס מודל שפה מקצה לקצה: הקמת תשתית ההגשה, תכנון הפרומפטים, וליטוש האינטראקציה
+        מול המשתמש.</p>
+    </div>
+
+    <div class="job">
+      <div class="top"><span class="what"><bdi class="ltr">Dissemblage.art</bdi> <span class="org">— עצמאי</span></span><span class="when"><bdi class="ltr">2024–2025</bdi></span></div>
+      <p>סדרה מתמשכת של ניסויי אמנות בסיוע מודלי שפה — מודלים גנרטיביים כחומר יצירה.</p>
+    </div>
+
+    <div class="job">
+      <div class="top"><span class="what">מנהל טכנולוגיות ראשי <span class="org">(<bdi class="ltr">CTO</bdi>) — עמותת "לב אחד", ישראל</span></span><span class="when"><bdi class="ltr">2024</bdi></span></div>
+      <p>אחריות מלאה על תשתיות המחשוב של הארגון, והכוונת הפיתוח הטכנולוגי שלו.</p>
+    </div>
+
+    <div class="job">
+      <div class="top"><span class="what">אדריכל בינה מלאכותית <span class="org">(<bdi class="ltr">AI Architect</bdi>) — <bdi class="ltr">Stamina AI</bdi></span></span><span class="when"><bdi class="ltr">2023</bdi></span></div>
+      <p>תכנון מערכות מודל־שפה וצ'אטבוט — עיגון מבוסס אונטולוגיות ואחזור מתוך מאגרי וקטורים.</p>
+    </div>
+
+    <div class="job">
+      <div class="top"><span class="what">ראש צוות מחקר <span class="org">— <bdi class="ltr">Spring Research</bdi></span></span><span class="when"><bdi class="ltr">2021–2022</bdi></span></div>
+      <p>הובלת צוות המחקר שמידֵל את השווקים הפיננסיים: בניית צינורות למידת מכונה, זיהוי משטרי שוק
+        לאיתור חלונות של חיזוּיוּת, ולמידת ייצוגים מסדרות עתיות הטרוגניות — באחריות על כיוון המחקר ועל
+        הפריסות (<bdi class="ltr">AWS/SageMaker</bdi>, מחסנית <bdi class="ltr">Python</bdi>).</p>
+    </div>
+
+    <div class="job">
+      <div class="top"><span class="what">עיסוק עצמאי <span class="org">— ייעוץ, יצירת כלים וקוד פתוח</span></span><span class="when"><bdi class="ltr">2010–היום</bdi></span></div>
+      <p>ייעוץ וליווי בין תפקידים שכירים, לרבות ניהול עסק תוכנה עצמאי — לצד גוף עבודה מתמשך בקוד פתוח
+        (כ־<bdi class="ltr">152</bdi> מאגרים, יותר משמונה שפות).</p>
+    </div>
+
+    <div class="job">
+      <div class="top"><span class="what">תפקידים מוקדמים <span class="org">— מדעי הנתונים, <bdi class="ltr">NLP</bdi> ותוכנה</span></span><span class="when"><bdi class="ltr">2009–2019</bdi></span></div>
+      <p>תפקידים בתל אביב, הונג קונג ופראג — <bdi class="ltr">Nestlogic, Maverick Medical AI, Athena
+        Portfolio Solutions, Ten-X, Verba, Finfon</bdi>. ניתוח טקסט פיננסי וחילוץ אותות, מודלים לטקסט
+        רפואי, ראייה ממוחשבת, ומנועי בלשנות־קורפוס.</p>
+    </div>
+
+    <h2>כישורים וכלים</h2>
+    <div class="twocol">
+      <p class="kv"><b>שפות תכנות:</b> <bdi class="ltr">Swift · Rust · Clojure · Elixir/Erlang ·
+        Haskell · Nix · TypeScript · Agda · C</bdi></p>
+      <p class="kv"><b>למידת מכונה:</b> <bdi class="ltr">Python · PyTorch · TensorFlow · scikit-learn ·
+        pandas · AWS (EC2/S3/SageMaker/Terraform)</bdi></p>
+      <p class="kv"><b>תחומים:</b> סטטיסטיקה יישומית ולמידת מכונה · בקרה ואימות של מערכות בינה
+        מלאכותית · כלי פיתוח · תורת הטיפוסים ומוכיחי משפטים</p>
+    </div>
+
+    <h2>השכלה</h2>
+    <p class="kv"><b>תואר שני בבלשנות חישובית</b> — האוניברסיטה הממלכתית הרוסית למדעי הרוח
+      (<bdi class="ltr">RSUH</bdi>), מוסקבה · <bdi class="ltr">2015</bdi></p>
+    <p class="kv"><b>תואר ראשון בפיזיקה גרעינית</b> — האוניברסיטה הטכנית הצ'כית בפראג
+      (<bdi class="ltr">ČVUT</bdi>) · <bdi class="ltr">2009</bdi></p>
+
+    <h2>שפות</h2>
+    <p>עברית · אנגלית · רוסית — ידע בסיסי בגרמנית ובצרפתית.</p>
+
+    <h2>פרויקטי קוד פתוח נבחרים <small>— <bdi class="ltr">github.com/marchdown</bdi></small></h2>
+    <p class="proj"><b><bdi class="ltr"><a href="https://github.com/marchdown/co-loop">co-loop</a></bdi></b> — תשתית לשיתוף פעולה עם סוכני בינה מלאכותית בתהליכי <bdi class="ltr">fork → branch → merge</bdi>.</p>
+    <p class="proj"><b><bdi class="ltr"><a href="https://github.com/marchdown/gemini-gate">gemini-gate</a></bdi></b> · <b><bdi class="ltr"><a href="https://github.com/marchdown/inference_harness">inference_harness</a></bdi></b> — שער למודלי שפה ומתקן הרצת היסק (<bdi class="ltr">Elixir</bdi>).</p>
+    <p class="proj"><b><bdi class="ltr"><a href="https://github.com/marchdown/Orpheus">Orpheus</a></bdi></b> — שחזור הקלטות קוליות מגיבויי <bdi class="ltr">iOS</bdi> מוצפנים (<bdi class="ltr">Swift</bdi>). <bdi class="ltr"><a href="https://github.com/marchdown?tab=repositories">הרשומה המלאה →</a></bdi></p>
+
+  </article>
+
+  <footer>
+    Pavel Vasilyev · CV (Hebrew, professional) · marchdown.github.io · main@6b75e48 ·
+    built 2026-06-28 by Claude Code · Opus 4.8 (1M) · draft for native-speaker review
+  </footer>
+</body>
+</html>

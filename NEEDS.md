@@ -57,9 +57,17 @@ performed on his own creativity.
   reserved for cover letter / employment-official conversation (positioning block G).
 - Owner reviews the three editions **tomorrow (2026-06-29) with a helper**.
 
+## CV editions — now FIVE (committed)
+- English: `cv.html` (severe), `cv-professional.html`, `cv-plain.html`.
+- Hebrew (RTL, AI-drafted, flagged for native polish): `cv-he-professional.html`, `cv-he-plain.html`.
+- Index: `cv-editions.html` (bilingual, "best for" per edition). **Review entry point.**
+- Committed to `main` locally: 6b75e48 (English + garden) · 91d415d (Hebrew). BSc year = 2009 filled.
+
 ## Open items (CV)
-- BSc graduation year — only remaining slot (amber on screen, hidden in print).
+- **Hebrew needs native review** by tomorrow's helper — fluency/idiom/term choices (e.g. פרומפטים vs הנחיות).
 - Spring Research dates use 2021–22 (contract start = 1 Oct 2021; old CVs said 2020–22, contradicted) — confirm.
 - Stale in old CVs, intentionally overridden: Tel Aviv→Jerusalem, marchdown@→uprootiny@gmail. Phone omitted (offer).
-- Not committed yet — `drafts/` + `index.html` + `NEEDS.md` untracked; offer to checkpoint.
+- **Remote unresolved:** origin = github.com/marchdown (account SUSPENDED per global policy). Nothing pushed.
+  Decide: re-home to GitLab (active host) vs wait. Old populated site lives at ~/Documents/GitHub/marchdown.github.io (2018, stale).
+- After review: promote the chosen edition(s) out of `drafts/` to the site proper (garden → grounds-into-CV).
 _updated: 2026-06-28 · session: ~/.claude/projects/-Users-uprootiny-marchdown-github-io_

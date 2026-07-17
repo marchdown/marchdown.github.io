@@ -108,7 +108,7 @@
         <a href="https://github.com/marchdown">github</a>
         <a href="https://hyperstitious.org">blog</a>
         <a href="mailto:uprootiny@gmail.com">email</a>
-        <a href="/drafts/cv.html">cv</a>
+        <a href="https://cv.hyperstitious.art">cv</a>
       </div>
       <div class="status">
         <span class="dot"></span>
@@ -118,9 +118,9 @@
   </div>
 
   <script>
-    // Generative tree growth visualization
+    // Generative cityscape visualization
     const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: false });
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
@@ -129,97 +129,83 @@
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Tree generation using simple recursion
-    class TreeGrower {
+    class Cityscape {
       constructor() {
-        this.trees = [];
         this.time = 0;
-        this.maxGrowthTime = 180; // seconds to full growth
-        this.initTrees();
+        this.buildings = [];
+        this.generateBuildings();
       }
 
-      initTrees() {
-        const count = Math.max(2, Math.floor(window.innerWidth / 400));
-        for (let i = 0; i < count; i++) {
-          this.trees.push({
-            x: (i + 0.5) * (window.innerWidth / count),
-            y: window.innerHeight - 40,
-            age: Math.random() * 40, // stagger growth
-            branches: []
-          });
-        }
-      }
+      generateBuildings() {
+        const blockWidth = 60;
+        const blockHeight = 80;
+        const cols = Math.ceil(canvas.width / blockWidth) + 2;
+        const rows = Math.ceil(canvas.height / blockHeight) + 2;
 
-      growTree(tree) {
-        const progress = Math.min(1, tree.age / this.maxGrowthTime);
-        this.generateBranches(tree, tree.x, tree.y, 90, 8, 0, progress);
-      }
+        for (let i = 0; i < cols; i++) {
+          for (let j = 0; j < rows; j++) {
+            const seed = (i * 73856093) ^ (j * 19349663);
+            const hash = Math.abs(Math.sin(seed) * 10000) % 1;
 
-      generateBranches(tree, x, y, angle, length, depth, progress) {
-        if (depth > 7) return;
-        if (length < 1) return;
-
-        // Limit growth based on progress
-        const depthLimit = Math.floor(progress * 8);
-        if (depth > depthLimit) return;
-
-        const x2 = x + length * Math.cos((angle - 90) * Math.PI / 180);
-        const y2 = y + length * Math.sin((angle - 90) * Math.PI / 180);
-
-        tree.branches.push({ x, y, x2, y2, depth });
-
-        const angleVariation = 25;
-        const lengthReduce = 0.7;
-
-        this.generateBranches(tree, x2, y2, angle - angleVariation, length * lengthReduce, depth + 1, progress);
-        this.generateBranches(tree, x2, y2, angle + angleVariation, length * lengthReduce, depth + 1, progress);
-      }
-
-      draw() {
-        ctx.fillStyle = '#0a0c0f';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        // Draw starfield
-        ctx.fillStyle = 'rgba(150, 140, 130, 0.15)';
-        for (let i = 0; i < 100; i++) {
-          const x = (i * 73 + this.time * 0.3) % canvas.width;
-          const y = (i * 127) % canvas.height;
-          const size = 0.5 + (i % 3) * 0.3;
-          ctx.fillRect(x, y, size, size);
-        }
-
-        // Draw trees
-        for (let tree of this.trees) {
-          tree.branches = [];
-          this.growTree(tree);
-
-          for (let branch of tree.branches) {
-            const depth = branch.depth;
-            const opacity = 0.3 + (1 - depth / 8) * 0.5;
-            const width = Math.max(0.5, 3 - depth * 0.35);
-
-            ctx.strokeStyle = `rgba(169, 165, 160, ${opacity})`;
-            ctx.lineWidth = width;
-            ctx.lineCap = 'round';
-            ctx.lineJoin = 'round';
-
-            ctx.beginPath();
-            ctx.moveTo(branch.x, branch.y);
-            ctx.lineTo(branch.x2, branch.y2);
-            ctx.stroke();
+            this.buildings.push({
+              x: i * blockWidth,
+              y: j * blockHeight,
+              w: blockWidth - 2,
+              h: blockHeight - 2,
+              height: 40 + hash * 120,
+              seed: hash,
+              age: Math.random() * 120
+            });
           }
         }
       }
 
+      draw() {
+        // Clean dark background
+        ctx.fillStyle = '#0a0c0f';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Draw buildings with growth animation
+        for (let b of this.buildings) {
+          const progress = Math.min(1, (b.age + this.time) / 80);
+          const displayHeight = b.height * progress;
+          const displayY = b.y + b.h - displayHeight;
+
+          // Building body
+          ctx.fillStyle = `rgba(${80 + b.seed * 40}, ${85 + b.seed * 35}, ${90 + b.seed * 40}, 0.85)`;
+          ctx.fillRect(b.x, displayY, b.w, displayHeight);
+
+          // Building outline
+          ctx.strokeStyle = `rgba(140, 135, 130, 0.6)`;
+          ctx.lineWidth = 1;
+          ctx.strokeRect(b.x, displayY, b.w, displayHeight);
+
+          // Windows - procedural based on height
+          const windowSpacing = 8;
+          const windowSize = 5;
+          ctx.fillStyle = `rgba(255, 240, 200, ${0.3 + b.seed * 0.6})`;
+
+          for (let wy = displayY + 6; wy < displayY + displayHeight; wy += windowSpacing) {
+            for (let wx = b.x + 4; wx < b.x + b.w; wx += windowSpacing) {
+              ctx.fillRect(wx, wy, windowSize, windowSize);
+            }
+          }
+        }
+
+        // Subtle horizon glow
+        const gradient = ctx.createLinearGradient(0, canvas.height * 0.3, 0, canvas.height);
+        gradient.addColorStop(0, 'rgba(10, 12, 15, 0)');
+        gradient.addColorStop(1, 'rgba(20, 18, 15, 0.15)');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
+
       update(deltaTime) {
         this.time += deltaTime;
-        for (let tree of this.trees) {
-          tree.age += deltaTime;
-        }
       }
     }
 
-    const grower = new TreeGrower();
+    const city = new Cityscape();
     let lastTime = performance.now();
 
     function animate() {
@@ -227,8 +213,8 @@
       const deltaTime = (now - lastTime) / 1000;
       lastTime = now;
 
-      grower.update(deltaTime * 0.5); // slow growth
-      grower.draw();
+      city.update(deltaTime * 0.3);
+      city.draw();
 
       requestAnimationFrame(animate);
     }

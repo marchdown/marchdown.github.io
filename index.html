@@ -16,112 +16,14 @@ body {
   align-items: center;
   justify-content: center;
   font-family: "Charter", Georgia, serif;
-  color: #e8eaec;
 }
 
-.viewport {
-  position: relative;
+canvas {
+  display: block;
   width: 100%;
   height: 100%;
-  overflow: hidden;
 }
 
-svg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
-
-/* ---- Zoom animation sequence ---- */
-@keyframes zoom-1 {
-  0% {
-    transform: translate(0, 0) scale(1);
-    opacity: 1;
-  }
-  85% {
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-25%, -25%) scale(4);
-    opacity: 0;
-  }
-}
-
-@keyframes zoom-2 {
-  0% {
-    transform: translate(25%, 25%) scale(0.25);
-    opacity: 0;
-  }
-  15% {
-    opacity: 1;
-  }
-  85% {
-    opacity: 1;
-  }
-  100% {
-    transform: translate(0%, -30%) scale(3.5);
-    opacity: 0;
-  }
-}
-
-@keyframes zoom-3 {
-  0% {
-    transform: translate(0%, 30%) scale(0.286);
-    opacity: 0;
-  }
-  15% {
-    opacity: 1;
-  }
-  85% {
-    opacity: 1;
-  }
-  100% {
-    transform: translate(20%, 20%) scale(4);
-    opacity: 0;
-  }
-}
-
-@keyframes zoom-4 {
-  0% {
-    transform: translate(-20%, -20%) scale(0.25);
-    opacity: 0;
-  }
-  15% {
-    opacity: 1;
-  }
-  100% {
-    transform: translate(0, 0) scale(1);
-    opacity: 1;
-  }
-}
-
-.scene {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
-
-.scene:nth-child(1) {
-  animation: zoom-1 16s infinite;
-}
-
-.scene:nth-child(2) {
-  animation: zoom-2 16s infinite;
-}
-
-.scene:nth-child(3) {
-  animation: zoom-3 16s infinite;
-}
-
-.scene:nth-child(4) {
-  animation: zoom-4 16s infinite;
-}
-
-/* ---- UI overlay ---- */
 .ui {
   position: absolute;
   bottom: 40px;
@@ -129,7 +31,7 @@ svg {
   transform: translateX(-50%);
   text-align: center;
   z-index: 100;
-  opacity: 0.6;
+  opacity: 0.5;
   transition: opacity 0.3s;
 }
 
@@ -141,6 +43,7 @@ svg {
   font-size: 14px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  color: #e8eaec;
   margin-bottom: 12px;
   font-family: -apple-system, "Segoe UI", sans-serif;
 }
@@ -160,103 +63,154 @@ svg {
   background: #2b4a7a;
   color: #0a0e14;
 }
-
-/* ---- Responsive ---- */
-@media (max-width: 800px) {
-  .ui-text {
-    font-size: 12px;
-  }
-  .ui-link {
-    font-size: 12px;
-    padding: 6px 12px;
-  }
-}
 </style>
 </head>
 <body>
 
-<div class="viewport">
-  <!-- Scene 1: Sparse constellation -->
-  <div class="scene">
-    <svg viewBox="0 0 1000 1000">
-      <defs>
-        <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" style="stop-color:#4a9eff;stop-opacity:0.8" />
-          <stop offset="100%" style="stop-color:#2b5aaa;stop-opacity:0" />
-        </radialGradient>
-      </defs>
-      <rect width="1000" height="1000" fill="#0a0e14"/>
-      <!-- Large focal point -->
-      <circle cx="300" cy="300" r="60" fill="url(#glow1)" opacity="0.9"/>
-      <!-- Surrounding points -->
-      <circle cx="150" cy="200" r="8" fill="#4a9eff" opacity="0.6"/>
-      <circle cx="450" cy="250" r="6" fill="#4a9eff" opacity="0.5"/>
-      <circle cx="200" cy="500" r="7" fill="#4a9eff" opacity="0.4"/>
-      <circle cx="600" cy="400" r="5" fill="#4a9eff" opacity="0.3"/>
-      <circle cx="400" cy="700" r="9" fill="#4a9eff" opacity="0.5"/>
-      <circle cx="800" cy="300" r="4" fill="#4a9eff" opacity="0.2"/>
-      <!-- Connecting threads -->
-      <line x1="300" y1="300" x2="150" y2="200" stroke="#4a9eff" stroke-width="1" opacity="0.2"/>
-      <line x1="300" y1="300" x2="450" y2="250" stroke="#4a9eff" stroke-width="1" opacity="0.2"/>
-      <line x1="300" y1="300" x2="400" y2="700" stroke="#4a9eff" stroke-width="1" opacity="0.15"/>
-    </svg>
-  </div>
-
-  <!-- Scene 2: Zoomed detail becomes new constellation -->
-  <div class="scene">
-    <svg viewBox="0 0 1000 1000">
-      <rect width="1000" height="1000" fill="#0c1220"/>
-      <!-- New pattern at zoom level -->
-      <circle cx="600" cy="400" r="70" fill="url(#glow1)" opacity="0.85"/>
-      <circle cx="400" cy="300" r="8" fill="#6bb3ff" opacity="0.7"/>
-      <circle cx="800" cy="350" r="7" fill="#6bb3ff" opacity="0.6"/>
-      <circle cx="500" cy="600" r="9" fill="#6bb3ff" opacity="0.5"/>
-      <circle cx="750" cy="650" r="6" fill="#6bb3ff" opacity="0.4"/>
-      <circle cx="300" cy="450" r="5" fill="#6bb3ff" opacity="0.3"/>
-      <line x1="600" y1="400" x2="400" y2="300" stroke="#6bb3ff" stroke-width="1" opacity="0.2"/>
-      <line x1="600" y1="400" x2="500" y2="600" stroke="#6bb3ff" stroke-width="1" opacity="0.15"/>
-    </svg>
-  </div>
-
-  <!-- Scene 3: Another zoom layer -->
-  <div class="scene">
-    <svg viewBox="0 0 1000 1000">
-      <rect width="1000" height="1000" fill="#11131f"/>
-      <circle cx="350" cy="350" r="80" fill="url(#glow1)" opacity="0.8"/>
-      <circle cx="150" cy="250" r="9" fill="#8cc9ff" opacity="0.75"/>
-      <circle cx="550" cy="300" r="8" fill="#8cc9ff" opacity="0.65"/>
-      <circle cx="300" cy="650" r="10" fill="#8cc9ff" opacity="0.55"/>
-      <circle cx="700" cy="500" r="7" fill="#8cc9ff" opacity="0.4"/>
-      <circle cx="450" cy="450" r="6" fill="#8cc9ff" opacity="0.35"/>
-      <circle cx="250" cy="150" r="5" fill="#8cc9ff" opacity="0.25"/>
-      <line x1="350" y1="350" x2="150" y2="250" stroke="#8cc9ff" stroke-width="1" opacity="0.18"/>
-      <line x1="350" y1="350" x2="700" y2="500" stroke="#8cc9ff" stroke-width="1" opacity="0.12"/>
-      <line x1="350" y1="350" x2="300" y2="650" stroke="#8cc9ff" stroke-width="1" opacity="0.1"/>
-    </svg>
-  </div>
-
-  <!-- Scene 4: Return to start -->
-  <div class="scene">
-    <svg viewBox="0 0 1000 1000">
-      <rect width="1000" height="1000" fill="#0a0e14"/>
-      <circle cx="300" cy="300" r="60" fill="url(#glow1)" opacity="0.9"/>
-      <circle cx="150" cy="200" r="8" fill="#4a9eff" opacity="0.6"/>
-      <circle cx="450" cy="250" r="6" fill="#4a9eff" opacity="0.5"/>
-      <circle cx="200" cy="500" r="7" fill="#4a9eff" opacity="0.4"/>
-      <circle cx="600" cy="400" r="5" fill="#4a9eff" opacity="0.3"/>
-      <circle cx="400" cy="700" r="9" fill="#4a9eff" opacity="0.5"/>
-      <circle cx="800" cy="300" r="4" fill="#4a9eff" opacity="0.2"/>
-      <line x1="300" y1="300" x2="150" y2="200" stroke="#4a9eff" stroke-width="1" opacity="0.2"/>
-      <line x1="300" y1="300" x2="450" y2="250" stroke="#4a9eff" stroke-width="1" opacity="0.2"/>
-      <line x1="300" y1="300" x2="400" y2="700" stroke="#4a9eff" stroke-width="1" opacity="0.15"/>
-    </svg>
-  </div>
-</div>
+<canvas id="canvas"></canvas>
 
 <div class="ui">
   <div class="ui-text">Pavel Vasilyev</div>
   <a href="drafts/index-cv.html" class="ui-link">View CV Editions</a>
 </div>
+
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+// Scene generator: returns array of points for a given seed/scale
+function generateScene(seed, scale) {
+  const random = (s) => {
+    const x = Math.sin(s) * 10000;
+    return x - Math.floor(x);
+  };
+
+  const points = [];
+  const count = 12;
+
+  for (let i = 0; i < count; i++) {
+    const angle = (i / count) * Math.PI * 2;
+    const r = 150 + random(seed + i) * 150;
+    const x = 500 + Math.cos(angle) * r;
+    const y = 500 + Math.sin(angle) * r;
+    const size = 3 + random(seed + i * 1.5) * 8;
+
+    points.push({
+      x: x,
+      y: y,
+      size: size,
+      opacity: 0.3 + random(seed + i * 2) * 0.5,
+    });
+  }
+
+  // Central glow point
+  points.push({
+    x: 500,
+    y: 500,
+    size: 60,
+    opacity: 0.8,
+    isCenter: true,
+  });
+
+  return points;
+}
+
+let time = 0;
+const cycleDuration = 16; // seconds
+
+function drawScene(points, offsetX = 0, offsetY = 0, scale = 1, alpha = 1) {
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+
+  points.forEach((point) => {
+    const x = centerX + (point.x - 500) * scale + offsetX;
+    const y = centerY + (point.y - 500) * scale + offsetY;
+
+    if (point.isCenter) {
+      // Center glow
+      const gradient = ctx.createRadialGradient(x, y, 0, x, y, point.size * scale);
+      gradient.addColorStop(0, `rgba(74, 158, 255, ${point.opacity * alpha * 0.8})`);
+      gradient.addColorStop(1, `rgba(43, 90, 170, 0)`);
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(x, y, point.size * scale, 0, Math.PI * 2);
+      ctx.fill();
+    } else {
+      // Points
+      ctx.fillStyle = `rgba(74, 158, 255, ${point.opacity * alpha})`;
+      ctx.beginPath();
+      ctx.arc(x, y, point.size * scale, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  });
+
+  // Connecting lines (subtle)
+  ctx.strokeStyle = `rgba(74, 158, 255, ${0.1 * alpha})`;
+  ctx.lineWidth = 1;
+  for (let i = 0; i < points.length - 1; i++) {
+    if (!points[i].isCenter) {
+      const x1 = centerX + (points[i].x - 500) * scale + offsetX;
+      const y1 = centerY + (points[i].y - 500) * scale + offsetY;
+      const x2 = centerX + (500 - 500) * scale + offsetX;
+      const y2 = centerY + (500 - 500) * scale + offsetY;
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+    }
+  }
+}
+
+function animate() {
+  time += 0.016; // ~60fps
+  const progress = (time % cycleDuration) / cycleDuration;
+
+  // Clear background
+  ctx.fillStyle = '#0a0e14';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Zoom in phase (0 to 0.75)
+  if (progress < 0.75) {
+    const zoomProgress = progress / 0.75;
+    const scale = 1 + zoomProgress * 3;
+    const offsetX = (zoomProgress * -100);
+    const offsetY = (zoomProgress * -100);
+    const alpha = 1 - zoomProgress * 0.3;
+
+    const scene = generateScene(1, scale);
+    drawScene(scene, offsetX, offsetY, 1 / scale, alpha);
+  }
+  // Transition phase (0.75 to 0.85) - fade and reset
+  else if (progress < 0.85) {
+    const transitionProgress = (progress - 0.75) / 0.1;
+    const alpha = 1 - transitionProgress;
+
+    const scene = generateScene(1, 4);
+    drawScene(scene, -300, -300, 0.25, alpha);
+  }
+  // Reset phase (0.85 to 1.0) - fade in new scene
+  else {
+    const resetProgress = (progress - 0.85) / 0.15;
+    const alpha = resetProgress;
+
+    const scene = generateScene(1, 1);
+    drawScene(scene, 0, 0, 1, alpha);
+  }
+
+  requestAnimationFrame(animate);
+}
+
+// Handle window resize
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+animate();
+</script>
 
 </body>
 </html>

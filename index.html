@@ -1,225 +1,262 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pavel Vasilyev — marchdown</title>
-  <style>
-    * { box-sizing: border-box; }
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      background: #0a0c0f;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      overflow: hidden;
-    }
-    canvas {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-    .overlay {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 40px;
-      pointer-events: none;
-      z-index: 10;
-    }
-    header {
-      text-align: left;
-    }
-    h1 {
-      margin: 0 0 6px 0;
-      font-size: 28px;
-      font-weight: 300;
-      letter-spacing: 0.5px;
-      color: #e8e6e1;
-    }
-    .subtitle {
-      font-size: 14px;
-      color: #8a8885;
-      font-weight: 300;
-      letter-spacing: 0.3px;
-    }
-    footer {
-      display: flex;
-      gap: 28px;
-      align-items: flex-end;
-      flex-wrap: wrap;
-    }
-    .links {
-      display: flex;
-      gap: 18px;
-      font-size: 13px;
-    }
-    a {
-      color: #a9a5a0;
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: all 0.3s ease;
-      pointer-events: auto;
-    }
-    a:hover {
-      color: #d8d4cc;
-      border-bottom-color: #d8d4cc;
-    }
-    .status {
-      font-size: 12px;
-      color: #6a6865;
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-    .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #9a8a6a;
-      animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 0.5; }
-      50% { opacity: 1; }
-    }
-    @media (max-width: 640px) {
-      .overlay { padding: 24px; }
-      h1 { font-size: 22px; }
-      .links { flex-direction: column; gap: 8px; }
-      footer { flex-direction: column; gap: 14px; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pavel Vasilyev</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #0a0e14;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Charter", Georgia, serif;
+  color: #e8eaec;
+}
+
+.viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+/* ---- Zoom animation sequence ---- */
+@keyframes zoom-1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-25%, -25%) scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes zoom-2 {
+  0% {
+    transform: translate(25%, 25%) scale(0.25);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0%, -30%) scale(3.5);
+    opacity: 0;
+  }
+}
+
+@keyframes zoom-3 {
+  0% {
+    transform: translate(0%, 30%) scale(0.286);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(20%, 20%) scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes zoom-4 {
+  0% {
+    transform: translate(-20%, -20%) scale(0.25);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+}
+
+.scene {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.scene:nth-child(1) {
+  animation: zoom-1 16s infinite;
+}
+
+.scene:nth-child(2) {
+  animation: zoom-2 16s infinite;
+}
+
+.scene:nth-child(3) {
+  animation: zoom-3 16s infinite;
+}
+
+.scene:nth-child(4) {
+  animation: zoom-4 16s infinite;
+}
+
+/* ---- UI overlay ---- */
+.ui {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 100;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.ui:hover {
+  opacity: 1;
+}
+
+.ui-text {
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  font-family: -apple-system, "Segoe UI", sans-serif;
+}
+
+.ui-link {
+  display: inline-block;
+  color: #2b4a7a;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 8px 16px;
+  border: 1px solid #2b4a7a;
+  border-radius: 3px;
+  transition: all 0.2s;
+}
+
+.ui-link:hover {
+  background: #2b4a7a;
+  color: #0a0e14;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 800px) {
+  .ui-text {
+    font-size: 12px;
+  }
+  .ui-link {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+</style>
 </head>
 <body>
-  <canvas id="canvas"></canvas>
 
-  <div class="overlay">
-    <header>
-      <h1>Pavel Vasilyev</h1>
-      <p class="subtitle">LLM verification architect · software engineer</p>
-    </header>
-
-    <footer>
-      <div class="links">
-        <a href="https://github.com/marchdown">github</a>
-        <a href="https://hyperstitious.org">blog</a>
-        <a href="mailto:uprootiny@gmail.com">email</a>
-        <a href="https://cv.hyperstitious.art">cv</a>
-      </div>
-      <div class="status">
-        <span class="dot"></span>
-        <span>open to fractional work</span>
-      </div>
-    </footer>
+<div class="viewport">
+  <!-- Scene 1: Sparse constellation -->
+  <div class="scene">
+    <svg viewBox="0 0 1000 1000">
+      <defs>
+        <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" style="stop-color:#4a9eff;stop-opacity:0.8" />
+          <stop offset="100%" style="stop-color:#2b5aaa;stop-opacity:0" />
+        </radialGradient>
+      </defs>
+      <rect width="1000" height="1000" fill="#0a0e14"/>
+      <!-- Large focal point -->
+      <circle cx="300" cy="300" r="60" fill="url(#glow1)" opacity="0.9"/>
+      <!-- Surrounding points -->
+      <circle cx="150" cy="200" r="8" fill="#4a9eff" opacity="0.6"/>
+      <circle cx="450" cy="250" r="6" fill="#4a9eff" opacity="0.5"/>
+      <circle cx="200" cy="500" r="7" fill="#4a9eff" opacity="0.4"/>
+      <circle cx="600" cy="400" r="5" fill="#4a9eff" opacity="0.3"/>
+      <circle cx="400" cy="700" r="9" fill="#4a9eff" opacity="0.5"/>
+      <circle cx="800" cy="300" r="4" fill="#4a9eff" opacity="0.2"/>
+      <!-- Connecting threads -->
+      <line x1="300" y1="300" x2="150" y2="200" stroke="#4a9eff" stroke-width="1" opacity="0.2"/>
+      <line x1="300" y1="300" x2="450" y2="250" stroke="#4a9eff" stroke-width="1" opacity="0.2"/>
+      <line x1="300" y1="300" x2="400" y2="700" stroke="#4a9eff" stroke-width="1" opacity="0.15"/>
+    </svg>
   </div>
 
-  <script>
-    // Generative cityscape visualization
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d', { alpha: false });
+  <!-- Scene 2: Zoomed detail becomes new constellation -->
+  <div class="scene">
+    <svg viewBox="0 0 1000 1000">
+      <rect width="1000" height="1000" fill="#0c1220"/>
+      <!-- New pattern at zoom level -->
+      <circle cx="600" cy="400" r="70" fill="url(#glow1)" opacity="0.85"/>
+      <circle cx="400" cy="300" r="8" fill="#6bb3ff" opacity="0.7"/>
+      <circle cx="800" cy="350" r="7" fill="#6bb3ff" opacity="0.6"/>
+      <circle cx="500" cy="600" r="9" fill="#6bb3ff" opacity="0.5"/>
+      <circle cx="750" cy="650" r="6" fill="#6bb3ff" opacity="0.4"/>
+      <circle cx="300" cy="450" r="5" fill="#6bb3ff" opacity="0.3"/>
+      <line x1="600" y1="400" x2="400" y2="300" stroke="#6bb3ff" stroke-width="1" opacity="0.2"/>
+      <line x1="600" y1="400" x2="500" y2="600" stroke="#6bb3ff" stroke-width="1" opacity="0.15"/>
+    </svg>
+  </div>
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+  <!-- Scene 3: Another zoom layer -->
+  <div class="scene">
+    <svg viewBox="0 0 1000 1000">
+      <rect width="1000" height="1000" fill="#11131f"/>
+      <circle cx="350" cy="350" r="80" fill="url(#glow1)" opacity="0.8"/>
+      <circle cx="150" cy="250" r="9" fill="#8cc9ff" opacity="0.75"/>
+      <circle cx="550" cy="300" r="8" fill="#8cc9ff" opacity="0.65"/>
+      <circle cx="300" cy="650" r="10" fill="#8cc9ff" opacity="0.55"/>
+      <circle cx="700" cy="500" r="7" fill="#8cc9ff" opacity="0.4"/>
+      <circle cx="450" cy="450" r="6" fill="#8cc9ff" opacity="0.35"/>
+      <circle cx="250" cy="150" r="5" fill="#8cc9ff" opacity="0.25"/>
+      <line x1="350" y1="350" x2="150" y2="250" stroke="#8cc9ff" stroke-width="1" opacity="0.18"/>
+      <line x1="350" y1="350" x2="700" y2="500" stroke="#8cc9ff" stroke-width="1" opacity="0.12"/>
+      <line x1="350" y1="350" x2="300" y2="650" stroke="#8cc9ff" stroke-width="1" opacity="0.1"/>
+    </svg>
+  </div>
 
-    class Cityscape {
-      constructor() {
-        this.time = 0;
-        this.buildings = [];
-        this.generateBuildings();
-      }
+  <!-- Scene 4: Return to start -->
+  <div class="scene">
+    <svg viewBox="0 0 1000 1000">
+      <rect width="1000" height="1000" fill="#0a0e14"/>
+      <circle cx="300" cy="300" r="60" fill="url(#glow1)" opacity="0.9"/>
+      <circle cx="150" cy="200" r="8" fill="#4a9eff" opacity="0.6"/>
+      <circle cx="450" cy="250" r="6" fill="#4a9eff" opacity="0.5"/>
+      <circle cx="200" cy="500" r="7" fill="#4a9eff" opacity="0.4"/>
+      <circle cx="600" cy="400" r="5" fill="#4a9eff" opacity="0.3"/>
+      <circle cx="400" cy="700" r="9" fill="#4a9eff" opacity="0.5"/>
+      <circle cx="800" cy="300" r="4" fill="#4a9eff" opacity="0.2"/>
+      <line x1="300" y1="300" x2="150" y2="200" stroke="#4a9eff" stroke-width="1" opacity="0.2"/>
+      <line x1="300" y1="300" x2="450" y2="250" stroke="#4a9eff" stroke-width="1" opacity="0.2"/>
+      <line x1="300" y1="300" x2="400" y2="700" stroke="#4a9eff" stroke-width="1" opacity="0.15"/>
+    </svg>
+  </div>
+</div>
 
-      generateBuildings() {
-        const blockWidth = 60;
-        const blockHeight = 80;
-        const cols = Math.ceil(canvas.width / blockWidth) + 2;
-        const rows = Math.ceil(canvas.height / blockHeight) + 2;
+<div class="ui">
+  <div class="ui-text">Pavel Vasilyev</div>
+  <a href="drafts/index-cv.html" class="ui-link">View CV Editions</a>
+</div>
 
-        for (let i = 0; i < cols; i++) {
-          for (let j = 0; j < rows; j++) {
-            const seed = (i * 73856093) ^ (j * 19349663);
-            const hash = Math.abs(Math.sin(seed) * 10000) % 1;
-
-            this.buildings.push({
-              x: i * blockWidth,
-              y: j * blockHeight,
-              w: blockWidth - 2,
-              h: blockHeight - 2,
-              height: 40 + hash * 120,
-              seed: hash,
-              age: Math.random() * 120
-            });
-          }
-        }
-      }
-
-      draw() {
-        // Clean dark background
-        ctx.fillStyle = '#0a0c0f';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        // Draw buildings with growth animation
-        for (let b of this.buildings) {
-          const progress = Math.min(1, (b.age + this.time) / 80);
-          const displayHeight = b.height * progress;
-          const displayY = b.y + b.h - displayHeight;
-
-          // Building body
-          ctx.fillStyle = `rgba(${80 + b.seed * 40}, ${85 + b.seed * 35}, ${90 + b.seed * 40}, 0.85)`;
-          ctx.fillRect(b.x, displayY, b.w, displayHeight);
-
-          // Building outline
-          ctx.strokeStyle = `rgba(140, 135, 130, 0.6)`;
-          ctx.lineWidth = 1;
-          ctx.strokeRect(b.x, displayY, b.w, displayHeight);
-
-          // Windows - procedural based on height
-          const windowSpacing = 8;
-          const windowSize = 5;
-          ctx.fillStyle = `rgba(255, 240, 200, ${0.3 + b.seed * 0.6})`;
-
-          for (let wy = displayY + 6; wy < displayY + displayHeight; wy += windowSpacing) {
-            for (let wx = b.x + 4; wx < b.x + b.w; wx += windowSpacing) {
-              ctx.fillRect(wx, wy, windowSize, windowSize);
-            }
-          }
-        }
-
-        // Subtle horizon glow
-        const gradient = ctx.createLinearGradient(0, canvas.height * 0.3, 0, canvas.height);
-        gradient.addColorStop(0, 'rgba(10, 12, 15, 0)');
-        gradient.addColorStop(1, 'rgba(20, 18, 15, 0.15)');
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-      }
-
-      update(deltaTime) {
-        this.time += deltaTime;
-      }
-    }
-
-    const city = new Cityscape();
-    let lastTime = performance.now();
-
-    function animate() {
-      const now = performance.now();
-      const deltaTime = (now - lastTime) / 1000;
-      lastTime = now;
-
-      city.update(deltaTime * 0.3);
-      city.draw();
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-  </script>
 </body>
 </html>

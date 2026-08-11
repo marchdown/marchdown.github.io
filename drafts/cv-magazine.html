@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pavel Vasilyev</title>
+<style>
+:root {
+  --text: #1a1a1a;
+  --muted: #777;
+  --line: #e8e8e8;
+  --accent: #2b4a7a;
+  --space: 32px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: var(--space);
+  background: #fafaf9;
+  color: var(--text);
+  font-family: "Charter", Georgia, serif;
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ---- Header ---- */
+header {
+  margin-bottom: 60px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--line);
+}
+
+h1 {
+  font-size: 52px;
+  line-height: 1.1;
+  margin: 0 0 8px 0;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: var(--muted);
+  font-weight: 300;
+  margin: 0;
+}
+
+/* ---- Grid layout ---- */
+.content {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 50px;
+}
+
+aside {
+  font-size: 14px;
+}
+
+main {
+  padding-bottom: 40px;
+}
+
+/* ---- Contact & Skills ---- */
+section {
+  margin-bottom: 40px;
+}
+
+section h2 {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0 0 16px 0;
+  font-family: -apple-system, "Segoe UI", sans-serif;
+}
+
+.contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.contact-list li {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.contact-list a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.contact-list a:hover {
+  border-bottom-color: var(--accent);
+}
+
+.skills-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.skills-list li {
+  margin-bottom: 4px;
+}
+
+aside p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0 0 16px 0;
+  color: var(--muted);
+}
+
+/* ---- Main content ---- */
+main > section {
+  margin-bottom: 50px;
+}
+
+main > section h2 {
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0 0 28px 0;
+  font-family: -apple-system, "Segoe UI", sans-serif;
+  border-bottom: 2px solid var(--line);
+  padding-bottom: 12px;
+}
+
+.job {
+  margin-bottom: 28px;
+}
+
+.job-title {
+  font-weight: 600;
+  font-size: 16px;
+  margin: 0 0 4px 0;
+  color: var(--text);
+}
+
+.job-meta {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 12px 0;
+  font-style: italic;
+}
+
+.job p {
+  margin: 0;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ---- Education ---- */
+.education-item {
+  margin-bottom: 16px;
+}
+
+.degree {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.school {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* ---- Footer ---- */
+footer {
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--muted);
+  font-family: -apple-system, "Segoe UI", sans-serif;
+  text-align: center;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 700px) {
+  .content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  body {
+    padding: 20px;
+  }
+}
+
+@media print {
+  body { background: white; }
+  footer { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>Pavel Vasilyev</h1>
+    <p class="subtitle">Machine-learning engineer & software architect</p>
+  </header>
+
+  <div class="content">
+    <aside>
+      <section>
+        <h2>Contact</h2>
+        <ul class="contact-list">
+          <li><a href="https://github.com/marchdown">github.com/marchdown</a></li>
+          <li><a href="https://hyperstitious.org">hyperstitious.org</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Location</h2>
+        <p>Jerusalem, Israel</p>
+      </section>
+
+      <section>
+        <h2>Core Competencies</h2>
+        <ul class="skills-list">
+          <li>Machine learning & statistics</li>
+          <li>LLM engineering & agents</li>
+          <li>AI oversight systems</li>
+          <li>Developer infrastructure</li>
+          <li>Type theory & verification</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Languages</h2>
+        <p>Swift, Rust, Clojure, Haskell, Elixir, TypeScript, Agda</p>
+        <p style="margin-top: 16px; margin-bottom: 0;">English, Hebrew, Russian, German, French</p>
+      </section>
+    </aside>
+
+    <main>
+      <section>
+        <p style="font-size: 15px; line-height: 1.8; color: var(--muted); font-style: italic; margin: 0 0 0 0;">Fifteen years designing the machine-learning infrastructure that keeps models correct and accountable. I build the review, verification, and oversight systems that sit between raw model output and production deployment. Polyglot—the right tool per problem—and specification-first: deliberate about what needs to exist before writing the careful, minimal version.</p>
+      </section>
+
+      <section>
+        <h2>Experience</h2>
+
+        <div class="job">
+          <div class="job-title">LLM Engineer</div>
+          <div class="job-meta">Move38 · 2026</div>
+          <p>End-to-end LLM feature delivery: infrastructure, prompt design, user-facing interaction.</p>
+        </div>
+
+        <div class="job">
+          <div class="job-title">Chief Technology Officer</div>
+          <div class="job-meta">LevEhad (NGO), Israel · 2024</div>
+          <p>Owned all IT infrastructure and directed technical development for the organisation.</p>
+        </div>
+
+        <div class="job">
+          <div class="job-title">AI Architect</div>
+          <div class="job-meta">Stamina AI · 2023</div>
+          <p>Designed LLM and chatbot systems with ontology-backed grounding and vector-store retrieval.</p>
+        </div>
+
+        <div class="job">
+          <div class="job-title">Research Lead</div>
+          <div class="job-meta">Spring Research · 2020–2022</div>
+          <p>Led the research team on financial-market modelling: ML pipelines, market-regime detection, time-series representation learning, and AWS deployment.</p>
+        </div>
+
+        <div class="job">
+          <div class="job-title">Independent Practice</div>
+          <div class="job-meta">Consultant & open-source author · 2010–present</div>
+          <p>Consulting between roles. 150+ open-source projects across eight languages, spanning sonification, formal verification, and agent orchestration.</p>
+        </div>
+
+        <div class="job">
+          <div class="job-title">Earlier</div>
+          <div class="job-meta">NLP, data science & software · 2009–2019</div>
+          <p>Roles across Tel Aviv, Hong Kong, and Prague: financial-news NLP, medical-text models, computer vision, corpus-linguistics engines. Companies include Nestlogic, Maverick Medical AI, Athena Portfolio Solutions, Ten-X, Verba, Finfon.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Education</h2>
+        <div class="education-item">
+          <div class="degree">MSc Computational Linguistics</div>
+          <div class="school">RSUH, Moscow · 2015</div>
+        </div>
+        <div class="education-item">
+          <div class="degree">BSc Nuclear Physics</div>
+          <div class="school">Czech Technical University, Prague · 2009</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    A document in service of clarity · marchdown.github.io
+  </footer>
+</div>
+
+</body>
+</html>

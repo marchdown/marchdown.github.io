@@ -81,129 +81,137 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-// Scene generator: returns array of points for a given seed/scale
-function generateScene(seed, scale) {
-  const random = (s) => {
-    const x = Math.sin(s) * 10000;
-    return x - Math.floor(x);
-  };
-
-  const points = [];
-  const count = 12;
-
-  for (let i = 0; i < count; i++) {
-    const angle = (i / count) * Math.PI * 2;
-    const r = 150 + random(seed + i) * 150;
-    const x = 500 + Math.cos(angle) * r;
-    const y = 500 + Math.sin(angle) * r;
-    const size = 3 + random(seed + i * 1.5) * 8;
-
-    points.push({
-      x: x,
-      y: y,
-      size: size,
-      opacity: 0.3 + random(seed + i * 2) * 0.5,
-    });
+// Generate a hypergraph structure
+class HyperGraph {
+  constructor() {
+    this.nodes = [];
+    this.edges = [];
+    this.generateGraph();
   }
 
-  // Central glow point
-  points.push({
-    x: 500,
-    y: 500,
-    size: 60,
-    opacity: 0.8,
-    isCenter: true,
-  });
+  generateGraph() {
+    // Create 40 nodes in 3D space
+    for (let i = 0; i < 40; i++) {
+      this.nodes.push({
+        x: (Math.random() - 0.5) * 800,
+        y: (Math.random() - 0.5) * 800,
+        z: (Math.random() - 0.5) * 800,
+        radius: 2 + Math.random() * 4,
+        color: Math.random() > 0.7 ? '#8cc9ff' : '#4a9eff',
+      });
+    }
 
-  return points;
+    // Create hyperedges (each connects 2-4 nodes)
+    for (let i = 0; i < 60; i++) {
+      const edgeSize = 2 + Math.floor(Math.random() * 3);
+      const edge = [];
+      for (let j = 0; j < edgeSize; j++) {
+        edge.push(Math.floor(Math.random() * this.nodes.length));
+      }
+      this.edges.push(edge);
+    }
+  }
+
+  project(node, camDist) {
+    // Simple 3D perspective projection
+    const scale = camDist / (camDist + node.z);
+    return {
+      x: node.x * scale,
+      y: node.y * scale,
+      z: node.z,
+      scale: scale,
+      radius: node.radius * scale,
+      color: node.color,
+    };
+  }
 }
 
+const graph = new HyperGraph();
 let time = 0;
-const cycleDuration = 16; // seconds
+const camDistance = 500;
 
-function drawScene(points, offsetX = 0, offsetY = 0, scale = 1, alpha = 1) {
-  const centerX = canvas.width / 2;
-  const centerY = canvas.height / 2;
+function rotatePoint(p, angleX, angleY, angleZ) {
+  let x = p.x, y = p.y, z = p.z;
 
-  points.forEach((point) => {
-    const x = centerX + (point.x - 500) * scale + offsetX;
-    const y = centerY + (point.y - 500) * scale + offsetY;
+  // Rotate around Y
+  let cosY = Math.cos(angleY);
+  let sinY = Math.sin(angleY);
+  let x1 = x * cosY - z * sinY;
+  let z1 = x * sinY + z * cosY;
 
-    if (point.isCenter) {
-      // Center glow
-      const gradient = ctx.createRadialGradient(x, y, 0, x, y, point.size * scale);
-      gradient.addColorStop(0, `rgba(74, 158, 255, ${point.opacity * alpha * 0.8})`);
-      gradient.addColorStop(1, `rgba(43, 90, 170, 0)`);
-      ctx.fillStyle = gradient;
-      ctx.beginPath();
-      ctx.arc(x, y, point.size * scale, 0, Math.PI * 2);
-      ctx.fill();
-    } else {
-      // Points
-      ctx.fillStyle = `rgba(74, 158, 255, ${point.opacity * alpha})`;
-      ctx.beginPath();
-      ctx.arc(x, y, point.size * scale, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  });
+  // Rotate around X
+  let cosX = Math.cos(angleX);
+  let sinX = Math.sin(angleX);
+  let y1 = y * cosX - z1 * sinX;
+  let z2 = y * sinX + z1 * cosX;
 
-  // Connecting lines (subtle)
-  ctx.strokeStyle = `rgba(74, 158, 255, ${0.1 * alpha})`;
-  ctx.lineWidth = 1;
-  for (let i = 0; i < points.length - 1; i++) {
-    if (!points[i].isCenter) {
-      const x1 = centerX + (points[i].x - 500) * scale + offsetX;
-      const y1 = centerY + (points[i].y - 500) * scale + offsetY;
-      const x2 = centerX + (500 - 500) * scale + offsetX;
-      const y2 = centerY + (500 - 500) * scale + offsetY;
-      ctx.beginPath();
-      ctx.moveTo(x1, y1);
-      ctx.lineTo(x2, y2);
-      ctx.stroke();
-    }
-  }
+  return { x: x1, y: y1, z: z2 };
 }
 
 function animate() {
-  time += 0.016; // ~60fps
-  const progress = (time % cycleDuration) / cycleDuration;
+  time += 0.008;
 
   // Clear background
   ctx.fillStyle = '#0a0e14';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Zoom in phase (0 to 0.75)
-  if (progress < 0.75) {
-    const zoomProgress = progress / 0.75;
-    const scale = 1 + zoomProgress * 3;
-    const offsetX = (zoomProgress * -100);
-    const offsetY = (zoomProgress * -100);
-    const alpha = 1 - zoomProgress * 0.3;
+  // Camera tumble angles
+  const angleX = time * 0.3;
+  const angleY = time * 0.5;
+  const angleZ = time * 0.2;
 
-    const scene = generateScene(1, scale);
-    drawScene(scene, offsetX, offsetY, 1 / scale, alpha);
-  }
-  // Transition phase (0.75 to 0.85) - fade and reset
-  else if (progress < 0.85) {
-    const transitionProgress = (progress - 0.75) / 0.1;
-    const alpha = 1 - transitionProgress;
+  // Transform and project nodes
+  const projected = graph.nodes.map((node) => {
+    const rotated = rotatePoint(node, angleX, angleY, angleZ);
+    return graph.project(rotated, camDistance);
+  });
 
-    const scene = generateScene(1, 4);
-    drawScene(scene, -300, -300, 0.25, alpha);
-  }
-  // Reset phase (0.85 to 1.0) - fade in new scene
-  else {
-    const resetProgress = (progress - 0.85) / 0.15;
-    const alpha = resetProgress;
+  // Sort by depth (painter's algorithm)
+  const sortedIndices = graph.nodes.map((_, i) => i);
+  sortedIndices.sort((a, b) => projected[a].z - projected[b].z);
 
-    const scene = generateScene(1, 1);
-    drawScene(scene, 0, 0, 1, alpha);
-  }
+  // Draw edges first (so they appear behind nodes)
+  ctx.strokeStyle = 'rgba(74, 158, 255, 0.08)';
+  ctx.lineWidth = 1;
+  graph.edges.forEach((edge) => {
+    for (let i = 0; i < edge.length - 1; i++) {
+      const p1 = projected[edge[i]];
+      const p2 = projected[edge[i + 1]];
+      ctx.beginPath();
+      ctx.moveTo(canvas.width / 2 + p1.x, canvas.height / 2 + p1.y);
+      ctx.lineTo(canvas.width / 2 + p2.x, canvas.height / 2 + p2.y);
+      ctx.stroke();
+    }
+  });
+
+  // Draw nodes
+  sortedIndices.forEach((idx) => {
+    const p = projected[idx];
+    if (p.scale > 0.05) {
+      // Glow effect
+      const gradient = ctx.createRadialGradient(
+        canvas.width / 2 + p.x, canvas.height / 2 + p.y, 0,
+        canvas.width / 2 + p.x, canvas.height / 2 + p.y, p.radius * 3
+      );
+      gradient.addColorStop(0, p.color.replace(')', ', 0.6)').replace(/rgb/, 'rgba'));
+      gradient.addColorStop(1, p.color.replace(')', ', 0)').replace(/rgb/, 'rgba'));
+
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(canvas.width / 2 + p.x, canvas.height / 2 + p.y, p.radius * 3, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Core
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.arc(canvas.width / 2 + p.x, canvas.height / 2 + p.y, p.radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  });
 
   requestAnimationFrame(animate);
 }
 
-// Handle window resize
 window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;

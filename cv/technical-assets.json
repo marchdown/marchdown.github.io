@@ -92,7 +92,7 @@
         "repo_path": "/Users/uprootiny/marchdown.github.io/tools/job-sift",
         "git_remote": "https://github.com/marchdown/marchdown.github.io.git",
         "git_branch": "main",
-        "git_commit": "PENDING_COMMIT_HASH"
+        "git_commit": "fa7b9150f67d1e53ecad7114976d3b3088a8c61b"
       },
       "evidence": ["tools/job-sift/README.md", "tools/job-sift/src/main.rs", "output/job-sift/ (session run reports, gitignored)"],
       "cv_text": "Rust CLI that scores live RemoteOK and HN listings against a weighted skill profile to surface contract-shaped work worth pursuing."

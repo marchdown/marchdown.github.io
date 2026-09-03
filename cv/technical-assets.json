@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "provenance": {
+    "project_name": "marchdown.github.io",
+    "repo_path": "/Users/uprootiny/marchdown.github.io",
+    "git_remote": "https://github.com/marchdown/marchdown.github.io.git",
+    "git_branch": "main",
+    "git_commit": "bd96e5a35cb398970a944c15552eac5ba8177cec",
+    "generated_at": "2026-07-19",
+    "generator": "Codex (GPT-5)",
+    "session_source": "Codex API conversation",
+    "session_locator": "/Users/uprootiny/.codex/sessions/ (2026-07-18--2026-07-19 sessions)"
+  },
+  "assets": [
+    {
+      "id": "gemini-gate",
+      "name": "gemini-gate",
+      "cv_safe": true,
+      "purpose": "Small credential vault and Gemini API proxy for controlled runtime access to AI and infrastructure credentials.",
+      "demonstrated_capabilities": ["authenticated credential retrieval", "Gemini API proxying", "constant-time token comparison", "atomic credential replacement", "Caddy and systemd deployment"],
+      "stack": ["Elixir 1.16", "Phoenix 1.7", "Phoenix LiveView", "Bandit", "Plug", "Req", "Telemetry"],
+      "ownership_evidence": "Latest commit is authored by uprootiny.",
+      "repository": {
+        "repo_path": "/Users/uprootiny/gemini-gate",
+        "git_remote": "git@gitlab.com:uprootiny/gemini-gate.git",
+        "git_branch": "main",
+        "git_commit": "6e1fbf5320e4d5af9c3d1d209676923a197b05ba"
+      },
+      "evidence": ["README.md", "mix.exs", "git log -1"],
+      "cv_text": "Elixir/Phoenix credential service with authenticated retrieval, Gemini API proxying, and Caddy/systemd deployment."
+    },
+    {
+      "id": "inference-harness",
+      "name": "inference_harness",
+      "cv_safe": true,
+      "purpose": "Provider-routed LLM job harness with role-specific fallback chains, time budgets, retry ceilings, and inference tracing.",
+      "demonstrated_capabilities": ["multi-provider routing", "role-specific fallback chains", "token and latency ledger", "budget-enforced job execution", "bounded concurrent execution", "retries and provider metering"],
+      "stack": ["Elixir 1.15", "OTP GenServer", "ETS", "Jason", "Claude API", "Gemini API", "Groq API", "OpenRouter", "Ollama", "Cloudflare Workers AI"],
+      "ownership_evidence": "Latest commit is authored by uprootiny.",
+      "repository": {
+        "repo_path": "/Users/uprootiny/Nissan/inference_harness",
+        "git_remote": "git@gitlab.com:uprootiny/inference_harness.git",
+        "git_branch": "main",
+        "git_commit": "8a73954c571d16e7293d4eb550ef0a2c6210b02d"
+      },
+      "evidence": ["lib/inference_harness/inference/providers.ex", "lib/inference_harness/inference/pool.ex", "lib/inference_harness/trace/ledger.ex", "mix.exs", "git log -1"],
+      "cv_text": "Elixir LLM harness for multi-provider routing, role-specific fallback, token/latency tracing, and bounded concurrent jobs."
+    },
+    {
+      "id": "corpora",
+      "name": "corpora",
+      "cv_safe": true,
+      "purpose": "Native macOS application for browsing, searching, and composing context from AI conversation history.",
+      "demonstrated_capabilities": ["conversation-history ingestion", "live local file watching", "search and topic exploration", "artifact browsing", "context composition"],
+      "stack": ["Swift 6.1", "macOS 14+", "CorporaLib", "SQLite corpus database", "DispatchSource file watching"],
+      "ownership_evidence": "Latest commit is authored by uprootiny.",
+      "repository": {
+        "repo_path": "/Users/uprootiny/Nissan/corpora",
+        "git_remote": "git@gitlab.com:uprootiny/corpora.git",
+        "git_branch": "main",
+        "git_commit": "1e36fa472773eb526dbfe316338c556858384d0e"
+      },
+      "evidence": ["README.md", "git log -1"],
+      "cv_text": "Swift macOS app for searchable AI-conversation provenance, live ingestion, and context composition."
+    },
+    {
+      "id": "co-loop",
+      "name": "co-loop",
+      "cv_safe": true,
+      "purpose": "Fork-based workflow for parallel agentic collaboration without direct file conflicts.",
+      "demonstrated_capabilities": ["agentic collaboration conventions", "fork and branch workflow", "repository governance", "merge-conflict avoidance"],
+      "stack": ["Git", "GitHub", "Markdown", "agent collaboration protocols"],
+      "ownership_evidence": "Latest commit is authored by uprootiny.",
+      "repository": {
+        "repo_path": "/Users/uprootiny/co-loop",
+        "git_remote": "https://github.com/marchdown/co-loop.git",
+        "git_branch": "marchdown/interop-observatory",
+        "git_commit": "dae2bebe3a7c0a388f61f37e4afff4f11eb55e33"
+      },
+      "evidence": ["README.md", "git log -1"],
+      "cv_text": "Fork-based collaboration protocol for parallel agentic work and clean repository integration."
+    },
+    {
+      "id": "job-sift",
+      "name": "job-sift",
+      "cv_safe": true,
+      "purpose": "Live job-board sifter and skill-match scorer, built to source contract-shaped work rather than passively job-hunt.",
+      "demonstrated_capabilities": ["live multi-source fetch (RemoteOK API, HN Algolia search_by_date)", "word-boundary weighted skill-profile scoring", "per-source graceful degradation with loud stderr warnings", "JSON report export"],
+      "stack": ["Rust", "ureq", "serde/serde_json"],
+      "ownership_evidence": "Authored and run live this session; verified against real RemoteOK and HN 'Who is hiring?' (Sep 2026) API responses.",
+      "repository": {
+        "repo_path": "/Users/uprootiny/marchdown.github.io/tools/job-sift",
+        "git_remote": "https://github.com/marchdown/marchdown.github.io.git",
+        "git_branch": "main",
+        "git_commit": "PENDING_COMMIT_HASH"
+      },
+      "evidence": ["tools/job-sift/README.md", "tools/job-sift/src/main.rs", "output/job-sift/ (session run reports, gitignored)"],
+      "cv_text": "Rust CLI that scores live RemoteOK and HN listings against a weighted skill profile to surface contract-shaped work worth pursuing."
+    }
+  ]
+}

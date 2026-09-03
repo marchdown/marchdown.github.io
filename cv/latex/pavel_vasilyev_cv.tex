@@ -1,0 +1,94 @@
+\documentclass[10.5pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=15mm,top=13mm,bottom=13mm]{geometry}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\definecolor{ink}{HTML}{111111}
+\definecolor{muted}{HTML}{555555}
+\hypersetup{
+  pdftitle={Pavel Vasilyev — Technical Lead},
+  pdfauthor={Pavel Vasilyev},
+  pdfsubject={LaTeX CV; full build provenance in cv/latex/provenance.json},
+  pdfkeywords={Pavel Vasilyev, AI systems, machine learning, developer infrastructure},
+  colorlinks=true,
+  urlcolor=ink,
+  linkcolor=ink
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlist[itemize]{leftmargin=1.25em,itemsep=1.2pt,topsep=2pt,parsep=0pt,partopsep=0pt,label=--}
+\raggedright
+\emergencystretch=1.5em
+\pagestyle{empty}
+
+\newcommand{\cvsection}[1]{%
+  \vspace{7pt}%
+  {\small\bfseries\MakeUppercase{#1}}\par
+  \vspace{2.5pt}\hrule\vspace{3.5pt}%
+}
+\newcommand{\cvrole}[4]{%
+  \textbf{#1}\hfill {\small #3}\par
+  {\small\color{muted}#2}\par
+  \begin{itemize}#4\end{itemize}%
+}
+
+\InputIfFileExists{build-meta.tex}{\input{build-meta.tex}}{%
+  \def\CvProjectName{marchdown.github.io}%
+  \def\CvGitBranch{main}%
+  \def\CvShortCommit{unavailable}%
+  \def\CvGeneratedDate{unavailable}%
+  \def\CvManifestPath{cv/latex/provenance.json}%
+}
+
+\begin{document}
+\color{ink}
+
+{\LARGE\bfseries Pavel Vasilyev}\par
+\vspace{1.5pt}
+{\large Technical lead --- AI systems, ML research, developer infrastructure}\par
+\vspace{3pt}
+{\small Jerusalem, Israel \enspace|\enspace \href{mailto:uprootiny@gmail.com}{uprootiny@gmail.com} \enspace|\enspace \href{https://github.com/marchdown}{github.com/marchdown} \enspace|\enspace \href{https://hyperstitious.org}{hyperstitious.org}}\par
+
+\cvsection{Profile}
+Independent technical lead with a background in ML research, NLP, and software systems. I take ambiguous technical work from specification through a system that can be inspected, tested, maintained, and discussed clearly.
+
+\cvsection{Operating focus}
+LLM quality and evaluation \enspace\textbullet\enspace specification-first delivery \enspace\textbullet\enspace developer infrastructure \enspace\textbullet\enspace applied ML research \enspace\textbullet\enspace technical decision support
+
+\cvsection{Selected systems}
+\begin{itemize}
+  \item \textbf{LLM inference harness} --- provider routing, role-specific fallbacks, time and token budgets, bounded concurrent jobs, and latency tracing; Elixir/OTP.
+  \item \textbf{Conversation provenance tooling} --- native macOS ingestion, local search, file watching, and context composition over AI-conversation histories; Swift and SQLite.
+  \item \textbf{\href{https://github.com/marchdown/co-loop}{co-loop}} --- a public fork-based protocol for parallel agent work and clean repository integration.
+\end{itemize}
+
+\cvsection{Experience}
+\cvrole{Independent Software Practice}{Consulting, advisory, and open-source systems}{2010--present}{%
+  \item Build technical systems to specification. Current work includes LLM harnesses, provenance tooling, verification workflows, developer tools, and formal-methods exploration.
+}
+\cvrole{Research Lead}{Spring Research --- quantitative research}{2020--2022}{%
+  \item Monitored markets, analysed data, developed signal representations and transformations, extracted ML features, selected approaches, and built and trained models.
+}
+\cvrole{Technical Infrastructure Consultant}{LevEhad --- disability-inclusion NGO; retainer engagement}{2024}{%
+  \item Contributed to technical-infrastructure decisions, Google Cloud-to-AWS migration work, and a parallel hardware-development track.
+}
+\cvrole{Earlier Data Science, NLP \& Software Roles}{Nestlogic, Maverick Medical AI, Athena Portfolio Solutions, Ten-X, Verba, and Finfon}{2009--2019}{%
+  \item Financial-news NLP and signal extraction; medical-text classification and information extraction; computer-vision pipelines; corpus-linguistics infrastructure.
+}
+
+\cvsection{Background}
+\textbf{Education.} MSc Computational Linguistics, Russian State University for the Humanities, Moscow (2015). \enspace BSc Nuclear Physics, Czech Technical University, Prague (2009).\par
+\vspace{2pt}
+\textbf{Languages.} English, Hebrew, Russian; working knowledge of German and French.
+
+\vfill
+\vspace{4pt}
+{\scriptsize\color{muted}Build record: \CvProjectName\ \textbar\ \CvGitBranch\ @ \CvShortCommit\ \textbar\ \CvGeneratedDate\ \textbar\ source: \texttt{cv/latex/pavel\_vasilyev\_cv.tex}\ \textbar\ full manifest: \texttt{\CvManifestPath}}
+
+\end{document}

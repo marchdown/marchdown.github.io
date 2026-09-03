@@ -131,3 +131,13 @@ dist
 
 # macOS
 .DS_Store
+
+# job-sift tool
+tools/job-sift/target/
+
+# generated/scratch — regenerate via cv/latex/Makefile or scripts/generate-cv.mjs
+output/
+tmp/
+
+# linked worktree(s) for sibling repos, not part of this repo's history
+.worktrees/

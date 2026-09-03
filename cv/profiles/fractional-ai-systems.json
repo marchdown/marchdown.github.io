@@ -1,0 +1,14 @@
+{
+  "id": "fractional-ai-systems",
+  "label": "Fractional AI Systems & Developer Infrastructure Lead",
+  "summary_id": "fractional-ai-systems",
+  "focus_tags": ["llm", "testing", "repos", "infrastructure", "cloud", "fractional", "leadership", "communication", "ml", "research", "data-analysis", "feature-engineering"],
+  "exclude_tags": ["art"],
+  "scope_ids": ["llm-quality", "repository-stewardship", "lean-infrastructure", "decision-support"],
+  "experience_ids": ["spring-research", "levehad", "independent-practice", "earlier-roles"],
+  "max_bullets_per_role": 3,
+  "capability_ids": ["llm-systems", "repositories-delivery", "compute-ml-infrastructure", "technical-communication"],
+  "technical_stack_ids": ["llm-routing", "services-operations", "developer-provenance", "applied-ml-research"],
+  "selected_work_ids": ["gemini-gate", "inference-harness", "corpora", "co-loop"],
+  "output": "drafts/cv-fractional-ai-systems.html"
+}

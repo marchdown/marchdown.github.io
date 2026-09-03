@@ -1,0 +1,282 @@
+{
+  "schema_version": 1,
+  "project": "marchdown.github.io",
+  "person": {
+    "name": "Pavel Vasilyev",
+    "location": "Jerusalem, Israel",
+    "contact": {
+      "email": "uprootiny@gmail.com",
+      "github": "https://github.com/marchdown",
+      "website": "https://hyperstitious.org"
+    },
+    "spoken_languages": "English, Hebrew, Russian; working knowledge of German and French."
+  },
+  "summaries": [
+    {
+      "id": "fractional-ai-systems",
+      "tags": ["llm", "testing", "repos", "infrastructure", "fractional", "leadership"],
+      "text": "I work across applied machine learning, NLP, quantitative research, and developer tooling. My current technical interests include LLM strategies and quality workflows, specification-first collaboration, repository stewardship, and practical compute environments. The through-line is turning an ambiguous technical problem into a system that can be examined, maintained, and discussed clearly.",
+      "evidence": ["drafts/cv.html", "CV_POSITIONING_NOTES.md", "Pavel_Vasilyev_CV_2026.pdf"]
+    },
+    {
+      "id": "technical-ml-lead",
+      "tags": ["ml", "nlp", "research", "leadership"],
+      "text": "Machine-learning engineer and technical lead with fifteen years across NLP, applied statistics, quantitative research, and software infrastructure. I turn ambiguous problems into maintainable systems, pairing rigorous modelling with practical delivery and clear communication across technical and operational teams.",
+      "evidence": ["drafts/cv.html", "drafts/cv-plain.html", "Pavel_Vasilyev_CV_2026.pdf"]
+    },
+    {
+      "id": "fractional-ai-systems-short",
+      "tags": ["llm", "testing", "repos", "infrastructure", "fractional", "communication"],
+      "text": "I work on LLM strategies and quality workflows, repository stewardship, and practical technical environments. Fifteen years across data science, ML research, NLP, and developer tooling support a specification-first approach and clear technical decisions.",
+      "evidence": ["drafts/cv.html", "Pavel_Vasilyev_CV_2026.pdf", "owner-confirmed Codex conversations, 2026-07-18"]
+    }
+  ],
+  "scope_items": [
+    {
+      "id": "llm-quality",
+      "text": "LLM product quality, strategies, prompt sets, ontologies, and evaluation",
+      "tags": ["llm", "testing", "product"]
+    },
+    {
+      "id": "repository-stewardship",
+      "text": "Repository stewardship, delivery workflows, and technical standards",
+      "tags": ["repos", "developer-tooling", "leadership"]
+    },
+    {
+      "id": "lean-infrastructure",
+      "text": "Small-scale compute and ML infrastructure that stays understandable",
+      "tags": ["infrastructure", "ml", "operations"]
+    },
+    {
+      "id": "decision-support",
+      "text": "Clear technical decision support for product, operations, and leadership",
+      "tags": ["leadership", "communication", "product"]
+    }
+  ],
+  "experience": [
+    {
+      "id": "move38",
+      "title": "LLM Research Contract",
+      "organization": "Move38",
+      "dates": "2026, brief contract",
+      "context": "Short paid research try-out on a client-provided platform; retained as technical history, not as a primary CV role.",
+      "tags": ["llm", "research", "testing", "non-primary"],
+      "bullets": [
+        {
+          "text": "Explored and tested LLM strategies for an API-centred research angle using OpenRouter, Modal, and Railway.",
+          "tags": ["llm", "research", "testing", "openrouter", "modal", "railway"],
+          "evidence": ["owner-confirmed Codex conversation, 2026-07-18"]
+        },
+        {
+          "text": "Worked with ontologies, prompt sets, testing benches, and harnesses as part of the research exploration.",
+          "tags": ["llm", "research", "testing"],
+          "evidence": ["owner-confirmed Codex conversation, 2026-07-18"]
+        }
+      ]
+    },
+    {
+      "id": "spring-research",
+      "title": "Research Lead",
+      "organization": "Spring Research",
+      "dates": "2020-2022",
+      "context": "Quantitative research firm focused on financial-market modelling.",
+      "tags": ["ml", "research", "data-analysis", "feature-engineering", "communication"],
+      "bullets": [
+        {
+          "text": "Owned the full applied-research cycle: monitored financial markets, analysed data, developed new signal representations and transformations, extracted ML features, selected approaches, and built and trained models.",
+          "tags": ["ml", "research", "data-analysis", "feature-engineering"],
+          "evidence": ["owner-confirmed Codex conversation, 2026-07-18"]
+        },
+        {
+          "text": "Communicated findings and collaborated as part of a working research team, carrying ideas from exploratory analysis into shared modelling work.",
+          "tags": ["research", "communication", "collaboration"],
+          "evidence": ["owner-confirmed Codex conversation, 2026-07-18"]
+        }
+      ]
+    },
+    {
+      "id": "levehad",
+      "title": "Technical Infrastructure Consultant",
+      "organization": "LevEhad",
+      "dates": "2024, retainer engagement",
+      "context": "Israeli NGO providing services and advocacy around disability inclusion.",
+      "tags": ["infrastructure", "cloud", "hardware", "consulting", "communication"],
+      "bullets": [
+        {
+          "text": "Worked through technical-infrastructure questions in calls with developers and designers, helping the team make and communicate practical decisions.",
+          "tags": ["infrastructure", "consulting", "communication"],
+          "evidence": ["owner-confirmed Codex conversation, 2026-07-18"]
+        },
+        {
+          "text": "Contributed to infrastructure-migration work from Google Cloud to AWS.",
+          "tags": ["infrastructure", "cloud", "consulting"],
+          "evidence": ["owner-confirmed Codex conversation, 2026-07-18"]
+        },
+        {
+          "text": "Contributed to a parallel hardware-development track alongside the infrastructure work.",
+          "tags": ["hardware", "consulting", "communication"],
+          "evidence": ["owner-confirmed Codex conversation, 2026-07-18"]
+        }
+      ]
+    },
+    {
+      "id": "independent-practice",
+      "title": "Independent Software Practice",
+      "organization": "consulting and open source",
+      "dates": "2010-present",
+      "context": "Consulting, advisory, and software practice between salaried roles.",
+      "tags": ["repos", "developer-tooling", "fractional", "llm", "formal-methods"],
+      "bullets": [
+        {
+          "text": "Built tools and technical systems against client specifications while maintaining an open-source body of 150+ projects across eight or more languages.",
+          "tags": ["repos", "developer-tooling", "fractional"],
+          "evidence": ["drafts/cv.html", "Pavel_Vasilyev_CV_2026.pdf"]
+        },
+        {
+          "text": "Current work includes verification workflows, LLM harnesses, developer tooling, audio processing, and formal-methods exploration.",
+          "tags": ["llm", "developer-tooling", "formal-methods", "repos"],
+          "evidence": ["drafts/cv.html"]
+        }
+      ]
+    },
+    {
+      "id": "earlier-roles",
+      "title": "Earlier Data Science, NLP & Software Roles",
+      "organization": "Nestlogic, Maverick Medical AI, Athena Portfolio Solutions, Ten-X, Verba, and Finfon",
+      "dates": "2009-2019",
+      "context": "Roles in Tel Aviv, Hong Kong, and Prague.",
+      "tags": ["ml", "nlp", "research", "software"],
+      "bullets": [
+        {
+          "text": "Financial-news NLP and signal extraction; medical-text classification and information extraction; computer-vision pipelines; and corpus-linguistics infrastructure.",
+          "tags": ["ml", "nlp", "research", "software"],
+          "evidence": ["drafts/cv.html", "drafts/cv-plain.html", "Pavel_Vasilyev_CV_2026.pdf"]
+        }
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "llm-systems",
+      "heading": "LLM systems",
+      "text": "LLM strategy, ontologies, prompt and interaction design, testing harnesses, and quality-oriented iteration.",
+      "tags": ["llm", "testing", "product"]
+    },
+    {
+      "id": "repositories-delivery",
+      "heading": "Repositories and delivery",
+      "text": "Specification-first development, maintainable developer tooling, collaboration workflows, and cross-language codebases.",
+      "tags": ["repos", "developer-tooling", "formal-methods"]
+    },
+    {
+      "id": "compute-ml-infrastructure",
+      "heading": "Compute and ML infrastructure",
+      "text": "Feature engineering, model selection and training, reproducible Nix environments, and practical compute systems for iterative technical work.",
+      "tags": ["infrastructure", "ml", "data-analysis", "feature-engineering"]
+    },
+    {
+      "id": "technical-communication",
+      "heading": "Technical communication",
+      "text": "Explain trade-offs, risks, and next decisions clearly for designers, product and support teams, operations, researchers, and leadership.",
+      "tags": ["communication", "leadership", "product"]
+    }
+  ],
+  "selected_work": [
+    {
+      "id": "co-loop",
+      "name": "co-loop",
+      "url": "https://github.com/marchdown/co-loop",
+      "text": "Fork-based collaboration protocol for parallel agentic work and clean repository integration.",
+      "tags": ["llm", "repos", "developer-tooling", "collaboration"],
+      "asset_id": "co-loop"
+    },
+    {
+      "id": "gemini-gate",
+      "name": "gemini-gate",
+      "url": "https://gitlab.com/uprootiny/gemini-gate",
+      "text": "Elixir/Phoenix credential service with authenticated retrieval, Gemini API proxying, and Caddy/systemd deployment.",
+      "tags": ["llm", "infrastructure", "security", "elixir", "operations"],
+      "asset_id": "gemini-gate"
+    },
+    {
+      "id": "inference-harness",
+      "name": "inference_harness",
+      "url": "https://gitlab.com/uprootiny/inference_harness",
+      "text": "Elixir LLM harness for multi-provider routing, role-specific fallback, token/latency tracing, and bounded concurrent jobs.",
+      "tags": ["llm", "infrastructure", "elixir", "testing", "operations"],
+      "asset_id": "inference-harness"
+    },
+    {
+      "id": "corpora",
+      "name": "corpora",
+      "url": "https://gitlab.com/uprootiny/corpora",
+      "text": "Swift macOS app for searchable AI-conversation provenance, live ingestion, and context composition.",
+      "tags": ["llm", "provenance", "swift", "developer-tooling"],
+      "asset_id": "corpora"
+    },
+    {
+      "id": "spec-before-code",
+      "name": "spec-before-code",
+      "url": "https://github.com/marchdown/spec-before-code",
+      "text": "Rust project encoding specifications as invariants before implementation.",
+      "tags": ["developer-tooling", "formal-methods", "repos"]
+    },
+    {
+      "id": "nixbloom",
+      "name": "nixbloom",
+      "url": "https://github.com/marchdown/nixbloom",
+      "text": "Reproducible, ephemeral NixOS development environments.",
+      "tags": ["infrastructure", "repos", "developer-tooling"]
+    },
+    {
+      "id": "topo-sonify",
+      "name": "topo-sonify",
+      "url": "https://github.com/marchdown/topo-sonify",
+      "text": "Rust tool for exploring topographic data through sound.",
+      "tags": ["audio", "rust", "developer-tooling"]
+    },
+    {
+      "id": "job-sift",
+      "name": "job-sift",
+      "url": "https://github.com/marchdown/marchdown.github.io/tree/main/tools/job-sift",
+      "text": "Rust CLI that scores live RemoteOK and HN 'Who is hiring?' listings against a weighted skill profile to surface contract-shaped work worth pursuing.",
+      "tags": ["llm", "rust", "developer-tooling", "fractional"],
+      "asset_id": "job-sift"
+    }
+  ],
+  "technical_stack": [
+    {
+      "id": "llm-routing",
+      "heading": "LLM platforms and routing",
+      "text": "Claude, Gemini, Groq, OpenRouter, Ollama, and Cloudflare Workers AI; role-specific fallback, time/token budgets, and latency tracing. Modal and Railway in brief LLM research.",
+      "tags": ["llm", "infrastructure", "operations", "testing"],
+      "evidence_asset_ids": ["inference-harness"],
+      "evidence_role_ids": ["move38"]
+    },
+    {
+      "id": "services-operations",
+      "heading": "Services and operations",
+      "text": "Elixir/OTP, Phoenix/LiveView, Bandit, Caddy, systemd, authenticated HTTP APIs, and credential-service design.",
+      "tags": ["infrastructure", "operations", "elixir", "security"],
+      "evidence_asset_ids": ["gemini-gate"]
+    },
+    {
+      "id": "developer-provenance",
+      "heading": "Developer and provenance tooling",
+      "text": "Swift 6.1, SQLite-backed local data, file watching, Git workflows, AI-conversation search, and agentic collaboration conventions.",
+      "tags": ["repos", "developer-tooling", "provenance", "swift"],
+      "evidence_asset_ids": ["corpora", "co-loop"]
+    },
+    {
+      "id": "applied-ml-research",
+      "heading": "Applied ML research",
+      "text": "Financial-market monitoring, data analysis, signal representations and transformations, feature engineering, model selection, and model training.",
+      "tags": ["ml", "research", "data-analysis", "feature-engineering"],
+      "evidence_role_ids": ["spring-research"]
+    }
+  ],
+  "education": [
+    "MSc Computational Linguistics, RSUH, Moscow, 2015.",
+    "BSc Nuclear Physics, Czech Technical University, Prague, 2009."
+  ]
+}

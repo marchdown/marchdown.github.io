@@ -1,0 +1,14 @@
+{
+  "id": "fractional-ai-systems-short",
+  "label": "Fractional AI Systems Lead - LLM Quality, Repositories & Lean Infrastructure",
+  "summary_id": "fractional-ai-systems-short",
+  "focus_tags": ["llm", "testing", "repos", "infrastructure", "fractional", "leadership", "communication", "ml", "research", "data-analysis", "feature-engineering"],
+  "exclude_tags": ["art"],
+  "scope_ids": ["llm-quality", "repository-stewardship", "lean-infrastructure", "decision-support"],
+  "experience_ids": ["spring-research", "independent-practice"],
+  "max_bullets_per_role": 1,
+  "capability_ids": ["llm-systems", "repositories-delivery", "compute-ml-infrastructure", "technical-communication"],
+  "technical_stack_ids": ["llm-routing", "services-operations", "developer-provenance", "applied-ml-research"],
+  "selected_work_ids": ["gemini-gate", "inference-harness", "co-loop"],
+  "output": "drafts/cv-fractional-ai-systems-short.html"
+}

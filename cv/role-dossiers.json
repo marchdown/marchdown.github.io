@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "purpose": "Role-level authority, responsibility, and credential register. This file is not a CV. It prevents role titles and claims from being rendered without a traceable basis.",
+  "credential_registry": [
+    {
+      "id": "msc-computational-linguistics",
+      "name": "MSc Computational Linguistics",
+      "issuer": "Russian State University for the Humanities (RSUH), Moscow",
+      "awarded": "2015",
+      "type": "academic degree",
+      "status": "confirmed",
+      "cv_safe": true,
+      "evidence": ["drafts/cv.html", "Pavel_Vasilyev_CV_2026.pdf"]
+    },
+    {
+      "id": "bsc-nuclear-physics",
+      "name": "BSc Nuclear Physics",
+      "issuer": "Czech Technical University, Prague",
+      "awarded": "2009",
+      "type": "academic degree",
+      "status": "confirmed",
+      "cv_safe": true,
+      "evidence": ["drafts/cv.html", "Pavel_Vasilyev_CV_2026.pdf"]
+    }
+  ],
+  "role_dossiers": [
+    {
+      "role_id": "move38",
+      "rendering_status": "do-not-render",
+      "formal_title": {
+        "value": "LLM Research Contract",
+        "status": "CV-safe descriptive label for a brief research try-out",
+        "evidence": ["owner-confirmed Codex conversations, 2026-07-18"]
+      },
+      "engagement": {
+        "value": "brief paid research try-out on a client-provided platform",
+        "status": "owner-confirmed",
+        "evidence": ["owner-confirmed Codex conversations, 2026-07-18"]
+      },
+      "responsibility_sets": [
+        {
+          "area": "LLM strategy and quality work",
+          "responsibilities": ["conceptualise and test efficient strategies", "maintain ontologies and prompt sets", "build testing benches and harnesses"],
+          "functional_authority": "research exploration within a short engagement",
+          "formal_authority": "not established",
+          "cv_safe": true,
+          "evidence": ["owner-confirmed Codex conversation, 2026-07-18"]
+        }
+      ],
+      "technologies": {
+        "items": ["OpenRouter", "Modal", "Railway"],
+        "status": "owner-confirmed",
+        "evidence": ["owner-confirmed Codex conversation, 2026-07-18"]
+      },
+      "credentials_applicable": ["msc-computational-linguistics"],
+      "limitations": ["Do not treat this brief research contract as senior employment, a lead delivery role, or evidence of platform-operations authority."],
+      "open_questions": ["Keep as private technical history unless a public artifact or material outcome makes it portfolio-worthy."]
+    },
+    {
+      "role_id": "spring-research",
+      "rendering_status": "allowed",
+      "formal_title": {
+        "value": "Research Lead",
+        "status": "source claim; owner review pending",
+        "evidence": ["drafts/cv.html", "Pavel_Vasilyev_CV_2026.pdf"]
+      },
+      "engagement": {
+        "value": "quantitative-research role",
+        "status": "source claim; owner review pending",
+        "evidence": ["drafts/cv.html", "Pavel_Vasilyev_CV_2026.pdf"]
+      },
+      "responsibility_sets": [
+        {
+          "area": "Applied quantitative research",
+          "responsibilities": ["monitor financial markets", "analyse data", "develop signal representations and transformations", "extract machine-learning features", "select approaches", "build and train models"],
+          "functional_authority": "technical discretion over research methods, representations, features, and modelling approach",
+          "formal_authority": "people-management and budget authority not established",
+          "cv_safe": true,
+          "evidence": ["owner-confirmed Codex conversation, 2026-07-18"]
+        },
+        {
+          "area": "Team collaboration",
+          "responsibilities": ["communicate findings", "collaborate as part of an active research team"],
+          "functional_authority": "contributor and technical collaborator",
+          "formal_authority": "not established",
+          "cv_safe": true,
+          "evidence": ["owner-confirmed Codex conversation, 2026-07-18"]
+        }
+      ],
+      "credentials_applicable": ["msc-computational-linguistics", "bsc-nuclear-physics"],
+      "limitations": ["Do not claim production-deployment, cloud-administration, trading, personnel, or budget authority without separate evidence."],
+      "open_questions": ["Confirm whether the formal title and dates can be verified through a contract, reference, or public record."]
+    },
+    {
+      "role_id": "levehad",
+      "rendering_status": "allowed-full-only",
+      "formal_title": {
+        "value": "Technical Infrastructure Consultant",
+        "status": "CV-safe descriptive title; original formal title unresolved",
+        "evidence": ["owner-confirmed Codex conversation, 2026-07-18"]
+      },
+      "engagement": {
+        "value": "retainer engagement",
+        "status": "owner-confirmed",
+        "evidence": ["owner-confirmed Codex conversation, 2026-07-18"]
+      },
+      "responsibility_sets": [
+        {
+          "area": "Infrastructure and collaboration",
+          "responsibilities": ["work through technical-infrastructure questions with developers and designers", "contribute to Google Cloud to AWS migration work", "contribute to a parallel hardware-development track"],
+          "functional_authority": "advisory and collaborative technical contribution",
+          "formal_authority": "not established",
+          "cv_safe": true,
+          "evidence": ["owner-confirmed Codex conversation, 2026-07-18"]
+        }
+      ],
+      "credentials_applicable": ["msc-computational-linguistics", "bsc-nuclear-physics"],
+      "limitations": ["Do not claim CTO, end-to-end IT ownership, completed cloud migration, accessibility ownership, budget authority, or people management."],
+      "open_questions": ["Establish original formal title, whether the cloud migration reached production, and whether a reference can be used."]
+    },
+    {
+      "role_id": "independent-practice",
+      "rendering_status": "allowed",
+      "formal_title": {
+        "value": "Independent Software Practice",
+        "status": "CV-safe descriptive title",
+        "evidence": ["drafts/cv.html", "Pavel_Vasilyev_CV_2026.pdf"]
+      },
+      "engagement": {
+        "value": "consulting, advisory, and open-source software practice",
+        "status": "source claim; owner review pending",
+        "evidence": ["drafts/cv.html", "Pavel_Vasilyev_CV_2026.pdf"]
+      },
+      "responsibility_sets": [
+        {
+          "area": "Repository ownership and technical practice",
+          "responsibilities": ["build tools and technical systems against specifications", "maintain a public open-source body of work", "explore verification workflows, LLM harnesses, developer tooling, audio processing, and formal methods"],
+          "functional_authority": "repository owner and technical decision maker for self-directed work",
+          "formal_authority": "client-side authority varies by engagement and is not established",
+          "cv_safe": true,
+          "evidence": ["drafts/cv.html", "Pavel_Vasilyev_CV_2026.pdf"]
+        }
+      ],
+      "credentials_applicable": ["msc-computational-linguistics", "bsc-nuclear-physics"],
+      "limitations": ["Do not state client outcomes, staffing authority, or commercial scale without role-specific evidence."],
+      "open_questions": ["Identify the three repositories actively maintained today and any client work that may be named publicly."]
+    },
+    {
+      "role_id": "earlier-roles",
+      "rendering_status": "allowed-full-only",
+      "formal_title": {
+        "value": "Earlier Data Science, NLP & Software Roles",
+        "status": "aggregated CV label; underlying role titles require reconstruction",
+        "evidence": ["drafts/cv.html", "drafts/cv-plain.html", "Pavel_Vasilyev_CV_2026.pdf"]
+      },
+      "engagement": {
+        "value": "roles across Tel Aviv, Hong Kong, and Prague",
+        "status": "source claim; owner review pending",
+        "evidence": ["drafts/cv.html", "drafts/cv-plain.html"]
+      },
+      "responsibility_sets": [
+        {
+          "area": "Data and language technology",
+          "responsibilities": ["financial-news NLP and signal extraction", "medical-text classification and information extraction", "computer-vision pipelines", "corpus-linguistics infrastructure"],
+          "functional_authority": "not established at an individual-role level",
+          "formal_authority": "not established",
+          "cv_safe": true,
+          "evidence": ["drafts/cv.html", "drafts/cv-plain.html", "Pavel_Vasilyev_CV_2026.pdf"]
+        }
+      ],
+      "credentials_applicable": ["msc-computational-linguistics", "bsc-nuclear-physics"],
+      "limitations": ["Do not infer title, seniority, management, legal authorization, or outcome for any underlying organization."],
+      "open_questions": ["Reconstruct the individual employers, titles, dates, responsibilities, and references from primary records."]
+    }
+  ],
+  "unresolved_records": [
+    {
+      "id": "possible-ceo-role",
+      "status": "requires owner confirmation",
+      "description": "Owner recalls serving as CEO in an as-yet unidentified role. No organization, dates, appointment record, responsibilities, authorizations, or credentials are established in this repository.",
+      "cv_safe": false,
+      "next_evidence": ["organization name", "date range", "formal title or appointment record", "scope of authority", "reference or contract"]
+    }
+  ]
+}

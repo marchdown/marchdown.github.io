@@ -17,6 +17,6 @@
   "max_bullets_per_role": 2,
   "capability_ids": [],
   "technical_stack_ids": [],
-  "selected_work_ids": ["pi-harness", "inference-harness", "free-llm-harness"],
+  "selected_work_ids": ["inference-harness", "free-llm-harness"],
   "output": "drafts/cv-gloat-senior-ai-engineer-agentic.html"
 }

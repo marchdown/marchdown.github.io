@@ -17,6 +17,6 @@
   "max_bullets_per_role": 2,
   "capability_ids": [],
   "technical_stack_ids": [],
-  "selected_work_ids": ["pi-harness", "inference-harness", "gemini-gate"],
+  "selected_work_ids": ["inference-harness", "gemini-gate"],
   "output": "drafts/cv-salestech-sr-ai-engineer.html"
 }

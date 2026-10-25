@@ -33,14 +33,20 @@
     {
       "id": "salestech-ai-engineer",
       "tags": ["llm", "ml", "infrastructure", "salestech"],
-      "text": "Senior AI engineer with fifteen years across applied ML, NLP, and software. Currently building LLM infrastructure (routing, evaluation, cost and latency tracing) and the services around it. Earlier work in NLP, quantitative research, and data science.",
+      "text": "Senior AI engineer with fifteen years across applied ML, NLP, and software. Currently building LLM infrastructure (routing, fallback, cost and latency tracing) and the services around it. Earlier work in NLP, quantitative research, and data science.",
       "evidence": ["technical-assets.json:inference-harness", "technical-assets.json:gemini-gate", "drafts/cv.html"]
+    },
+    {
+      "id": "engineer-mathematician",
+      "tags": ["llm", "ml", "software", "gloat", "salestech"],
+      "text": "Software engineer with a research and applied-mathematics background. Fifteen years of programming, analytics, and systems design, then four years of vibe coding with LLM coding agents. The work below is built, tested, and measured.",
+      "evidence": ["owner statement, 2026-10-25 (four years of LLM-assisted development)", "drafts/cv.html", "technical-assets.json"]
     },
     {
       "id": "gloat-agentic",
       "tags": ["llm", "ml", "testing", "gloat"],
-      "text": "Senior AI engineer with fifteen years across applied ML, NLP, and software. Currently building evaluation and routing infrastructure for LLM agents in Elixir and Python. Earlier work in NLP, quantitative research, and data science.",
-      "evidence": ["technical-assets.json:pi-harness", "technical-assets.json:inference-harness", "technical-assets.json:free-llm-harness"]
+      "text": "Senior AI engineer with fifteen years across applied ML, NLP, and software. Currently building routing and fallback infrastructure for LLM agents in Elixir and Python. Earlier work in NLP, quantitative research, and data science.",
+      "evidence": ["technical-assets.json:inference-harness", "technical-assets.json:free-llm-harness"]
     }
   ],
   "scope_items": [
@@ -132,6 +138,28 @@
       ]
     },
     {
+      "id": "ai-practice",
+      "title": "Independent Software Engineer",
+      "organization": "consulting, open source, and LLM-assisted development",
+      "dates": "2010-present",
+      "context": "Consulting and open source since 2010, 150+ projects across eight or more languages. Building with LLM coding agents since 2022.",
+      "tags": ["llm", "ml", "testing", "infrastructure", "repos", "gloat", "salestech"],
+      "bullets": [
+        {
+          "id": "ai-topo",
+          "text": "topo-sonify (public, 2026): Rust library that turns persistent homology, Hodge theory, and Morse theory into sound. Built the mathematical core first and checked it against known invariants (β(S²) = (1,0,1), χ = 2) before writing any audio code; unit-tested topology modules, CI green.",
+          "tags": ["ml", "research", "testing", "gloat", "salestech"],
+          "evidence": ["technical-assets.json:topo-sonify", "METHODOLOGY.md in the repository"]
+        },
+        {
+          "id": "ai-infra",
+          "text": "LLM infrastructure in Elixir and Python (private, 2026): provider routing with fallback, retry and time budgets, token and latency tracing. One harness measured over 88 requests: 100% success on a quota probe, 83% in an outage probe, p95 latency 6.4 s.",
+          "tags": ["llm", "infrastructure", "gloat", "salestech"],
+          "evidence": ["technical-assets.json:inference-harness", "technical-assets.json:free-llm-harness"]
+        }
+      ]
+    },
+    {
       "id": "spring-research",
       "title": "Research Lead",
       "organization": "Spring Research",
@@ -203,9 +231,9 @@
         },
         {
           "id": "ip-llm-infra",
-          "text": "Build LLM infrastructure: provider routing with fallback, retry and time budgets, and token and latency tracing. Build evaluation harnesses that score agent changes on pass rate, cost, and runtime.",
+          "text": "Build LLM infrastructure: provider routing with fallback, retry and time budgets, and token and latency tracing.",
           "tags": ["llm", "testing", "infrastructure"],
-          "evidence": ["technical-assets.json:inference-harness", "technical-assets.json:pi-harness", "technical-assets.json:free-llm-harness"]
+          "evidence": ["technical-assets.json:inference-harness", "technical-assets.json:free-llm-harness"]
         },
         {
           "id": "ip-services",
@@ -265,6 +293,23 @@
       "text": "Fork-based collaboration protocol for parallel agentic work and clean repository integration.",
       "tags": ["llm", "repos", "developer-tooling", "collaboration"],
       "asset_id": "co-loop"
+    },
+    {
+      "id": "topo-sonify-public",
+      "name": "topo-sonify",
+      "url": "https://github.com/marchdown/topo-sonify",
+      "text": "Rust library turning persistent homology, Hodge theory, and Morse theory into sound, with documentation chapters on simplicial complexes, homology, and persistence.",
+      "text_short": "Rust, about 170 KB of source across topology, audio, and instrument modules; five written chapters on simplicial complexes, homology, and persistence; CI green.",
+      "tags": ["ml", "research", "rust", "gloat", "salestech"],
+      "asset_id": "topo-sonify"
+    },
+    {
+      "id": "agda-proofs",
+      "name": "agda-proofs",
+      "url": "https://github.com/marchdown/agda-proofs",
+      "text": "Agda formalizations of enumerated and recursive sets and of the natural numbers (2015).",
+      "tags": ["research", "formal-methods", "gloat", "salestech"],
+      "asset_id": "agda-proofs"
     },
     {
       "id": "pi-harness",
@@ -378,7 +423,7 @@
     {
       "id": "sk-llm",
       "heading": "LLM systems",
-      "text": "Agent evaluation, tool calling, provider routing and fallback, cost and latency tracing. Claude, Gemini, OpenRouter, Ollama, Cloudflare Workers AI.",
+      "text": "Tool calling, provider routing and fallback, cost and latency tracing. Claude, Gemini, OpenRouter, Ollama, Cloudflare Workers AI.",
       "tags": ["llm"]
     },
     {
@@ -386,6 +431,18 @@
       "heading": "Machine learning",
       "text": "NLP, text classification and extraction, feature engineering, model selection and training.",
       "tags": ["ml"]
+    },
+    {
+      "id": "sk-math",
+      "heading": "Mathematics and ML",
+      "text": "Topological data analysis (persistent homology), quantitative modelling, NLP and text classification, feature engineering, model selection and training.",
+      "tags": ["ml"]
+    },
+    {
+      "id": "sk-foundations",
+      "heading": "Foundations",
+      "text": "Programming, data analysis, systems design, and software architecture since 2009; research and applied mathematics.",
+      "tags": ["software"]
     },
     {
       "id": "sk-lang",

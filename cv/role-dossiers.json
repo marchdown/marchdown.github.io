@@ -119,6 +119,33 @@
       "open_questions": ["Establish original formal title, whether the cloud migration reached production, and whether a reference can be used."]
     },
     {
+      "role_id": "ai-practice",
+      "rendering_status": "allowed",
+      "formal_title": {
+        "value": "Independent Software Engineer",
+        "status": "CV-safe descriptive title",
+        "evidence": ["drafts/cv.html", "Pavel_Vasilyev_CV_2026.pdf"]
+      },
+      "engagement": {
+        "value": "self-directed consulting, open-source, and LLM-assisted development practice",
+        "status": "owner statement, 2026-10-25: four years of building with LLM coding agents (since about 2022)",
+        "evidence": ["owner statement, 2026-10-25"]
+      },
+      "responsibility_sets": [
+        {
+          "area": "Design and construction of software, PWA tooling, and LLM infrastructure",
+          "responsibilities": ["design and build services, tooling, and libraries", "build PWA check, stamp, and deploy pipelines", "build LLM routing and fallback harnesses", "build mathematical software with a tested core"],
+          "functional_authority": "repository owner and technical decision maker for self-directed work",
+          "formal_authority": "client-side authority varies and is not established",
+          "cv_safe": true,
+          "evidence": ["technical-assets.json:pocket", "technical-assets.json:topo-sonify", "technical-assets.json:coggy", "technical-assets.json:inference-harness", "technical-assets.json:free-llm-harness"]
+        }
+      ],
+      "credentials_applicable": ["msc-computational-linguistics", "bsc-nuclear-physics"],
+      "limitations": ["Do not claim LLM agents shipped to production for customers, client outcomes, team leadership, or deployment of api-hyle-lol (its 'live, 99.5% uptime' README line is unverified).", "Most dated evidence is from 2026; earlier AI-assisted work is not yet documented in these registers."],
+      "open_questions": ["Surface dated artifacts from 2022-2025 to document the four years.", "Locate the macOS app that wraps Claude with handlers and fallbacks, if it exists."]
+    },
+    {
       "role_id": "independent-practice",
       "rendering_status": "allowed",
       "formal_title": {

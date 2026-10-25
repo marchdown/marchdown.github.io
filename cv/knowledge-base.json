@@ -39,7 +39,7 @@
     {
       "id": "engineer-mathematician",
       "tags": ["llm", "ml", "software", "gloat", "salestech"],
-      "text": "Software engineer with a research and applied-mathematics background. Fifteen years of programming, analytics, and systems design, then four years of vibe coding with LLM coding agents. The work below is built, tested, and measured.",
+      "text": "Software engineer with a research and applied-mathematics background. Fifteen years of programming, analytics, and systems design, then four years of vibe coding with LLMs.",
       "evidence": ["owner statement, 2026-10-25 (four years of LLM-assisted development)", "drafts/cv.html", "technical-assets.json"]
     },
     {
@@ -142,7 +142,7 @@
       "title": "Independent Software Engineer",
       "organization": "consulting, open source, and LLM-assisted development",
       "dates": "2010-present",
-      "context": "Consulting and open source since 2010, 150+ projects across eight or more languages. Building with LLM coding agents since 2022.",
+      "context": "Consulting and open source since 2010 (150+ projects); LLM coding agents since 2022.",
       "tags": ["llm", "ml", "testing", "infrastructure", "repos", "gloat", "salestech"],
       "bullets": [
         {
@@ -153,9 +153,21 @@
         },
         {
           "id": "ai-infra",
-          "text": "LLM infrastructure in Elixir and Python (private, 2026): provider routing with fallback, retry and time budgets, token and latency tracing. One harness measured over 88 requests: 100% success on a quota probe, 83% in an outage probe, p95 latency 6.4 s.",
+          "text": "LLM infrastructure in Elixir, Python, and Rust (private, 2026): provider routing and fallback chains, jittered retry honoring Retry-After, per-client rate limits, token, cost, and latency audit logs. Python harness measured over 88 requests: 100% success on a quota probe, 83% in an outage probe.",
           "tags": ["llm", "infrastructure", "gloat", "salestech"],
-          "evidence": ["technical-assets.json:inference-harness", "technical-assets.json:free-llm-harness"]
+          "evidence": ["technical-assets.json:inference-harness", "technical-assets.json:free-llm-harness", "api-hyle-lol/src/main.rs (rate limit, AuditEntry)"]
+        },
+        {
+          "id": "ai-pwa",
+          "text": "pocket (private, 2026): 18 installable PWAs behind one pipeline. A machine-checked rule set (offline cache, update banner, safe-area, no network on the critical path), content-hash service-worker versions, and a deploy script that installs the Caddy site and verifies the live URLs from outside.",
+          "tags": ["infrastructure", "software", "testing", "gloat", "salestech"],
+          "evidence": ["technical-assets.json:pocket"]
+        },
+        {
+          "id": "ai-coggy",
+          "text": "coggy (private, 2026): Rust cognitive architecture with an AtomSpace, PLN inference, and ECAN attention allocation in a parse, ground, attend, infer, reflect loop; 73 unit tests and CI.",
+          "tags": ["ml", "research", "software", "gloat", "salestech"],
+          "evidence": ["technical-assets.json:coggy"]
         }
       ]
     },
@@ -299,7 +311,7 @@
       "name": "topo-sonify",
       "url": "https://github.com/marchdown/topo-sonify",
       "text": "Rust library turning persistent homology, Hodge theory, and Morse theory into sound, with documentation chapters on simplicial complexes, homology, and persistence.",
-      "text_short": "Rust, about 170 KB of source across topology, audio, and instrument modules; five written chapters on simplicial complexes, homology, and persistence; CI green.",
+      "text_short": "Rust; five written chapters on simplicial complexes, homology, and persistence; CI green.",
       "tags": ["ml", "research", "rust", "gloat", "salestech"],
       "asset_id": "topo-sonify"
     },
@@ -423,7 +435,7 @@
     {
       "id": "sk-llm",
       "heading": "LLM systems",
-      "text": "Tool calling, provider routing and fallback, cost and latency tracing. Claude, Gemini, OpenRouter, Ollama, Cloudflare Workers AI.",
+      "text": "Tool calling, provider routing and fallback, quota and rate-limit handling, cost and latency tracing. Claude, Gemini, OpenRouter, Ollama, Cloudflare Workers AI.",
       "tags": ["llm"]
     },
     {
@@ -435,25 +447,25 @@
     {
       "id": "sk-math",
       "heading": "Mathematics and ML",
-      "text": "Topological data analysis (persistent homology), quantitative modelling, NLP and text classification, feature engineering, model selection and training.",
+      "text": "Topological data analysis, quantitative modelling, NLP, feature engineering, model training.",
       "tags": ["ml"]
     },
     {
       "id": "sk-foundations",
       "heading": "Foundations",
-      "text": "Programming, data analysis, systems design, and software architecture since 2009; research and applied mathematics.",
+      "text": "Programming, analytics, systems design, architecture since 2009; research, applied math.",
       "tags": ["software"]
     },
     {
       "id": "sk-lang",
       "heading": "Languages",
-      "text": "Elixir, Python, Rust, Swift, TypeScript, Clojure.",
+      "text": "Rust, Elixir, Python, Swift, Clojure, TypeScript; earlier Haskell and Agda.",
       "tags": ["software"]
     },
     {
       "id": "sk-infra",
       "heading": "Infrastructure",
-      "text": "Nix, Caddy, systemd, Git workflows.",
+      "text": "Nix, Caddy, systemd, CI, PWA build and deploy tooling.",
       "tags": ["infrastructure"]
     }
   ],

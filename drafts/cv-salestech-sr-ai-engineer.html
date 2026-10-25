@@ -37,28 +37,30 @@
     </header>
     <section aria-labelledby="summary-heading">
       <h2 id="summary-heading">Profile</h2>
-      <p class="summary">Senior AI engineer with fifteen years across applied ML, NLP, and software. Currently building LLM infrastructure (routing, fallback, cost and latency tracing) and the services around it. Earlier work in NLP, quantitative research, and data science.</p>
+      <p class="summary">Software engineer with a research and applied-mathematics background. Fifteen years of programming, analytics, and systems design, then four years of vibe coding with LLMs.</p>
     </section>
     <section aria-labelledby="skills-heading">
       <h2 id="skills-heading">Skills</h2>
-      <p class="skill"><span class="label">LLM systems:</span> Tool calling, provider routing and fallback, cost and latency tracing. Claude, Gemini, OpenRouter, Ollama, Cloudflare Workers AI.</p>
+      <p class="skill"><span class="label">Foundations:</span> Programming, analytics, systems design, architecture since 2009; research, applied math.</p>
 
-      <p class="skill"><span class="label">Machine learning:</span> NLP, text classification and extraction, feature engineering, model selection and training.</p>
+      <p class="skill"><span class="label">LLM systems:</span> Tool calling, provider routing and fallback, quota and rate-limit handling, cost and latency tracing. Claude, Gemini, OpenRouter, Ollama, Cloudflare Workers AI.</p>
 
-      <p class="skill"><span class="label">Languages:</span> Elixir, Python, Rust, Swift, TypeScript, Clojure.</p>
+      <p class="skill"><span class="label">Mathematics and ML:</span> Topological data analysis, quantitative modelling, NLP, feature engineering, model training.</p>
 
-      <p class="skill"><span class="label">Infrastructure:</span> Nix, Caddy, systemd, Git workflows.</p>
+      <p class="skill"><span class="label">Languages:</span> Rust, Elixir, Python, Swift, Clojure, TypeScript; earlier Haskell and Agda.</p>
+
+      <p class="skill"><span class="label">Infrastructure:</span> Nix, Caddy, systemd, CI, PWA build and deploy tooling.</p>
     </section>
 
     <section aria-labelledby="experience-heading">
       <h2 id="experience-heading">Experience</h2>
       <article class="job">
         <div class="job-head">
-          <span class="job-title">Independent Software Practice <span class="organization">- consulting and open source</span></span>
+          <span class="job-title">Independent Software Engineer <span class="organization">- consulting, open source, and LLM-assisted development</span></span>
           <span class="dates">2010-present</span>
         </div>
-        <p class="context">Consulting, advisory, and software practice between salaried roles.</p>
-        <ul><li>Build LLM infrastructure: provider routing with fallback, retry and time budgets, and token and latency tracing.</li><li>Design and deploy authenticated services and developer tooling in Elixir, Python, Rust, and Swift for clients and my own projects; 150+ projects across eight or more languages.</li></ul>
+        <p class="context">Consulting and open source since 2010 (150+ projects); LLM coding agents since 2022.</p>
+        <ul><li>LLM infrastructure in Elixir, Python, and Rust (private, 2026): provider routing and fallback chains, jittered retry honoring Retry-After, per-client rate limits, token, cost, and latency audit logs. Python harness measured over 88 requests: 100% success on a quota probe, 83% in an outage probe.</li><li>pocket (private, 2026): 18 installable PWAs behind one pipeline. A machine-checked rule set (offline cache, update banner, safe-area, no network on the critical path), content-hash service-worker versions, and a deploy script that installs the Caddy site and verifies the live URLs from outside.</li><li>coggy (private, 2026): Rust cognitive architecture with an AtomSpace, PLN inference, and ECAN attention allocation in a parse, ground, attend, infer, reflect loop; 73 unit tests and CI.</li><li>topo-sonify (public, 2026): Rust library that turns persistent homology, Hodge theory, and Morse theory into sound. Built the mathematical core first and checked it against known invariants (β(S²) = (1,0,1), χ = 2) before writing any audio code; unit-tested topology modules, CI green.</li></ul>
       </article>
 
       <article class="job">
@@ -67,7 +69,7 @@
           <span class="dates">2020-2022</span>
         </div>
         <p class="context">Quantitative research firm focused on financial-market modelling.</p>
-        <ul><li>Owned applied research on financial-market data end to end: new signal representations, feature engineering, model selection, and training.</li><li>Communicated findings and collaborated as part of a working research team, carrying ideas from exploratory analysis into shared modelling work.</li></ul>
+        <ul><li>Owned applied research on financial-market data end to end: new signal representations, feature engineering, model selection, and training.</li></ul>
       </article>
 
       <article class="job">
@@ -80,10 +82,10 @@
       </article>
     </section>
     <section aria-labelledby="work-heading">
-      <h2 id="work-heading">Projects (private repositories, code on request)</h2>
-      <p class="project"><strong>inference_harness</strong> <span>- LLM job runner in Elixir: provider routing and fallback, retry and time budgets, token and latency tracing.</span></p>
+      <h2 id="work-heading">Public Work (private repositories on request)</h2>
+      <p class="project"><strong><a href="https://github.com/marchdown/topo-sonify">topo-sonify</a></strong> <span>- Rust; five written chapters on simplicial complexes, homology, and persistence; CI green.</span></p>
 
-      <p class="project"><strong>gemini-gate</strong> <span>- Elixir/Phoenix credential service with authenticated retrieval, Gemini API proxying, and Caddy/systemd deployment.</span></p>
+      <p class="project"><strong><a href="https://github.com/marchdown/agda-proofs">agda-proofs</a></strong> <span>- Agda formalizations of enumerated and recursive sets and of the natural numbers (2015).</span></p>
     </section>
     <section aria-labelledby="background-heading">
       <h2 id="background-heading">Education</h2>
@@ -92,7 +94,7 @@
         <p><span class="label">Languages:</span> English, Hebrew, Russian; working knowledge of German and French.</p>
       </div>
     </section>
-    <!- - provenance (also in the adjacent .provenance.json): project_name=marchdown.github.io; repo_path=/Users/uprootiny/marchdown.github.io/.claude/worktrees/cv-salestech-ai; git_remote=https://github.com/marchdown/marchdown.github.io.git; git_branch=worktree-cv-salestech-ai; git_commit=ce6f44c076408b58e354092c6e438cd31b687e24. generated_at=2026-10-25T13:57:15.410Z; generator=Codex (GPT-5) via scripts/generate-cv.mjs (Node 22.23.0); session_source=Codex API conversation; session_locator=/Users/uprootiny/.codex/sessions/ (2026-07-18 session). - ->
+    <!- - provenance (also in the adjacent .provenance.json): project_name=marchdown.github.io; repo_path=/Users/uprootiny/marchdown.github.io/.claude/worktrees/cv-salestech-ai; git_remote=https://github.com/marchdown/marchdown.github.io.git; git_branch=worktree-cv-salestech-ai; git_commit=5821af33391e23a0377c0f7fcfe1c7957c571cc1. generated_at=2026-10-25T20:58:06.182Z; generator=Codex (GPT-5) via scripts/generate-cv.mjs (Node 22.23.0); session_source=Codex API conversation; session_locator=/Users/uprootiny/.codex/sessions/ (2026-07-18 session). - ->
   </main>
 </body>
 </html>

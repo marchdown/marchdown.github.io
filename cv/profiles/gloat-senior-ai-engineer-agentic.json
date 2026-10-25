@@ -1,22 +1,22 @@
 {
   "id": "gloat-senior-ai-engineer-agentic",
   "label": "Senior AI Engineer - Agentic Systems",
-  "summary_id": "gloat-agentic",
+  "summary_id": "engineer-mathematician",
   "print": { "paper": "A4", "compact": true, "hideFooter": true },
   "short_text": true,
-  "headings": { "skills": "Skills", "experience": "Experience", "work": "Projects (private repositories, code on request)", "background": "Education" },
-  "focus_tags": ["gloat", "llm", "ml", "infrastructure", "research", "nlp", "software", "repos", "developer-tooling", "testing", "communication", "data-analysis", "feature-engineering", "fractional"],
+  "headings": { "skills": "Skills", "experience": "Experience", "work": "Public Work (private repositories on request)", "background": "Education" },
+  "focus_tags": ["gloat", "llm", "ml", "infrastructure", "research", "nlp", "software", "repos", "developer-tooling", "testing", "communication", "data-analysis", "feature-engineering", "formal-methods"],
   "exclude_tags": ["art", "non-primary"],
   "scope_ids": [],
-  "skill_ids": ["sk-llm", "sk-ml", "sk-lang", "sk-infra"],
-  "experience_ids": ["independent-practice", "spring-research", "earlier-roles"],
+  "skill_ids": ["sk-foundations", "sk-llm", "sk-math", "sk-lang", "sk-infra"],
+  "experience_ids": ["ai-practice", "spring-research", "earlier-roles"],
   "bullet_ids": {
-    "independent-practice": ["ip-llm-infra", "ip-services"],
-    "spring-research": ["sr-research", "sr-comms"]
+    "ai-practice": ["ai-infra", "ai-pwa", "ai-topo", "ai-coggy"],
+    "spring-research": ["sr-research"]
   },
-  "max_bullets_per_role": 2,
+  "max_bullets_per_role": 1,
   "capability_ids": [],
   "technical_stack_ids": [],
-  "selected_work_ids": ["inference-harness", "free-llm-harness"],
+  "selected_work_ids": ["topo-sonify-public", "agda-proofs"],
   "output": "drafts/cv-gloat-senior-ai-engineer-agentic.html"
 }

@@ -83,6 +83,78 @@
       "cv_text": "Python package that runs prompt sets against free OpenRouter models with backoff, model selection, and function-calling tools; measured over n=88 requests."
     },
     {
+      "id": "pocket",
+      "name": "pocket",
+      "cv_safe": true,
+      "purpose": "Monorepo of installable PWAs with a machine-checked rule set and a one-command check, stamp, deploy, and outside-verify pipeline.",
+      "demonstrated_capabilities": ["18 PWAs under one deploy pipeline", "machine-checked PWA rules (offline cache, update banner, safe-area, no webfonts, no critical-path network) in bin/check.bb", "content-hash service-worker versioning in bin/stamp.bb", "scripted deploy with Caddy site install and live-URL verification in bin/deploy"],
+      "stack": ["Babashka", "JavaScript PWAs", "Caddy", "rsync/ssh"],
+      "ownership_evidence": "All 45 commits authored by uprootiny, 2026-08-21 to 2026-10-14 (most carry Co-Authored-By Claude); verified with git log in-session.",
+      "repository": {
+        "repo_path": "/Users/uprootiny/pocket",
+        "git_remote": "git@gitlab.com:uprootiny/pocket.git",
+        "git_branch": "main",
+        "git_commit": "8f00005b7077f8c32ebe47f3756d3c089c6bf151"
+      },
+      "evidence": ["bin/check.bb, bin/stamp.bb, bin/deploy, bin/deploy-apps", "apps/ (18 directories)", "https://pocket.dissemblage.art/ returned 200 on 2026-10-25"],
+      "limitations": ["Repository is private.", "Thin application-level tests; the CHANGELOG line '15/15 URLs 200' was not independently verified.", "No CI file; checks run in the deploy script."],
+      "cv_text": "Monorepo of 18 installable PWAs with a machine-checked rule set and a scripted check, stamp, deploy, and outside-verify pipeline."
+    },
+    {
+      "id": "coggy",
+      "name": "coggy",
+      "cv_safe": true,
+      "purpose": "Rust cognitive architecture in the OpenCog tradition: an AtomSpace knowledge store with PLN inference and ECAN attention allocation, run as a parse, ground, attend, infer, reflect loop.",
+      "demonstrated_capabilities": ["probabilistic logic networks inference (pln.rs)", "economic attention allocation (ecan.rs)", "cognitive loop (cogloop.rs)", "73 unit tests and a CI workflow"],
+      "stack": ["Rust"],
+      "ownership_evidence": "All 21 commits authored by uprootiny, 2026-02-16 to 2026-06-07; verified with git log in-session.",
+      "repository": {
+        "repo_path": "/Users/uprootiny/Nissan/coggy",
+        "git_remote": "git@gitlab.com:uprootiny/coggy.git",
+        "git_branch": "main",
+        "git_commit": "7ddea45ea14c7fee3968b0e0911ac8f8c9b5984a"
+      },
+      "evidence": ["src/pln.rs, src/ecan.rs, src/cogloop.rs", "73 #[test] attributes in src", ".github/workflows/ci.yml"],
+      "limitations": ["Repository is private.", "No LLM or agent-loop code found in src: describe as a cognitive architecture, never as an LLM agent harness.", "docs/benchmarks.md lists scenario scripts, not measured numbers."],
+      "cv_text": "Rust cognitive architecture: AtomSpace, PLN inference, ECAN attention allocation; 73 unit tests, CI."
+    },
+    {
+      "id": "topo-sonify",
+      "name": "topo-sonify",
+      "cv_safe": true,
+      "purpose": "Rust library mapping persistent homology, Hodge theory, and Morse theory to sound, with the mathematical core built and tested first.",
+      "demonstrated_capabilities": ["simplicial homology and Betti numbers", "persistent homology", "Hodge and Morse theory modules", "documented methodology and five written chapters"],
+      "stack": ["Rust", "GitHub Actions"],
+      "ownership_evidence": "All 10 commits authored by uprootiny, 2026-04-07 to 2026-07-13; repository public (HTTP 200 on 2026-10-25).",
+      "repository": {
+        "repo_path": "github.com/marchdown/topo-sonify (not cloned locally)",
+        "git_remote": "https://github.com/marchdown/topo-sonify.git",
+        "git_branch": "main",
+        "git_commit": "0c32a743c676a95560729a2a6192482a619b2bc2"
+      },
+      "evidence": ["src/topology/ (homology, persistence, hodge, morse)", "#[test] present in homology.rs (4), persistence.rs (3), hodge.rs (4)", "METHODOLOGY.md", "CI workflow run: success 2026-08-14"],
+      "limitations": ["GitHub Pages deploy failed on 2026-06-15 and 2026-08-14, so the rendered docs site is not live; link the repository, not a Pages URL."],
+      "cv_text": "Rust library turning persistent homology, Hodge theory, and Morse theory into sound; math core verified against known invariants first."
+    },
+    {
+      "id": "agda-proofs",
+      "name": "agda-proofs",
+      "cv_safe": true,
+      "purpose": "Agda formalizations of enumerated and recursive sets and of the natural numbers.",
+      "demonstrated_capabilities": ["formal proof in Agda"],
+      "stack": ["Agda", "Literate Haskell"],
+      "ownership_evidence": "All 3 commits authored by marchdown; last commit 2015-12-12; repository public.",
+      "repository": {
+        "repo_path": "github.com/marchdown/agda-proofs (not cloned locally)",
+        "git_remote": "https://github.com/marchdown/agda-proofs.git",
+        "git_branch": "main",
+        "git_commit": "unrecorded"
+      },
+      "evidence": ["Sets/Enumerated.agda", "Sets/Recursive.agda", "Sets/NaturalNumberFormalizations.lhs"],
+      "limitations": ["Small (3 commits); present it as 2015 formal-methods work, not as a body of work."],
+      "cv_text": "Agda formalizations of enumerated and recursive sets and of the natural numbers (2015)."
+    },
+    {
       "id": "corpora",
       "name": "corpora",
       "cv_safe": true,

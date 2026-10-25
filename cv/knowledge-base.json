@@ -29,9 +29,35 @@
       "tags": ["llm", "testing", "repos", "infrastructure", "fractional", "communication"],
       "text": "I work on LLM strategies and quality workflows, repository stewardship, and practical technical environments. Fifteen years across data science, ML research, NLP, and developer tooling support a specification-first approach and clear technical decisions.",
       "evidence": ["drafts/cv.html", "Pavel_Vasilyev_CV_2026.pdf", "owner-confirmed Codex conversations, 2026-07-18"]
+    },
+    {
+      "id": "salestech-ai-engineer",
+      "tags": ["llm", "ml", "infrastructure", "salestech"],
+      "text": "Senior AI engineer with fifteen years across applied ML, NLP, and software. I build LLM systems where routing, fallback, cost, and latency are explicit and measurable, and I design the APIs and data flows around them.",
+      "evidence": ["technical-assets.json:inference-harness", "technical-assets.json:gemini-gate", "drafts/cv.html"]
     }
   ],
   "scope_items": [
+    {
+      "id": "fit-llm-workflows",
+      "text": "Multi-step LLM workflows across Claude, Gemini, Groq, OpenRouter, Ollama, and Cloudflare Workers AI: provider routing, role-specific fallback chains, retry ceilings, time and token budgets, bounded concurrency, and per-call token and latency tracing",
+      "tags": ["salestech", "llm"]
+    },
+    {
+      "id": "fit-api-design",
+      "text": "Clean API and service design: authenticated HTTP APIs, credential handling, Phoenix services deployed behind Caddy and systemd",
+      "tags": ["salestech", "infrastructure"]
+    },
+    {
+      "id": "fit-ml-depth",
+      "text": "Classical ML and NLP depth: feature engineering, model selection and training, text classification and extraction",
+      "tags": ["salestech", "ml"]
+    },
+    {
+      "id": "fit-product",
+      "text": "Working with product and design: turning ambiguous requests into written specifications and explicit trade-off decisions",
+      "tags": ["salestech", "communication"]
+    },
     {
       "id": "llm-quality",
       "text": "LLM product quality, strategies, prompt sets, ontologies, and evaluation",

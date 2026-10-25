@@ -2,7 +2,7 @@
   "id": "salestech-sr-ai-engineer",
   "label": "Senior AI Engineer - LLM Systems, APIs & Applied ML",
   "summary_id": "salestech-ai-engineer",
-  "print": { "paper": "A4", "compact": true },
+  "print": { "paper": "A4", "compact": true, "hideFooter": true },
   "headings": { "scope": "Fit for the Role", "experience": "Experience", "work": "Selected Work (private repositories, code on request)" },
   "focus_tags": ["salestech", "llm", "ml", "infrastructure", "research", "nlp", "software", "repos", "developer-tooling", "testing", "communication", "data-analysis", "feature-engineering", "fractional"],
   "exclude_tags": ["art", "non-primary"],

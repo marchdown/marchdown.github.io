@@ -65,6 +65,24 @@
       "cv_text": "Agent eval harness: probe suite scoring pass/fail, cost, and wall time per run; A/B of a structural gate moved spec-first compliance 0/3 to 3/3 at +26% cost and +80% wall time (n=3, one model)."
     },
     {
+      "id": "free-llm-harness",
+      "name": "free-llm-harness",
+      "cv_safe": true,
+      "purpose": "Python harness that runs prompt sets against free OpenRouter models with backoff, a model selector, function-calling tools, and per-run latency reports.",
+      "demonstrated_capabilities": ["Python package with unit tests (backoff, model selector, tailnet)", "function-calling tool definitions", "measured success rate and p95 latency per probe"],
+      "stack": ["Python", "OpenRouter"],
+      "ownership_evidence": "All 4 commits authored by uprootiny, 2026-05-03 to 2026-06-06; verified with git log in-session.",
+      "repository": {
+        "repo_path": "/Users/uprootiny/free-llm-harness",
+        "git_remote": "git@gitlab.com:uprootiny/free-llm-harness.git",
+        "git_branch": "main",
+        "git_commit": "83b6c1857f0a243385735d4852d6cdf631313b1b"
+      },
+      "evidence": ["src/free_llm_harness/ (about 3.8k lines)", "tests/test_backoff.py", "docs/MEASURED_BASELINE.md (n=88; quota probe 1.00, outage probe 0.833, p95 6357 ms)"],
+      "limitations": ["Repository is private.", "Free-tier models only; the baseline doc itself says tool-call coverage is thin."],
+      "cv_text": "Python package that runs prompt sets against free OpenRouter models with backoff, model selection, and function-calling tools; measured over n=88 requests."
+    },
+    {
       "id": "corpora",
       "name": "corpora",
       "cv_safe": true,

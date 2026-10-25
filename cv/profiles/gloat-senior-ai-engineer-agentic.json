@@ -1,0 +1,16 @@
+{
+  "id": "gloat-senior-ai-engineer-agentic",
+  "label": "Senior AI Engineer - Agentic Systems",
+  "summary_id": "gloat-agentic",
+  "print": { "paper": "A4", "compact": true, "hideFooter": true },
+  "headings": { "scope": "Fit for the Role", "experience": "Experience", "work": "Selected Work (private repositories, code on request)" },
+  "focus_tags": ["gloat", "llm", "ml", "infrastructure", "research", "nlp", "software", "repos", "developer-tooling", "testing", "communication", "data-analysis", "feature-engineering", "fractional"],
+  "exclude_tags": ["art", "non-primary"],
+  "scope_ids": ["gl-eval", "gl-multiprovider", "gl-boundaries", "gl-python-tools"],
+  "experience_ids": ["independent-practice", "spring-research", "earlier-roles"],
+  "max_bullets_per_role": 1,
+  "capability_ids": [],
+  "technical_stack_ids": [],
+  "selected_work_ids": ["pi-harness", "inference-harness", "free-llm-harness"],
+  "output": "drafts/cv-gloat-senior-ai-engineer-agentic.html"
+}

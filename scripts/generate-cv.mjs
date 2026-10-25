@@ -92,7 +92,7 @@ function renderDocument(model) {
   const heading = (key, fallback) => escapeHtml(headings[key] ?? fallback);
   const printOverrides = [
     print.paper === "A4" ? "@page { size:A4; margin:12mm 14mm; }" : "",
-    print.compact ? "body { font-size:9.4pt; line-height:1.34; } h1 { font-size:21pt; } h2 { margin-top:11px; } .job { margin-top:8px; } .job-head { flex-wrap:nowrap; } footer { margin-top:9px; padding-top:6px; font-size:6.3pt; }" : ""
+    print.compact ? `body { font-size:${print.hideFooter ? "9.7" : "9.4"}pt; line-height:${print.hideFooter ? "1.38" : "1.34"}; } h1 { font-size:22pt; } h2 { margin-top:${print.hideFooter ? "13" : "11"}px; } .job { margin-top:${print.hideFooter ? "10" : "8"}px; } .job-head { flex-wrap:nowrap; } footer { margin-top:9px; padding-top:6px; font-size:6.3pt; }` : ""
   ].filter(Boolean);
   const printCss = printOverrides.length === 0 ? "" : `\n  @media print { ${printOverrides.join(" ")} }`;
   const contact = [
@@ -207,10 +207,12 @@ function renderDocument(model) {
         <p><span class="label">Languages:</span> ${escapeHtml(person.spoken_languages)}</p>
       </div>
     </section>
-    <footer>
+${print.hideFooter
+    ? `    <!-- provenance (also in the adjacent .provenance.json): ${provenanceLine}. ${sessionLine}. -->`.replaceAll("--", "- -")
+    : `    <footer>
       <p>Artifact provenance: ${provenanceLine}.</p>
       <p>${sessionLine}.</p>
-    </footer>
+    </footer>`}
   </main>
 </body>
 </html>

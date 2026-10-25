@@ -35,6 +35,12 @@
       "tags": ["llm", "ml", "infrastructure", "salestech"],
       "text": "Senior AI engineer with fifteen years across applied ML, NLP, and software. I build LLM systems where routing, fallback, cost, and latency are explicit and measurable, and I design the APIs and data flows around them.",
       "evidence": ["technical-assets.json:inference-harness", "technical-assets.json:gemini-gate", "drafts/cv.html"]
+    },
+    {
+      "id": "gloat-agentic",
+      "tags": ["llm", "ml", "testing", "gloat"],
+      "text": "Senior AI engineer with fifteen years across applied ML, NLP, and software. I build LLM agent infrastructure and measure it: multi-provider routing, enforced boundaries, and eval harnesses that report pass rate, cost, and latency for every change.",
+      "evidence": ["technical-assets.json:pi-harness", "technical-assets.json:inference-harness", "technical-assets.json:free-llm-harness"]
     }
   ],
   "scope_items": [
@@ -57,6 +63,31 @@
       "id": "fit-product",
       "text": "Working with product and design: turning ambiguous requests into written specifications and explicit trade-off decisions",
       "tags": ["salestech", "communication"]
+    },
+    {
+      "id": "gl-eval",
+      "text": "Evaluation first: a probe-suite harness reporting pass rate, cost, and wall time per run, used to A/B agent configuration changes",
+      "tags": ["gloat", "llm", "testing"]
+    },
+    {
+      "id": "gl-multiprovider",
+      "text": "Model-agnostic: Claude, Gemini, OpenRouter, Ollama, and Cloudflare Workers AI behind one router with role-specific fallback and token and latency tracing",
+      "tags": ["gloat", "llm"]
+    },
+    {
+      "id": "gl-boundaries",
+      "text": "Enforced boundaries, not prompt rules: pre-commit and scope-guard hooks around agents; a credential service with atomic replacement",
+      "tags": ["gloat", "llm", "security"]
+    },
+    {
+      "id": "gl-python-tools",
+      "text": "Python and function-calling tools in a fallback-aware harness, with unit tests for backoff and model selection",
+      "tags": ["gloat", "llm", "software"]
+    },
+    {
+      "id": "gl-ml",
+      "text": "Applied ML and NLP depth: feature engineering, model selection and training, text classification and extraction",
+      "tags": ["gloat", "ml"]
     },
     {
       "id": "llm-quality",
@@ -221,9 +252,18 @@
       "name": "pi-harness",
       "url": "https://gitlab.com/uprootiny/pi-harness",
       "private": true,
-      "text": "Eval harness for a coding agent: probe suite scoring pass/fail, cost, and wall time per run. An A/B of a structural gate moved spec-first compliance from 0/3 to 3/3 at +26% cost and +80% wall time (n=3, one model).",
+      "text": "Eval harness for a coding agent, scoring pass/fail, cost, and wall time per run. A/B of a structural gate: spec-first 0/3 to 3/3 at +26% cost and +80% wall time (n=3, one model).",
       "tags": ["llm", "testing", "developer-tooling", "salestech"],
       "asset_id": "pi-harness"
+    },
+    {
+      "id": "free-llm-harness",
+      "name": "free-llm-harness",
+      "url": "https://gitlab.com/uprootiny/free-llm-harness",
+      "private": true,
+      "text": "Python harness running prompt sets against free OpenRouter models, with backoff, model selection, and tool calls. Over n=88 requests: 100% success on the quota probe, 83% in the outage probe, p95 6.4 s.",
+      "tags": ["llm", "testing", "software", "gloat"],
+      "asset_id": "free-llm-harness"
     },
     {
       "id": "gemini-gate",

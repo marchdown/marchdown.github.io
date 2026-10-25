@@ -87,12 +87,14 @@ function profileEvidence(items, focusTags, excludedTags) {
 
 function renderDocument(model) {
   const {
-    person, title, summary, scope, experience, capabilities, technicalStack, selectedWork, education, provenance, headings = {}, print = {}
+    person, title, summary, scope, experience, capabilities, technicalStack, selectedWork, education, provenance, headings = {}, print = {}, skills = [], shortText = false
   } = model;
+  const skillsHtml = skills.map((item) => `
+      <p class="skill"><span class="label">${escapeHtml(item.heading)}:</span> ${escapeHtml(item.text)}</p>`).join("\n");
   const heading = (key, fallback) => escapeHtml(headings[key] ?? fallback);
   const printOverrides = [
     print.paper === "A4" ? "@page { size:A4; margin:12mm 14mm; }" : "",
-    print.compact ? `body { font-size:${print.hideFooter ? "9.7" : "9.4"}pt; line-height:${print.hideFooter ? "1.38" : "1.34"}; } h1 { font-size:22pt; } h2 { margin-top:${print.hideFooter ? "13" : "11"}px; } .job { margin-top:${print.hideFooter ? "10" : "8"}px; } .job-head { flex-wrap:nowrap; } footer { margin-top:9px; padding-top:6px; font-size:6.3pt; }` : ""
+    print.compact ? `.skill { margin:3px 0; } body { font-size:${print.hideFooter ? "9.7" : "9.4"}pt; line-height:${print.hideFooter ? "1.38" : "1.34"}; } h1 { font-size:22pt; } h2 { margin-top:${print.hideFooter ? "13" : "11"}px; } .job { margin-top:${print.hideFooter ? "10" : "8"}px; } .job-head { flex-wrap:nowrap; } footer { margin-top:9px; padding-top:6px; font-size:6.3pt; }` : ""
   ].filter(Boolean);
   const printCss = printOverrides.length === 0 ? "" : `\n  @media print { ${printOverrides.join(" ")} }`;
   const contact = [
@@ -126,7 +128,7 @@ function renderDocument(model) {
       ? `<strong>${escapeHtml(item.name)}</strong>`
       : `<strong><a href="${escapeHtml(item.url)}">${escapeHtml(item.name)}</a></strong>`;
     return `
-      <p class="project">${name} <span>- ${escapeHtml(item.text)}</span></p>`;
+      <p class="project">${name} <span>- ${escapeHtml(shortText && item.text_short ? item.text_short : item.text)}</span></p>`;
   }).join("\n");
   const provenanceLine = [
     `project_name=${provenance.project_name}`,
@@ -182,10 +184,13 @@ function renderDocument(model) {
       <h2 id="summary-heading">Profile</h2>
       <p class="summary">${escapeHtml(summary.text)}</p>
     </section>
-    <section aria-labelledby="scope-heading">
+${skills.length === 0 ? "" : `    <section aria-labelledby="skills-heading">
+      <h2 id="skills-heading">${heading("skills", "Skills")}</h2>${skillsHtml}
+    </section>
+`}${scope.length === 0 ? "" : `    <section aria-labelledby="scope-heading">
       <h2 id="scope-heading">${heading("scope", "Fractional Scope")}</h2>
       <ul class="scope">${scopeHtml}</ul>
-    </section>
+    </section>`}
     <section aria-labelledby="experience-heading">
       <h2 id="experience-heading">${heading("experience", "Selected Experience")}</h2>${experienceHtml}
     </section>${capabilities.length === 0 ? "" : `
@@ -201,7 +206,7 @@ function renderDocument(model) {
       <h2 id="work-heading">${heading("work", "Selected Open Source")}</h2>${workHtml}
     </section>
     <section aria-labelledby="background-heading">
-      <h2 id="background-heading">Background</h2>
+      <h2 id="background-heading">${heading("background", "Background")}</h2>
       <div class="details">
         <p><span class="label">Education:</span> ${escapeHtml(education.join(" "))}</p>
         <p><span class="label">Languages:</span> ${escapeHtml(person.spoken_languages)}</p>
@@ -249,7 +254,9 @@ const scope = profileEvidence(valueByIds(knowledgeBase.scope_items, profile.scop
 const experience = valueByIds(knowledgeBase.experience, profile.experience_ids, "experience")
   .map((role) => ({
     ...role,
-    bullets: profileEvidence(role.bullets, focusTags, excludedTags).slice(0, profile.max_bullets_per_role ?? 2)
+    bullets: profile.bullet_ids?.[role.id]
+      ? valueByIds(role.bullets, profile.bullet_ids[role.id], `bullet of ${role.id}`)
+      : profileEvidence(role.bullets, focusTags, excludedTags).slice(0, profile.max_bullets_per_role ?? 2)
   }))
   .filter((role) => role.bullets.length > 0)
   .slice(0, maxRoles);
@@ -282,7 +289,8 @@ for (const item of technicalStack) {
   }
 }
 
-if (scope.length === 0 || experience.length === 0 || selectedWork.length === 0 || (capabilities.length === 0 && (profile.capability_ids ?? []).length > 0)) {
+const skills = valueByIds(knowledgeBase.skills ?? [], profile.skill_ids ?? [], "skill");
+if ((scope.length === 0 && skills.length === 0) || experience.length === 0 || selectedWork.length === 0 || (capabilities.length === 0 && (profile.capability_ids ?? []).length > 0)) {
   throw new Error("The selected focus/exclusion filter removed a required CV section. Broaden --focus or --exclude.");
 }
 
@@ -326,7 +334,9 @@ const document = renderDocument({
   education: knowledgeBase.education,
   provenance,
   headings: profile.headings,
-  print: profile.print
+  print: profile.print,
+  skills,
+  shortText: Boolean(profile.short_text)
 });
 
 await mkdir(path.dirname(outputPath), { recursive: true });

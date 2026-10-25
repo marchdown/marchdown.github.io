@@ -33,13 +33,13 @@
     {
       "id": "salestech-ai-engineer",
       "tags": ["llm", "ml", "infrastructure", "salestech"],
-      "text": "Senior AI engineer with fifteen years across applied ML, NLP, and software. I build LLM systems where routing, fallback, cost, and latency are explicit and measurable, and I design the APIs and data flows around them.",
+      "text": "Senior AI engineer with fifteen years across applied ML, NLP, and software. Currently building LLM infrastructure (routing, evaluation, cost and latency tracing) and the services around it. Earlier work in NLP, quantitative research, and data science.",
       "evidence": ["technical-assets.json:inference-harness", "technical-assets.json:gemini-gate", "drafts/cv.html"]
     },
     {
       "id": "gloat-agentic",
       "tags": ["llm", "ml", "testing", "gloat"],
-      "text": "Senior AI engineer with fifteen years across applied ML, NLP, and software. I build LLM agent infrastructure and measure it: multi-provider routing, enforced boundaries, and eval harnesses that report pass rate, cost, and latency for every change.",
+      "text": "Senior AI engineer with fifteen years across applied ML, NLP, and software. Currently building evaluation and routing infrastructure for LLM agents in Elixir and Python. Earlier work in NLP, quantitative research, and data science.",
       "evidence": ["technical-assets.json:pi-harness", "technical-assets.json:inference-harness", "technical-assets.json:free-llm-harness"]
     }
   ],
@@ -145,8 +145,15 @@
           "evidence": ["owner-confirmed Codex conversation, 2026-07-18"]
         },
         {
+          "id": "sr-comms",
           "text": "Communicated findings and collaborated as part of a working research team, carrying ideas from exploratory analysis into shared modelling work.",
           "tags": ["research", "communication", "collaboration"],
+          "evidence": ["owner-confirmed Codex conversation, 2026-07-18"]
+        },
+        {
+          "id": "sr-research",
+          "text": "Owned applied research on financial-market data end to end: new signal representations, feature engineering, model selection, and training.",
+          "tags": ["ml", "research", "feature-engineering"],
           "evidence": ["owner-confirmed Codex conversation, 2026-07-18"]
         }
       ]
@@ -193,6 +200,18 @@
           "text": "Current work includes verification workflows, LLM harnesses, developer tooling, audio processing, and formal-methods exploration.",
           "tags": ["llm", "developer-tooling", "formal-methods", "repos"],
           "evidence": ["drafts/cv.html"]
+        },
+        {
+          "id": "ip-llm-infra",
+          "text": "Build LLM infrastructure: provider routing with fallback, retry and time budgets, and token and latency tracing. Build evaluation harnesses that score agent changes on pass rate, cost, and runtime.",
+          "tags": ["llm", "testing", "infrastructure"],
+          "evidence": ["technical-assets.json:inference-harness", "technical-assets.json:pi-harness", "technical-assets.json:free-llm-harness"]
+        },
+        {
+          "id": "ip-services",
+          "text": "Design and deploy authenticated services and developer tooling in Elixir, Python, Rust, and Swift for clients and my own projects; 150+ projects across eight or more languages.",
+          "tags": ["repos", "developer-tooling", "infrastructure"],
+          "evidence": ["drafts/cv.html", "technical-assets.json:gemini-gate", "technical-assets.json:corpora"]
         }
       ]
     },
@@ -254,6 +273,7 @@
       "private": true,
       "text": "Eval harness for a coding agent, scoring pass/fail, cost, and wall time per run. A/B of a structural gate: spec-first 0/3 to 3/3 at +26% cost and +80% wall time (n=3, one model).",
       "tags": ["llm", "testing", "developer-tooling", "salestech"],
+      "text_short": "Evaluation harness for coding agents. Scores pass rate, cost, and runtime per run and A/B-tests configuration changes; one change raised spec-first compliance from 0/3 to 3/3 at +26% cost (n=3).",
       "asset_id": "pi-harness"
     },
     {
@@ -263,6 +283,7 @@
       "private": true,
       "text": "Python harness running prompt sets against free OpenRouter models, with backoff, model selection, and tool calls. Over n=88 requests: 100% success on the quota probe, 83% in the outage probe, p95 6.4 s.",
       "tags": ["llm", "testing", "software", "gloat"],
+      "text_short": "Python harness for testing LLM endpoints: backoff, model selection, tool calls. Measured success rate and p95 latency over 88 requests.",
       "asset_id": "free-llm-harness"
     },
     {
@@ -281,6 +302,7 @@
       "private": true,
       "text": "Elixir LLM harness for multi-provider routing, role-specific fallback, token/latency tracing, and bounded concurrent jobs.",
       "tags": ["llm", "infrastructure", "elixir", "testing", "operations"],
+      "text_short": "LLM job runner in Elixir: provider routing and fallback, retry and time budgets, token and latency tracing.",
       "asset_id": "inference-harness"
     },
     {
@@ -350,6 +372,32 @@
       "text": "Financial-market monitoring, data analysis, signal representations and transformations, feature engineering, model selection, and model training.",
       "tags": ["ml", "research", "data-analysis", "feature-engineering"],
       "evidence_role_ids": ["spring-research"]
+    }
+  ],
+  "skills": [
+    {
+      "id": "sk-llm",
+      "heading": "LLM systems",
+      "text": "Agent evaluation, tool calling, provider routing and fallback, cost and latency tracing. Claude, Gemini, OpenRouter, Ollama, Cloudflare Workers AI.",
+      "tags": ["llm"]
+    },
+    {
+      "id": "sk-ml",
+      "heading": "Machine learning",
+      "text": "NLP, text classification and extraction, feature engineering, model selection and training.",
+      "tags": ["ml"]
+    },
+    {
+      "id": "sk-lang",
+      "heading": "Languages",
+      "text": "Elixir, Python, Rust, Swift, TypeScript, Clojure.",
+      "tags": ["software"]
+    },
+    {
+      "id": "sk-infra",
+      "heading": "Infrastructure",
+      "text": "Nix, Caddy, systemd, Git workflows.",
+      "tags": ["infrastructure"]
     }
   ],
   "education": [

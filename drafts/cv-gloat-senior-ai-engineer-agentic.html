@@ -25,7 +25,7 @@
   footer { margin-top:28px; padding-top:11px; border-top:1px solid var(--rule); color:var(--faint); font:10px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace; }footer p { margin:.25em 0; }
   @media (max-width:620px) { .page { width:100%; margin:0; padding:28px 22px; border:0; box-shadow:none; } h1 { font-size:27px; }.scope,.capabilities,.details { grid-template-columns:1fr; } }
   @media print { @page { margin:14mm 15mm; } body { background:#fff; font-size:10.3pt; line-height:1.42; }.page { width:auto; margin:0; padding:0; border:0; box-shadow:none; }h1 { font-size:23pt; }h2 { margin-top:18px; break-after:avoid; }a { color:var(--ink); text-decoration:none; }.job,.capability { break-inside:avoid; }footer { font-size:7.5pt; } }
-  @media print { @page { size:A4; margin:12mm 14mm; } body { font-size:9.7pt; line-height:1.38; } h1 { font-size:22pt; } h2 { margin-top:13px; } .job { margin-top:10px; } .job-head { flex-wrap:nowrap; } footer { margin-top:9px; padding-top:6px; font-size:6.3pt; } }
+  @media print { @page { size:A4; margin:12mm 14mm; } .skill { margin:3px 0; } body { font-size:9.7pt; line-height:1.38; } h1 { font-size:22pt; } h2 { margin-top:13px; } .job { margin-top:10px; } .job-head { flex-wrap:nowrap; } footer { margin-top:9px; padding-top:6px; font-size:6.3pt; } }
 </style>
 </head>
 <body>
@@ -37,15 +37,19 @@
     </header>
     <section aria-labelledby="summary-heading">
       <h2 id="summary-heading">Profile</h2>
-      <p class="summary">Senior AI engineer with fifteen years across applied ML, NLP, and software. I build LLM agent infrastructure and measure it: multi-provider routing, enforced boundaries, and eval harnesses that report pass rate, cost, and latency for every change.</p>
+      <p class="summary">Senior AI engineer with fifteen years across applied ML, NLP, and software. Currently building evaluation and routing infrastructure for LLM agents in Elixir and Python. Earlier work in NLP, quantitative research, and data science.</p>
     </section>
-    <section aria-labelledby="scope-heading">
-      <h2 id="scope-heading">Fit for the Role</h2>
-      <ul class="scope"><li>Evaluation first: a probe-suite harness reporting pass rate, cost, and wall time per run, used to A/B agent configuration changes</li>
-<li>Model-agnostic: Claude, Gemini, OpenRouter, Ollama, and Cloudflare Workers AI behind one router with role-specific fallback and token and latency tracing</li>
-<li>Enforced boundaries, not prompt rules: pre-commit and scope-guard hooks around agents; a credential service with atomic replacement</li>
-<li>Python and function-calling tools in a fallback-aware harness, with unit tests for backoff and model selection</li></ul>
+    <section aria-labelledby="skills-heading">
+      <h2 id="skills-heading">Skills</h2>
+      <p class="skill"><span class="label">LLM systems:</span> Agent evaluation, tool calling, provider routing and fallback, cost and latency tracing. Claude, Gemini, OpenRouter, Ollama, Cloudflare Workers AI.</p>
+
+      <p class="skill"><span class="label">Machine learning:</span> NLP, text classification and extraction, feature engineering, model selection and training.</p>
+
+      <p class="skill"><span class="label">Languages:</span> Elixir, Python, Rust, Swift, TypeScript, Clojure.</p>
+
+      <p class="skill"><span class="label">Infrastructure:</span> Nix, Caddy, systemd, Git workflows.</p>
     </section>
+
     <section aria-labelledby="experience-heading">
       <h2 id="experience-heading">Experience</h2>
       <article class="job">
@@ -54,7 +58,7 @@
           <span class="dates">2010-present</span>
         </div>
         <p class="context">Consulting, advisory, and software practice between salaried roles.</p>
-        <ul><li>Built tools and technical systems against client specifications while maintaining an open-source body of 150+ projects across eight or more languages.</li></ul>
+        <ul><li>Build LLM infrastructure: provider routing with fallback, retry and time budgets, and token and latency tracing. Build evaluation harnesses that score agent changes on pass rate, cost, and runtime.</li><li>Design and deploy authenticated services and developer tooling in Elixir, Python, Rust, and Swift for clients and my own projects; 150+ projects across eight or more languages.</li></ul>
       </article>
 
       <article class="job">
@@ -63,7 +67,7 @@
           <span class="dates">2020-2022</span>
         </div>
         <p class="context">Quantitative research firm focused on financial-market modelling.</p>
-        <ul><li>Owned the full applied-research cycle: monitored financial markets, analysed data, developed new signal representations and transformations, extracted ML features, selected approaches, and built and trained models.</li></ul>
+        <ul><li>Owned applied research on financial-market data end to end: new signal representations, feature engineering, model selection, and training.</li><li>Communicated findings and collaborated as part of a working research team, carrying ideas from exploratory analysis into shared modelling work.</li></ul>
       </article>
 
       <article class="job">
@@ -76,21 +80,21 @@
       </article>
     </section>
     <section aria-labelledby="work-heading">
-      <h2 id="work-heading">Selected Work (private repositories, code on request)</h2>
-      <p class="project"><strong>pi-harness</strong> <span>- Eval harness for a coding agent, scoring pass/fail, cost, and wall time per run. A/B of a structural gate: spec-first 0/3 to 3/3 at +26% cost and +80% wall time (n=3, one model).</span></p>
+      <h2 id="work-heading">Projects (private repositories, code on request)</h2>
+      <p class="project"><strong>pi-harness</strong> <span>- Evaluation harness for coding agents. Scores pass rate, cost, and runtime per run and A/B-tests configuration changes; one change raised spec-first compliance from 0/3 to 3/3 at +26% cost (n=3).</span></p>
 
-      <p class="project"><strong>inference_harness</strong> <span>- Elixir LLM harness for multi-provider routing, role-specific fallback, token/latency tracing, and bounded concurrent jobs.</span></p>
+      <p class="project"><strong>inference_harness</strong> <span>- LLM job runner in Elixir: provider routing and fallback, retry and time budgets, token and latency tracing.</span></p>
 
-      <p class="project"><strong>free-llm-harness</strong> <span>- Python harness running prompt sets against free OpenRouter models, with backoff, model selection, and tool calls. Over n=88 requests: 100% success on the quota probe, 83% in the outage probe, p95 6.4 s.</span></p>
+      <p class="project"><strong>free-llm-harness</strong> <span>- Python harness for testing LLM endpoints: backoff, model selection, tool calls. Measured success rate and p95 latency over 88 requests.</span></p>
     </section>
     <section aria-labelledby="background-heading">
-      <h2 id="background-heading">Background</h2>
+      <h2 id="background-heading">Education</h2>
       <div class="details">
         <p><span class="label">Education:</span> MSc Computational Linguistics, RSUH, Moscow, 2015. BSc Nuclear Physics, Czech Technical University, Prague, 2009.</p>
         <p><span class="label">Languages:</span> English, Hebrew, Russian; working knowledge of German and French.</p>
       </div>
     </section>
-    <!- - provenance (also in the adjacent .provenance.json): project_name=marchdown.github.io; repo_path=/Users/uprootiny/marchdown.github.io/.claude/worktrees/cv-salestech-ai; git_remote=https://github.com/marchdown/marchdown.github.io.git; git_branch=worktree-cv-salestech-ai; git_commit=a09fd8a7af649bed0806c5bf01e683d4b97bc39b. generated_at=2026-10-25T13:12:56.101Z; generator=Codex (GPT-5) via scripts/generate-cv.mjs (Node 22.23.0); session_source=Codex API conversation; session_locator=/Users/uprootiny/.codex/sessions/ (2026-07-18 session). - ->
+    <!- - provenance (also in the adjacent .provenance.json): project_name=marchdown.github.io; repo_path=/Users/uprootiny/marchdown.github.io/.claude/worktrees/cv-salestech-ai; git_remote=https://github.com/marchdown/marchdown.github.io.git; git_branch=worktree-cv-salestech-ai; git_commit=38a097a6d12c617db03e597058a891a922c4a4ac. generated_at=2026-10-25T13:16:16.091Z; generator=Codex (GPT-5) via scripts/generate-cv.mjs (Node 22.23.0); session_source=Codex API conversation; session_locator=/Users/uprootiny/.codex/sessions/ (2026-07-18 session). - ->
   </main>
 </body>
 </html>

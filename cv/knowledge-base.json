@@ -5,9 +5,9 @@
     "name": "Pavel Vasilyev",
     "location": "Jerusalem, Israel",
     "contact": {
-      "email": "uprootiny@gmail.com",
+      "email": "marchdown@gmail.com",
       "github": "https://github.com/marchdown",
-      "website": "https://hyperstitious.org"
+      "website": "https://marchdown.hyperstitious.org"
     },
     "spoken_languages": "English, Hebrew, Russian; working knowledge of German and French."
   },
@@ -40,7 +40,7 @@
   "scope_items": [
     {
       "id": "fit-llm-workflows",
-      "text": "Multi-step LLM workflows across Claude, Gemini, Groq, OpenRouter, Ollama, and Cloudflare Workers AI: provider routing, role-specific fallback chains, retry ceilings, time and token budgets, bounded concurrency, and per-call token and latency tracing",
+      "text": "Multi-step LLM workflows across Claude, Gemini, OpenRouter, Ollama, and Cloudflare Workers AI: provider routing, role-specific fallback chains, retry ceilings, time and token budgets, bounded concurrency, and per-call token and latency tracing",
       "tags": ["salestech", "llm"]
     },
     {
@@ -217,9 +217,19 @@
       "asset_id": "co-loop"
     },
     {
+      "id": "pi-harness",
+      "name": "pi-harness",
+      "url": "https://gitlab.com/uprootiny/pi-harness",
+      "private": true,
+      "text": "Eval harness for a coding agent: probe suite scoring pass/fail, cost, and wall time per run. An A/B of a structural gate moved spec-first compliance from 0/3 to 3/3 at +26% cost and +80% wall time (n=3, one model).",
+      "tags": ["llm", "testing", "developer-tooling", "salestech"],
+      "asset_id": "pi-harness"
+    },
+    {
       "id": "gemini-gate",
       "name": "gemini-gate",
       "url": "https://gitlab.com/uprootiny/gemini-gate",
+      "private": true,
       "text": "Elixir/Phoenix credential service with authenticated retrieval, Gemini API proxying, and Caddy/systemd deployment.",
       "tags": ["llm", "infrastructure", "security", "elixir", "operations"],
       "asset_id": "gemini-gate"
@@ -228,6 +238,7 @@
       "id": "inference-harness",
       "name": "inference_harness",
       "url": "https://gitlab.com/uprootiny/inference_harness",
+      "private": true,
       "text": "Elixir LLM harness for multi-provider routing, role-specific fallback, token/latency tracing, and bounded concurrent jobs.",
       "tags": ["llm", "infrastructure", "elixir", "testing", "operations"],
       "asset_id": "inference-harness"
@@ -274,7 +285,7 @@
     {
       "id": "llm-routing",
       "heading": "LLM platforms and routing",
-      "text": "Claude, Gemini, Groq, OpenRouter, Ollama, and Cloudflare Workers AI; role-specific fallback, time/token budgets, and latency tracing. Modal and Railway in brief LLM research.",
+      "text": "Claude, Gemini, OpenRouter, Ollama, and Cloudflare Workers AI; role-specific fallback, time/token budgets, and latency tracing. Modal and Railway in brief LLM research.",
       "tags": ["llm", "infrastructure", "operations", "testing"],
       "evidence_asset_ids": ["inference-harness"],
       "evidence_role_ids": ["move38"]

@@ -35,7 +35,7 @@
       "cv_safe": true,
       "purpose": "Provider-routed LLM job harness with role-specific fallback chains, time budgets, retry ceilings, and inference tracing.",
       "demonstrated_capabilities": ["multi-provider routing", "role-specific fallback chains", "token and latency ledger", "budget-enforced job execution", "bounded concurrent execution", "retries and provider metering"],
-      "stack": ["Elixir 1.15", "OTP GenServer", "ETS", "Jason", "Claude API", "Gemini API", "Groq API", "OpenRouter", "Ollama", "Cloudflare Workers AI"],
+      "stack": ["Elixir 1.15", "OTP GenServer", "ETS", "Jason", "Claude API", "Gemini API", "OpenRouter", "Ollama", "Cloudflare Workers AI"],
       "ownership_evidence": "Latest commit is authored by uprootiny.",
       "repository": {
         "repo_path": "/Users/uprootiny/Nissan/inference_harness",
@@ -45,6 +45,24 @@
       },
       "evidence": ["lib/inference_harness/inference/providers.ex", "lib/inference_harness/inference/pool.ex", "lib/inference_harness/trace/ledger.ex", "mix.exs", "git log -1"],
       "cv_text": "Elixir LLM harness for multi-provider routing, role-specific fallback, token/latency tracing, and bounded concurrent jobs."
+    },
+    {
+      "id": "pi-harness",
+      "name": "pi-harness",
+      "cv_safe": true,
+      "purpose": "Configuration, enforced-boundary hooks, and a probe-based eval sensor for a coding agent, with A/B measurement of prompt and gate changes.",
+      "demonstrated_capabilities": ["probe-suite evaluation with pass/fail, cost and wall-time per run", "interleaved A/B of a structural gate against a baseline config", "mechanical versus regex predicate separation", "enforced boundaries via pre-commit and scope-guard hooks"],
+      "stack": ["Babashka", "TypeScript extensions", "OpenRouter", "Claude Code hooks"],
+      "ownership_evidence": "All 15 commits authored by uprootiny, 2026-10-02 to 2026-10-14; verified with git log in-session.",
+      "repository": {
+        "repo_path": "/Users/uprootiny/pi-harness",
+        "git_remote": "git@gitlab.com:uprootiny/pi-harness.git",
+        "git_branch": "main",
+        "git_commit": "a84cd9f30f246be72a03d79e84bfac8b35f042e0"
+      },
+      "evidence": ["eval/ab/RESULTS.md (A/B on moonshotai/kimi-k2.6, n=3 per arm, 11 probes)", "eval/results/ (27 timestamped runs)", "eval/probes.edn"],
+      "limitations": ["Repository is private (GitLab redirects to sign-in).", "n=3 per arm, one model, several regex-flaky predicates; RESULTS.md states it shows compliance, not output quality."],
+      "cv_text": "Agent eval harness: probe suite scoring pass/fail, cost, and wall time per run; A/B of a structural gate moved spec-first compliance 0/3 to 3/3 at +26% cost and +80% wall time (n=3, one model)."
     },
     {
       "id": "corpora",

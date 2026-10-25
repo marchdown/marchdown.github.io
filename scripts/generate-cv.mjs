@@ -99,7 +99,7 @@ function renderDocument(model) {
     escapeHtml(person.location),
     `<a href="mailto:${escapeHtml(person.contact.email)}">${escapeHtml(person.contact.email)}</a>`,
     `<a href="${escapeHtml(person.contact.github)}">github.com/marchdown</a>`,
-    `<a href="${escapeHtml(person.contact.website)}">hyperstitious.org</a>`
+    `<a href="${escapeHtml(person.contact.website)}">${escapeHtml(new URL(person.contact.website).host)}</a>`
   ].join('<span class="separator">|</span>');
   const scopeHtml = scope.map((item) => `<li>${escapeHtml(item.text)}</li>`).join("\n");
   const experienceHtml = experience.map((role) => `
@@ -121,8 +121,13 @@ function renderDocument(model) {
           <h3>${escapeHtml(item.heading)}</h3>
           <p>${escapeHtml(item.text)}</p>
         </div>`).join("\n");
-  const workHtml = selectedWork.map((item) => `
-      <p class="project"><strong><a href="${escapeHtml(item.url)}">${escapeHtml(item.name)}</a></strong> <span>- ${escapeHtml(item.text)}</span></p>`).join("\n");
+  const workHtml = selectedWork.map((item) => {
+    const name = item.private
+      ? `<strong>${escapeHtml(item.name)}</strong>`
+      : `<strong><a href="${escapeHtml(item.url)}">${escapeHtml(item.name)}</a></strong>`;
+    return `
+      <p class="project">${name} <span>- ${escapeHtml(item.text)}</span></p>`;
+  }).join("\n");
   const provenanceLine = [
     `project_name=${provenance.project_name}`,
     `repo_path=${provenance.repo_path}`,

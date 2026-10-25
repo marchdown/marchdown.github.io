@@ -34,6 +34,23 @@ Last checked 2026-10-25, session: Claude Code job 5c74fffd.
 | Startup experience | not established | gap |
 | Full-stack/serverless; classical ML or DS | pocket; Spring Research and earlier roles | covered |
 
+## Portfolio selection (criteria 2.1-2.5 from the owner's brief, 2026-10-25)
+
+Axes: research and quant, infrastructure, product and tools, leadership. One project per axis, no duplicates.
+
+| Project | Axis | Verifiable (2.3) | Gloat | SalesTech |
+|---|---|---|---|---|
+| topo-sonify | research / applied math | public repo, tests, CI green | yes | yes |
+| LLM routing and quota tooling | infrastructure | measured: 88 requests, 100% / 83% | yes | yes |
+| pocket | product and tools | live URL returns 200; code private | yes | yes |
+| coggy | research (duplicates topo-sonify) | private, 73 tests | dropped | dropped |
+| agda-proofs | research | public but 3 commits, 2015 | skill line only | skill line only |
+| leadership | leadership | **nothing in registers** | gap | gap |
+
+Experience entries follow the owner's formula: position and company, 3-5 word focus, one sentence on what was
+done, then why. The "what it gave the company" sentence is present only where the registers support it; client
+outcomes, team size, and budget are not established (dossier limitations), so they are not claimed.
+
 ## Highest-value additions (what would turn gaps into lines)
 
 1. Any LLM agent in front of real users, even a small one with a URL (closes the biggest Gloat gap).

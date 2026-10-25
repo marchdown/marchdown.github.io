@@ -87,7 +87,7 @@ function profileEvidence(items, focusTags, excludedTags) {
 
 function renderDocument(model) {
   const {
-    person, title, summary, scope, experience, capabilities, technicalStack, selectedWork, education, provenance, headings = {}, print = {}, skills = [], shortText = false
+    person, title, summary, scope, experience, capabilities, technicalStack, selectedWork, education, provenance, headings = {}, print = {}, skills = [], shortText = false, formula = false, workNotes = {}
   } = model;
   const skillsHtml = skills.map((item) => `
       <p class="skill"><span class="label">${escapeHtml(item.heading)}:</span> ${escapeHtml(item.text)}</p>`).join("\n");
@@ -96,7 +96,8 @@ function renderDocument(model) {
     print.paper === "A4" ? "@page { size:A4; margin:12mm 14mm; }" : "",
     print.compact ? `.skill { margin:3px 0; } body { font-size:${print.hideFooter ? "9.7" : "9.4"}pt; line-height:${print.hideFooter ? "1.38" : "1.34"}; } h1 { font-size:22pt; } h2 { margin-top:${print.hideFooter ? "13" : "11"}px; } .job { margin-top:${print.hideFooter ? "10" : "8"}px; } .job-head { flex-wrap:nowrap; } footer { margin-top:9px; padding-top:6px; font-size:6.3pt; }` : ""
   ].filter(Boolean);
-  const printCss = printOverrides.length === 0 ? "" : `\n  @media print { ${printOverrides.join(" ")} }`;
+  const formulaCss = formula ? "\n  .focus { margin:2px 0 0; color:var(--accent); font-size:.92em; font-weight:600; } .did, .why { margin:3px 0 0; } .why { color:var(--muted); } .project em { color:var(--accent); font-style:normal; font-weight:600; }" : "";
+  const printCss = formulaCss + (printOverrides.length === 0 ? "" : `\n  @media print { ${printOverrides.join(" ")} }`);
   const contact = [
     escapeHtml(person.location),
     `<a href="mailto:${escapeHtml(person.contact.email)}">${escapeHtml(person.contact.email)}</a>`,
@@ -110,8 +111,10 @@ function renderDocument(model) {
           <span class="job-title">${escapeHtml(role.title)} <span class="organization">- ${escapeHtml(role.organization)}</span></span>
           <span class="dates">${escapeHtml(role.dates)}</span>
         </div>
-        <p class="context">${escapeHtml(role.context)}</p>
-        <ul>${role.bullets.map((bullet) => `<li>${escapeHtml(bullet.text)}</li>`).join("")}</ul>
+${formula && role.did ? `        <p class="focus">${escapeHtml(role.focus)}</p>
+        <p class="did">${escapeHtml(role.did)}</p>
+${role.why ? `        <p class="why">${escapeHtml(role.why)}</p>` : ""}` : `        <p class="context">${escapeHtml(role.context)}</p>
+        <ul>${role.bullets.map((bullet) => `<li>${escapeHtml(bullet.text)}</li>`).join("")}</ul>`}
       </article>`).join("\n");
   const capabilitiesHtml = capabilities.map((item) => `
         <div class="capability">
@@ -128,7 +131,7 @@ function renderDocument(model) {
       ? `<strong>${escapeHtml(item.name)}</strong>`
       : `<strong><a href="${escapeHtml(item.url)}">${escapeHtml(item.name)}</a></strong>`;
     return `
-      <p class="project">${name} <span>- ${escapeHtml(shortText && item.text_short ? item.text_short : item.text)}</span></p>`;
+      <p class="project">${name} <span>- ${escapeHtml(shortText && item.text_short ? item.text_short : item.text)}${workNotes[item.id] ? ` <em>${escapeHtml(workNotes[item.id])}</em>` : ""}</span></p>`;
   }).join("\n");
   const provenanceLine = [
     `project_name=${provenance.project_name}`,
@@ -336,7 +339,9 @@ const document = renderDocument({
   headings: profile.headings,
   print: profile.print,
   skills,
-  shortText: Boolean(profile.short_text)
+  shortText: Boolean(profile.short_text),
+  formula: Boolean(profile.formula),
+  workNotes: profile.work_notes ?? {}
 });
 
 await mkdir(path.dirname(outputPath), { recursive: true });

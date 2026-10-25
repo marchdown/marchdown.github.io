@@ -25,6 +25,7 @@
   footer { margin-top:28px; padding-top:11px; border-top:1px solid var(--rule); color:var(--faint); font:10px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace; }footer p { margin:.25em 0; }
   @media (max-width:620px) { .page { width:100%; margin:0; padding:28px 22px; border:0; box-shadow:none; } h1 { font-size:27px; }.scope,.capabilities,.details { grid-template-columns:1fr; } }
   @media print { @page { margin:14mm 15mm; } body { background:#fff; font-size:10.3pt; line-height:1.42; }.page { width:auto; margin:0; padding:0; border:0; box-shadow:none; }h1 { font-size:23pt; }h2 { margin-top:18px; break-after:avoid; }a { color:var(--ink); text-decoration:none; }.job,.capability { break-inside:avoid; }footer { font-size:7.5pt; } }
+  .focus { margin:2px 0 0; color:var(--accent); font-size:.92em; font-weight:600; } .did, .why { margin:3px 0 0; } .why { color:var(--muted); } .project em { color:var(--accent); font-style:normal; font-weight:600; }
   @media print { @page { size:A4; margin:12mm 14mm; } .skill { margin:3px 0; } body { font-size:9.7pt; line-height:1.38; } h1 { font-size:22pt; } h2 { margin-top:13px; } .job { margin-top:10px; } .job-head { flex-wrap:nowrap; } footer { margin-top:9px; padding-top:6px; font-size:6.3pt; } }
 </style>
 </head>
@@ -56,11 +57,12 @@
       <h2 id="experience-heading">Experience</h2>
       <article class="job">
         <div class="job-head">
-          <span class="job-title">Independent Software Engineer <span class="organization">- consulting, open source, and LLM-assisted development</span></span>
+          <span class="job-title">Independent Software Engineer <span class="organization">- self-employed</span></span>
           <span class="dates">2010-present</span>
         </div>
-        <p class="context">Consulting and open source since 2010 (150+ projects); LLM coding agents since 2022.</p>
-        <ul><li>LLM infrastructure in Elixir, Python, and Rust (private, 2026): provider routing and fallback chains, jittered retry honoring Retry-After, per-client rate limits, token, cost, and latency audit logs. Python harness measured over 88 requests: 100% success on a quota probe, 83% in an outage probe.</li><li>pocket (private, 2026): 18 installable PWAs behind one pipeline. A machine-checked rule set (offline cache, update banner, safe-area, no network on the critical path), content-hash service-worker versions, and a deploy script that installs the Caddy site and verifies the live URLs from outside.</li><li>topo-sonify (public, 2026): Rust library that turns persistent homology, Hodge theory, and Morse theory into sound. Built the mathematical core first and checked it against known invariants (β(S²) = (1,0,1), χ = 2) before writing any audio code; unit-tested topology modules, CI green.</li><li>coggy (private, 2026): Rust cognitive architecture with an AtomSpace, PLN inference, and ECAN attention allocation in a parse, ground, attend, infer, reflect loop; 73 unit tests and CI.</li></ul>
+        <p class="focus">LLM tooling, PWAs, Rust, Elixir</p>
+        <p class="did">Design, build, and ship software for clients and my own projects: 150+ projects across eight or more languages, with LLM coding agents as my main tool since 2022.</p>
+        <p class="why">The recent work targets what makes AI-assisted development safe to rely on: provider routing and fallback, quota handling, and deploy pipelines that check themselves.</p>
       </article>
 
       <article class="job">
@@ -68,8 +70,9 @@
           <span class="job-title">Research Lead <span class="organization">- Spring Research</span></span>
           <span class="dates">2020-2022</span>
         </div>
-        <p class="context">Quantitative research firm focused on financial-market modelling.</p>
-        <ul><li>Owned applied research on financial-market data end to end: new signal representations, feature engineering, model selection, and training.</li></ul>
+        <p class="focus">Quant modelling, feature engineering</p>
+        <p class="did">Owned applied research on financial-market data: signal representations, features, model selection, training.</p>
+        <p class="why">I built and trained the models and carried findings from exploratory analysis into the team&#39;s shared modelling.</p>
       </article>
 
       <article class="job">
@@ -77,15 +80,18 @@
           <span class="job-title">Earlier Data Science, NLP &amp; Software Roles <span class="organization">- Nestlogic, Maverick Medical AI, Athena Portfolio Solutions, Ten-X, Verba, and Finfon</span></span>
           <span class="dates">2009-2019</span>
         </div>
-        <p class="context">Roles in Tel Aviv, Hong Kong, and Prague.</p>
-        <ul><li>Financial-news NLP and signal extraction; medical-text classification and information extraction; computer-vision pipelines; and corpus-linguistics infrastructure.</li></ul>
+        <p class="focus">NLP, classification, computer vision</p>
+        <p class="did">Financial-news signal extraction, medical-text classification, vision pipelines, corpus infrastructure; Tel Aviv, Hong Kong, Prague.</p>
+
       </article>
     </section>
     <section aria-labelledby="work-heading">
-      <h2 id="work-heading">Public Work (private repositories on request)</h2>
-      <p class="project"><strong><a href="https://github.com/marchdown/topo-sonify">topo-sonify</a></strong> <span>- Rust; five written chapters on simplicial complexes, homology, and persistence; CI green.</span></p>
+      <h2 id="work-heading">Selected Work</h2>
+      <p class="project"><strong>LLM routing and quota tooling</strong> <span>- Elixir, Python, and Rust: provider routing and fallback chains, jittered retry honoring Retry-After, per-client rate limits, token, cost, and latency audit logs. Python harness over 88 requests: 100% success on a quota probe, 83% in an outage probe. Private. <em>→ Model-agnostic routing; quota and latency handled at the edge.</em></span></p>
 
-      <p class="project"><strong><a href="https://github.com/marchdown/agda-proofs">agda-proofs</a></strong> <span>- Agda formalizations of enumerated and recursive sets and of the natural numbers (2015).</span></p>
+      <p class="project"><strong><a href="https://pocket.dissemblage.art/">pocket</a></strong> <span>- Suite of 18 installable PWAs behind one pipeline: machine-checked rules (offline cache, update banner, safe-area, no critical-path network), content-hash service-worker versions, and a deploy that verifies the live URLs from outside. Live; code private. <em>→ Production deploys verified from outside.</em></span></p>
+
+      <p class="project"><strong><a href="https://github.com/marchdown/topo-sonify">topo-sonify</a></strong> <span>- Rust library that maps persistent homology, Hodge theory, and Morse theory to sound. The math core was checked against known invariants (β(S²) = (1,0,1), χ = 2) before any audio code; unit-tested, CI green. Public. <em>→ Foundations first, for graph-structured data.</em></span></p>
     </section>
     <section aria-labelledby="background-heading">
       <h2 id="background-heading">Education</h2>
@@ -94,7 +100,7 @@
         <p><span class="label">Languages:</span> English, Hebrew, Russian; working knowledge of German and French.</p>
       </div>
     </section>
-    <!- - provenance (also in the adjacent .provenance.json): project_name=marchdown.github.io; repo_path=/Users/uprootiny/marchdown.github.io/.claude/worktrees/cv-salestech-ai; git_remote=https://github.com/marchdown/marchdown.github.io.git; git_branch=worktree-cv-salestech-ai; git_commit=5821af33391e23a0377c0f7fcfe1c7957c571cc1. generated_at=2026-10-25T20:58:06.133Z; generator=Codex (GPT-5) via scripts/generate-cv.mjs (Node 22.23.0); session_source=Codex API conversation; session_locator=/Users/uprootiny/.codex/sessions/ (2026-07-18 session). - ->
+    <!- - provenance (also in the adjacent .provenance.json): project_name=marchdown.github.io; repo_path=/Users/uprootiny/marchdown.github.io/.claude/worktrees/cv-salestech-ai; git_remote=https://github.com/marchdown/marchdown.github.io.git; git_branch=worktree-cv-salestech-ai; git_commit=aa0c3e3c1098ef7dca7d3042ce8c45b10392bd29. generated_at=2026-10-25T21:30:36.098Z; generator=Codex (GPT-5) via scripts/generate-cv.mjs (Node 22.23.0); session_source=Codex API conversation; session_locator=/Users/uprootiny/.codex/sessions/ (2026-07-18 session). - ->
   </main>
 </body>
 </html>

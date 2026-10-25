@@ -4,19 +4,26 @@
   "summary_id": "engineer-mathematician",
   "print": { "paper": "A4", "compact": true, "hideFooter": true },
   "short_text": true,
-  "headings": { "skills": "Skills", "experience": "Experience", "work": "Public Work (private repositories on request)", "background": "Education" },
+  "formula": true,
+  "headings": { "skills": "Skills", "experience": "Experience", "work": "Selected Work", "background": "Education" },
+  "work_notes": {
+    "llm-infra": "→ Model-agnostic routing; quota and latency handled at the edge.",
+    "pocket-live": "→ Production deploys verified from outside.",
+    "topo-sonify-public": "→ Foundations first, for graph-structured data.",
+    "coggy-private": "→ Attention allocation and inference loops."
+  },
   "focus_tags": ["gloat", "llm", "ml", "infrastructure", "research", "nlp", "software", "repos", "developer-tooling", "testing", "communication", "data-analysis", "feature-engineering", "formal-methods"],
   "exclude_tags": ["art", "non-primary"],
   "scope_ids": [],
   "skill_ids": ["sk-foundations", "sk-llm", "sk-math", "sk-lang", "sk-infra"],
   "experience_ids": ["ai-practice", "spring-research", "earlier-roles"],
   "bullet_ids": {
-    "ai-practice": ["ai-infra", "ai-pwa", "ai-topo", "ai-coggy"],
+    "ai-practice": ["ai-infra"],
     "spring-research": ["sr-research"]
   },
   "max_bullets_per_role": 1,
   "capability_ids": [],
   "technical_stack_ids": [],
-  "selected_work_ids": ["topo-sonify-public", "agda-proofs"],
+  "selected_work_ids": ["llm-infra", "pocket-live", "topo-sonify-public"],
   "output": "drafts/cv-gloat-senior-ai-engineer-agentic.html"
 }

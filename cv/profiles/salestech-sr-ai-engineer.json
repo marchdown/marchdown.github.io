@@ -4,19 +4,25 @@
   "summary_id": "engineer-mathematician",
   "print": { "paper": "A4", "compact": true, "hideFooter": true },
   "short_text": true,
-  "headings": { "skills": "Skills", "experience": "Experience", "work": "Public Work (private repositories on request)", "background": "Education" },
+  "formula": true,
+  "headings": { "skills": "Skills", "experience": "Experience", "work": "Selected Work", "background": "Education" },
+  "work_notes": {
+    "pocket-live": "→ End-to-end delivery, from build to verified deploy.",
+    "llm-infra": "→ Cost, latency, and quota visible per call.",
+    "topo-sonify-public": "→ Applied-math depth behind the engineering."
+  },
   "focus_tags": ["salestech", "llm", "ml", "infrastructure", "research", "nlp", "software", "repos", "developer-tooling", "testing", "communication", "data-analysis", "feature-engineering", "formal-methods"],
   "exclude_tags": ["art", "non-primary"],
   "scope_ids": [],
   "skill_ids": ["sk-foundations", "sk-llm", "sk-math", "sk-lang", "sk-infra"],
   "experience_ids": ["ai-practice", "spring-research", "earlier-roles"],
   "bullet_ids": {
-    "ai-practice": ["ai-infra", "ai-pwa", "ai-coggy", "ai-topo"],
+    "ai-practice": ["ai-infra"],
     "spring-research": ["sr-research"]
   },
   "max_bullets_per_role": 1,
   "capability_ids": [],
   "technical_stack_ids": [],
-  "selected_work_ids": ["topo-sonify-public", "agda-proofs"],
+  "selected_work_ids": ["pocket-live", "llm-infra", "topo-sonify-public"],
   "output": "drafts/cv-salestech-sr-ai-engineer.html"
 }

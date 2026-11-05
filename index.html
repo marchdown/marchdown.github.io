@@ -75,149 +75,233 @@ canvas {
 </div>
 
 <script>
+// Landing background: a slow, seamless 8-second cinematic loop.
+// Provenance — repo: marchdown.github.io (github.com/marchdown/marchdown.github.io),
+// session: ~/.claude/projects/-Users-uprootiny-marchdown-github-io, job 0e536177, 2026-11-05.
+
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+// ---------------------------------------------------------------------------
+// Loop clock. Every quantity that moves is a function of the phase φ ∈ [0, 2π)
+// of one 8-second cycle, and every oscillation uses an integer harmonic of φ.
+// render(φ) is therefore exactly periodic: the loop is seamless by
+// construction, not by tuning. Check: render(0) and render(2π) are pixel-equal.
+const PERIOD_MS = 8000;
+const TAU = Math.PI * 2;
 
-// Generate a hypergraph structure
-class HyperGraph {
-  constructor() {
-    this.nodes = [];
-    this.edges = [];
-    this.generateGraph();
-  }
+// Deterministic RNG (mulberry32): the composition is identical on every load.
+function mulberry32(seed) {
+  let a = seed >>> 0;
+  return function () {
+    a = (a + 0x6D2B79F5) >>> 0;
+    let t = a;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+const rand = mulberry32(0x6d617263);
+const gauss = () => (rand() + rand() + rand() - 1.5) / 1.5;  // bell-shaped on [-1, 1]
+const pick = (arr) => arr[Math.floor(rand() * arr.length)];
+const clamp01 = (v) => Math.min(1, Math.max(0, v));
 
-  generateGraph() {
-    // Create 40 nodes in 3D space
-    for (let i = 0; i < 40; i++) {
-      this.nodes.push({
-        x: (Math.random() - 0.5) * 800,
-        y: (Math.random() - 0.5) * 800,
-        z: (Math.random() - 0.5) * 800,
-        radius: 2 + Math.random() * 4,
-        color: Math.random() > 0.7 ? '#8cc9ff' : '#4a9eff',
-      });
-    }
+// ---------------------------------------------------------------------------
+// Scene, in a unit frame: lengths are fractions of min(viewport w, h).
+// The structure sits slightly above centre so the lower band, where the name
+// and link live, stays negative space.
 
-    // Create hyperedges (each connects 2-4 nodes)
-    for (let i = 0; i < 60; i++) {
-      const edgeSize = 2 + Math.floor(Math.random() * 3);
-      const edge = [];
-      for (let j = 0; j < edgeSize; j++) {
-        edge.push(Math.floor(Math.random() * this.nodes.length));
-      }
-      this.edges.push(edge);
-    }
-  }
-
-  project(node, camDist) {
-    // Simple 3D perspective projection
-    const scale = camDist / (camDist + node.z);
-    return {
-      x: node.x * scale,
-      y: node.y * scale,
-      z: node.z,
-      scale: scale,
-      radius: node.radius * scale,
-      color: node.color,
-    };
-  }
+const NODE_COUNT = 56;
+const nodes = [];
+for (let i = 0; i < NODE_COUNT; i++) {
+  nodes.push({
+    hx: gauss() * 0.44, hy: gauss() * 0.30 - 0.05, hz: gauss() * 0.40,
+    r: 0.0025 + rand() * 0.004,
+    bright: rand() < 0.3,
+    // per-node drift: a tiny Lissajous at harmonics 1 or 2 with its own phases
+    ax: 0.006 + rand() * 0.008, ay: 0.006 + rand() * 0.008, az: 0.006 + rand() * 0.008,
+    kx: pick([1, 2]), ky: pick([1, 2]), kz: pick([1, 1, 2]),
+    px: rand() * TAU, py: rand() * TAU, pz: rand() * TAU,
+    gk: pick([1, 2]), gp: rand() * TAU,  // glow pulse: harmonic and phase
+  });
 }
 
-const graph = new HyperGraph();
-let time = 0;
-const camDistance = 500;
-
-function rotatePoint(p, angleX, angleY, angleZ) {
-  let x = p.x, y = p.y, z = p.z;
-
-  // Rotate around Y
-  let cosY = Math.cos(angleY);
-  let sinY = Math.sin(angleY);
-  let x1 = x * cosY - z * sinY;
-  let z1 = x * sinY + z * cosY;
-
-  // Rotate around X
-  let cosX = Math.cos(angleX);
-  let sinX = Math.sin(angleX);
-  let y1 = y * cosX - z1 * sinX;
-  let z2 = y * sinX + z1 * cosX;
-
-  return { x: x1, y: y1, z: z2 };
+// Filaments: each node to its two nearest neighbours (a web), plus a few long
+// faint ties across the structure.
+const edges = [];
+const edgeKeys = new Set();
+function addEdge(a, b, long) {
+  if (a === b) return;
+  const key = a < b ? `${a}:${b}` : `${b}:${a}`;
+  if (edgeKeys.has(key)) return;
+  edgeKeys.add(key);
+  edges.push({
+    a, b, long,
+    k: pick([1, 2]), p: rand() * TAU,                      // filament pulse
+    lit: rand() < 0.5, trips: pick([1, 1, 2]), tp: rand(),  // travelling light
+  });
 }
-
-function animate() {
-  time += 0.008;
-
-  // Clear background
-  ctx.fillStyle = '#0a0e14';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  // Camera tumble angles
-  const angleX = time * 0.3;
-  const angleY = time * 0.5;
-  const angleZ = time * 0.2;
-
-  // Transform and project nodes
-  const projected = graph.nodes.map((node) => {
-    const rotated = rotatePoint(node, angleX, angleY, angleZ);
-    return graph.project(rotated, camDistance);
-  });
-
-  // Sort by depth (painter's algorithm)
-  const sortedIndices = graph.nodes.map((_, i) => i);
-  sortedIndices.sort((a, b) => projected[a].z - projected[b].z);
-
-  // Draw edges first (so they appear behind nodes)
-  ctx.strokeStyle = 'rgba(74, 158, 255, 0.08)';
-  ctx.lineWidth = 1;
-  graph.edges.forEach((edge) => {
-    for (let i = 0; i < edge.length - 1; i++) {
-      const p1 = projected[edge[i]];
-      const p2 = projected[edge[i + 1]];
-      ctx.beginPath();
-      ctx.moveTo(canvas.width / 2 + p1.x, canvas.height / 2 + p1.y);
-      ctx.lineTo(canvas.width / 2 + p2.x, canvas.height / 2 + p2.y);
-      ctx.stroke();
-    }
-  });
-
-  // Draw nodes
-  sortedIndices.forEach((idx) => {
-    const p = projected[idx];
-    if (p.scale > 0.05) {
-      // Glow effect
-      const gradient = ctx.createRadialGradient(
-        canvas.width / 2 + p.x, canvas.height / 2 + p.y, 0,
-        canvas.width / 2 + p.x, canvas.height / 2 + p.y, p.radius * 3
-      );
-      gradient.addColorStop(0, p.color.replace(')', ', 0.6)').replace(/rgb/, 'rgba'));
-      gradient.addColorStop(1, p.color.replace(')', ', 0)').replace(/rgb/, 'rgba'));
-
-      ctx.fillStyle = gradient;
-      ctx.beginPath();
-      ctx.arc(canvas.width / 2 + p.x, canvas.height / 2 + p.y, p.radius * 3, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Core
-      ctx.fillStyle = p.color;
-      ctx.beginPath();
-      ctx.arc(canvas.width / 2 + p.x, canvas.height / 2 + p.y, p.radius, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  });
-
-  requestAnimationFrame(animate);
-}
-
-window.addEventListener('resize', () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+nodes.forEach((n, i) => {
+  const near = nodes
+    .map((m, j) => ({ j, d: (m.hx - n.hx) ** 2 + (m.hy - n.hy) ** 2 + (m.hz - n.hz) ** 2 }))
+    .filter((o) => o.j !== i)
+    .sort((p, q) => p.d - q.d);
+  addEdge(i, near[0].j, false);
+  addEdge(i, near[1].j, false);
 });
+for (let i = 0; i < 14; i++) {
+  addEdge(Math.floor(rand() * NODE_COUNT), Math.floor(rand() * NODE_COUNT), true);
+}
 
-animate();
+// Fine dust. Each mote has its own position in the loop: it fades in, drifts
+// a few percent of the frame, fades out, and resets while invisible.
+const PARTICLE_COUNT = 170;
+const particles = [];
+for (let i = 0; i < PARTICLE_COUNT; i++) {
+  const ang = rand() * TAU;
+  const spd = 0.015 + rand() * 0.03;  // fraction of the frame per loop
+  particles.push({
+    x: rand(), y: rand(),
+    vx: Math.cos(ang) * spd, vy: Math.sin(ang) * spd - 0.01,  // slight updraft
+    depth: 0.4 + rand() * 0.6,
+    off: rand(),
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Render one frame at phase φ. Pure in φ and the viewport size.
+
+function render(phi) {
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  const unit = Math.min(w, h);
+  const cx = w / 2, cy = h / 2;
+
+  ctx.fillStyle = '#0a0e14';
+  ctx.fillRect(0, 0, w, h);
+  const bloom = ctx.createRadialGradient(cx, cy - 0.05 * unit, 0, cx, cy - 0.05 * unit, unit * 0.65);
+  bloom.addColorStop(0, 'rgba(43, 74, 122, 0.10)');
+  bloom.addColorStop(1, 'rgba(43, 74, 122, 0)');
+  ctx.fillStyle = bloom;
+  ctx.fillRect(0, 0, w, h);
+
+  // Dust, behind everything.
+  for (const p of particles) {
+    const f = (phi / TAU + p.off) % 1;
+    const env = Math.sin(Math.PI * f) ** 2;
+    const x = (p.x + p.vx * (f - 0.5)) * w;
+    const y = (p.y + p.vy * (f - 0.5)) * h;
+    ctx.fillStyle = `rgba(140, 180, 230, ${(0.12 + 0.33 * p.depth) * env})`;
+    ctx.beginPath();
+    ctx.arc(x, y, 0.4 + p.depth * 0.9, 0, TAU);
+    ctx.fill();
+  }
+
+  // Camera: a barely-there sway (≈1.5° yaw, ≈1° pitch) and a 1% dolly, once
+  // per loop. The whole structure breathes once per loop as well.
+  const yaw = 0.026 * Math.sin(phi);
+  const pitch = 0.017 * Math.cos(phi);
+  const camDist = 1.6 * (1 + 0.01 * Math.sin(phi + 0.9));
+  const breath = 1 + 0.02 * Math.sin(phi + 0.4);
+  const cosY = Math.cos(yaw), sinY = Math.sin(yaw);
+  const cosX = Math.cos(pitch), sinX = Math.sin(pitch);
+
+  const proj = nodes.map((n) => {
+    const x = (n.hx + n.ax * Math.sin(n.kx * phi + n.px)) * breath;
+    const y = (n.hy + n.ay * Math.sin(n.ky * phi + n.py)) * breath;
+    const z = (n.hz + n.az * Math.sin(n.kz * phi + n.pz)) * breath;
+    const x1 = x * cosY - z * sinY, z1 = x * sinY + z * cosY;
+    const y1 = y * cosX - z1 * sinX, z2 = y * sinX + z1 * cosX;
+    const s = camDist / (camDist + z2);
+    return { x: cx + x1 * s * unit, y: cy + y1 * s * unit, s, z: z2 };
+  });
+  const depthFade = (z) => 0.3 + 0.7 * clamp01(0.5 - z);
+
+  // Filaments, then the light that travels along them.
+  ctx.lineCap = 'round';
+  const L = 0.18;  // half-length of a travelling light, as a fraction of its filament
+  for (const e of edges) {
+    const A = proj[e.a], B = proj[e.b];
+    const fade = depthFade((A.z + B.z) / 2);
+    const pulse = 0.5 + 0.5 * Math.sin(e.k * phi + e.p);
+    const alpha = (e.long ? 0.035 + 0.03 * pulse : 0.09 + 0.07 * pulse) * fade;
+    ctx.strokeStyle = `rgba(74, 158, 255, ${alpha})`;
+    ctx.lineWidth = e.long ? 0.6 : 0.9;
+    ctx.beginPath();
+    ctx.moveTo(A.x, A.y);
+    ctx.lineTo(B.x, B.y);
+    ctx.stroke();
+
+    if (!e.lit) continue;
+    // The light's centre runs from −L to 1+L, so it enters at one node and
+    // leaves at the other without a pop, `trips` times per loop.
+    const u = -L + (1 + 2 * L) * ((e.trips * phi / TAU + e.tp) % 1);
+    const u0 = Math.max(0, u - L), u1 = Math.min(1, u + L);
+    if (u1 <= u0) continue;
+    const at = (v) => [A.x + (B.x - A.x) * v, A.y + (B.y - A.y) * v];
+    const [x0, y0] = at(u0), [x1, y1] = at(u1);
+    const amp = 0.45 * fade;
+    const kernel = (v) => Math.max(0, 1 - Math.abs(v - u) / L);
+    const g = ctx.createLinearGradient(x0, y0, x1, y1);
+    g.addColorStop(0, `rgba(170, 215, 255, ${amp * kernel(u0)})`);
+    if (u > u0 && u < u1) g.addColorStop((u - u0) / (u1 - u0), `rgba(170, 215, 255, ${amp})`);
+    g.addColorStop(1, `rgba(170, 215, 255, ${amp * kernel(u1)})`);
+    ctx.strokeStyle = g;
+    ctx.lineWidth = 1.4;
+    ctx.beginPath();
+    ctx.moveTo(x0, y0);
+    ctx.lineTo(x1, y1);
+    ctx.stroke();
+  }
+
+  // Nodes, far to near. A broad band of light crosses the structure once per
+  // loop (a plane wave in screen space), on top of each node's own slow glow.
+  const order = proj.map((_, i) => i).sort((i, j) => proj[j].z - proj[i].z);
+  for (const i of order) {
+    const n = nodes[i], P = proj[i];
+    const nx = (P.x - cx) / unit, ny = (P.y - cy) / unit;
+    const sweep = 0.5 + 0.5 * Math.cos(phi - TAU * 0.7 * (nx * 0.8 + ny * 0.6));
+    const glow = 0.5 + 0.5 * Math.sin(n.gk * phi + n.gp);
+    const lum = depthFade(P.z) * (0.55 + 0.25 * glow + 0.2 * sweep);
+    const r = n.r * unit * P.s;
+    const rgb = n.bright ? '140, 201, 255' : '74, 158, 255';
+    const halo = ctx.createRadialGradient(P.x, P.y, 0, P.x, P.y, r * 5);
+    halo.addColorStop(0, `rgba(${rgb}, ${0.35 * lum})`);
+    halo.addColorStop(1, `rgba(${rgb}, 0)`);
+    ctx.fillStyle = halo;
+    ctx.beginPath();
+    ctx.arc(P.x, P.y, r * 5, 0, TAU);
+    ctx.fill();
+    ctx.fillStyle = `rgba(${rgb}, ${0.55 + 0.45 * lum})`;
+    ctx.beginPath();
+    ctx.arc(P.x, P.y, r, 0, TAU);
+    ctx.fill();
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Clock and sizing. Time-based, so the period is 8 s at any refresh rate.
+// Under prefers-reduced-motion the page shows a single still frame.
+
+function resize() {
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  canvas.width = Math.round(canvas.clientWidth * dpr);
+  canvas.height = Math.round(canvas.clientHeight * dpr);
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+
+const stillOnly = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const t0 = performance.now();
+function frame(now) {
+  render((((now - t0) % PERIOD_MS) / PERIOD_MS) * TAU);
+  requestAnimationFrame(frame);
+}
+
+window.addEventListener('resize', () => { resize(); if (stillOnly) render(0); });
+resize();
+if (stillOnly) render(0); else requestAnimationFrame(frame);
+
+// Exposed for the seam check (see JOURNAL.md): render(0) must equal render(TAU).
+window.__loop = { render, PERIOD_MS, TAU };
 </script>
 
 </body>

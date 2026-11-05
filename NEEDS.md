@@ -35,10 +35,10 @@ performed on his own creativity.
 - Owner's real `{{ }}` values eventually (name, location) — site can ship with tasteful defaults first.
 
 ## Notes
-- Garden internals: seamless loop, rings recycle at alpha≈0; AUTO=0.05 → ~120s loop (pacing pass).
-- Known rough edges: fruit tip-positions approximate; starfield speed tracks AUTO baseline not live scroll.
+- Landing (`index.html`, 2026-11-05): seeded hypergraph on an 8 s phase clock, seamless by
+  construction (`render(0)` ≡ `render(2π)`); motion budget and seam check in `JOURNAL.md`.
+  Not yet checked on a phone or on the live Pages host.
 - Local preview: `ruby -run -e httpd . -p 8731` then http://localhost:8731/
-- Root `index.html` (garden) not yet committed.
 
 ## CV status (2026-06-28)
 - **Three complete, sendable editions** + a review index, all in `drafts/`:

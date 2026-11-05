@@ -71,3 +71,17 @@ performed on his own creativity.
   Decide: re-home to GitLab (active host) vs wait. Old populated site lives at ~/Documents/GitHub/marchdown.github.io (2018, stale).
 - After review: promote the chosen edition(s) out of `drafts/` to the site proper (garden → grounds-into-CV).
 _updated: 2026-06-28 · session: ~/.claude/projects/-Users-uprootiny-marchdown-github-io_
+
+## Letters, not CVs (2026-11-05)
+- Owner's stated want: stop sending CVs; send letters that open with an observation about the
+  target ("I see you're building X"), then approach, exposure/potential, brief, and an ask for
+  a call. Genre spec in `letters/README.md`; reusable brief in `letters/BRIEF.md`.
+- First letter drafted against a real job-sift lead: `letters/2026-11-05-mingla.md`
+  (Phoenix LiveView shop, part-time remote). Not sent. Four pre-send checks listed in the file.
+- `TIER1_EMAILS_READY.md` (July 2026) is the counter-example and stays as evidence; do not
+  send from it.
+- Next: owner reviews the Mingla letter's tone and the four checks; if the genre holds, pick
+  the next lead from `output/job-sift/` and spend the hour. Candidates seen in the Sept report:
+  Prior Labs (TabPFN; onsite only, weaker fit), Republic Services agentic AI (US remote, FT).
+- Needs from owner: Stamina AI and Dissemblage.art dossiers if they are to appear in letters;
+  decision on making one Elixir repo public.

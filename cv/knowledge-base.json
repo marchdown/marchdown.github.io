@@ -5,9 +5,9 @@
     "name": "Pavel Vasilyev",
     "location": "Jerusalem, Israel",
     "contact": {
-      "email": "uprootiny@gmail.com",
+      "email": "marchdown@gmail.com",
       "github": "https://github.com/marchdown",
-      "website": "https://hyperstitious.org"
+      "website": "https://marchdown.hyperstitious.org"
     },
     "spoken_languages": "English, Hebrew, Russian; working knowledge of German and French."
   },
@@ -29,9 +29,72 @@
       "tags": ["llm", "testing", "repos", "infrastructure", "fractional", "communication"],
       "text": "I work on LLM strategies and quality workflows, repository stewardship, and practical technical environments. Fifteen years across data science, ML research, NLP, and developer tooling support a specification-first approach and clear technical decisions.",
       "evidence": ["drafts/cv.html", "Pavel_Vasilyev_CV_2026.pdf", "owner-confirmed Codex conversations, 2026-07-18"]
+    },
+    {
+      "id": "salestech-ai-engineer",
+      "tags": ["llm", "ml", "infrastructure", "salestech"],
+      "text": "Senior AI engineer with fifteen years across applied ML, NLP, and software. Currently building LLM infrastructure (routing, fallback, cost and latency tracing) and the services around it. Earlier work in NLP, quantitative research, and data science.",
+      "evidence": ["technical-assets.json:inference-harness", "technical-assets.json:gemini-gate", "drafts/cv.html"]
+    },
+    {
+      "id": "engineer-mathematician",
+      "tags": ["llm", "ml", "software", "gloat", "salestech"],
+      "text": "Software engineer with a research and applied-mathematics background. Fifteen years of programming, analytics, and systems design, then four years of vibe coding with LLMs.",
+      "evidence": ["owner statement, 2026-10-25 (four years of LLM-assisted development)", "drafts/cv.html", "technical-assets.json"]
+    },
+    {
+      "id": "gloat-agentic",
+      "tags": ["llm", "ml", "testing", "gloat"],
+      "text": "Senior AI engineer with fifteen years across applied ML, NLP, and software. Currently building routing and fallback infrastructure for LLM agents in Elixir and Python. Earlier work in NLP, quantitative research, and data science.",
+      "evidence": ["technical-assets.json:inference-harness", "technical-assets.json:free-llm-harness"]
     }
   ],
   "scope_items": [
+    {
+      "id": "fit-llm-workflows",
+      "text": "Multi-step LLM workflows across Claude, Gemini, OpenRouter, Ollama, and Cloudflare Workers AI: provider routing, role-specific fallback chains, retry ceilings, time and token budgets, bounded concurrency, and per-call token and latency tracing",
+      "tags": ["salestech", "llm"]
+    },
+    {
+      "id": "fit-api-design",
+      "text": "Clean API and service design: authenticated HTTP APIs, credential handling, Phoenix services deployed behind Caddy and systemd",
+      "tags": ["salestech", "infrastructure"]
+    },
+    {
+      "id": "fit-ml-depth",
+      "text": "Classical ML and NLP depth: feature engineering, model selection and training, text classification and extraction",
+      "tags": ["salestech", "ml"]
+    },
+    {
+      "id": "fit-product",
+      "text": "Working with product and design: turning ambiguous requests into written specifications and explicit trade-off decisions",
+      "tags": ["salestech", "communication"]
+    },
+    {
+      "id": "gl-eval",
+      "text": "Evaluation first: a probe-suite harness reporting pass rate, cost, and wall time per run, used to A/B agent configuration changes",
+      "tags": ["gloat", "llm", "testing"]
+    },
+    {
+      "id": "gl-multiprovider",
+      "text": "Model-agnostic: Claude, Gemini, OpenRouter, Ollama, and Cloudflare Workers AI behind one router with role-specific fallback and token and latency tracing",
+      "tags": ["gloat", "llm"]
+    },
+    {
+      "id": "gl-boundaries",
+      "text": "Enforced boundaries, not prompt rules: pre-commit and scope-guard hooks around agents; a credential service with atomic replacement",
+      "tags": ["gloat", "llm", "security"]
+    },
+    {
+      "id": "gl-python-tools",
+      "text": "Python and function-calling tools in a fallback-aware harness, with unit tests for backoff and model selection",
+      "tags": ["gloat", "llm", "software"]
+    },
+    {
+      "id": "gl-ml",
+      "text": "Applied ML and NLP depth: feature engineering, model selection and training, text classification and extraction",
+      "tags": ["gloat", "ml"]
+    },
     {
       "id": "llm-quality",
       "text": "LLM product quality, strategies, prompt sets, ontologies, and evaluation",
@@ -75,9 +138,49 @@
       ]
     },
     {
+      "id": "ai-practice",
+      "title": "Independent Software Engineer",
+      "organization": "self-employed",
+      "focus": "LLM tooling, PWAs, Rust, Elixir",
+      "did": "Design, build, and ship software for clients and my own projects: 150+ projects across eight or more languages, with LLM coding agents as my main tool since 2022.",
+      "why": "The recent work targets what makes AI-assisted development safe to rely on: provider routing and fallback, quota handling, and deploy pipelines that check themselves.",
+      "dates": "2010-present",
+      "context": "Consulting and open source since 2010 (150+ projects); LLM coding agents since 2022.",
+      "tags": ["llm", "ml", "testing", "infrastructure", "repos", "gloat", "salestech"],
+      "bullets": [
+        {
+          "id": "ai-topo",
+          "text": "topo-sonify (public, 2026): Rust library that turns persistent homology, Hodge theory, and Morse theory into sound. Built the mathematical core first and checked it against known invariants (β(S²) = (1,0,1), χ = 2) before writing any audio code; unit-tested topology modules, CI green.",
+          "tags": ["ml", "research", "testing", "gloat", "salestech"],
+          "evidence": ["technical-assets.json:topo-sonify", "METHODOLOGY.md in the repository"]
+        },
+        {
+          "id": "ai-infra",
+          "text": "LLM infrastructure in Elixir, Python, and Rust (private, 2026): provider routing and fallback chains, jittered retry honoring Retry-After, per-client rate limits, token, cost, and latency audit logs. Python harness measured over 88 requests: 100% success on a quota probe, 83% in an outage probe.",
+          "tags": ["llm", "infrastructure", "gloat", "salestech"],
+          "evidence": ["technical-assets.json:inference-harness", "technical-assets.json:free-llm-harness", "api-hyle-lol/src/main.rs (rate limit, AuditEntry)"]
+        },
+        {
+          "id": "ai-pwa",
+          "text": "pocket (private, 2026): 18 installable PWAs behind one pipeline. A machine-checked rule set (offline cache, update banner, safe-area, no network on the critical path), content-hash service-worker versions, and a deploy script that installs the Caddy site and verifies the live URLs from outside.",
+          "tags": ["infrastructure", "software", "testing", "gloat", "salestech"],
+          "evidence": ["technical-assets.json:pocket"]
+        },
+        {
+          "id": "ai-coggy",
+          "text": "coggy (private, 2026): Rust cognitive architecture with an AtomSpace, PLN inference, and ECAN attention allocation in a parse, ground, attend, infer, reflect loop; 73 unit tests and CI.",
+          "tags": ["ml", "research", "software", "gloat", "salestech"],
+          "evidence": ["technical-assets.json:coggy"]
+        }
+      ]
+    },
+    {
       "id": "spring-research",
       "title": "Research Lead",
       "organization": "Spring Research",
+      "focus": "Quant modelling, feature engineering",
+      "did": "Owned applied research on financial-market data: signal representations, features, model selection, training.",
+      "why": "I built and trained the models and carried findings from exploratory analysis into the team's shared modelling.",
       "dates": "2020-2022",
       "context": "Quantitative research firm focused on financial-market modelling.",
       "tags": ["ml", "research", "data-analysis", "feature-engineering", "communication"],
@@ -88,8 +191,15 @@
           "evidence": ["owner-confirmed Codex conversation, 2026-07-18"]
         },
         {
+          "id": "sr-comms",
           "text": "Communicated findings and collaborated as part of a working research team, carrying ideas from exploratory analysis into shared modelling work.",
           "tags": ["research", "communication", "collaboration"],
+          "evidence": ["owner-confirmed Codex conversation, 2026-07-18"]
+        },
+        {
+          "id": "sr-research",
+          "text": "Owned applied research on financial-market data end to end: new signal representations, feature engineering, model selection, and training.",
+          "tags": ["ml", "research", "feature-engineering"],
           "evidence": ["owner-confirmed Codex conversation, 2026-07-18"]
         }
       ]
@@ -136,6 +246,18 @@
           "text": "Current work includes verification workflows, LLM harnesses, developer tooling, audio processing, and formal-methods exploration.",
           "tags": ["llm", "developer-tooling", "formal-methods", "repos"],
           "evidence": ["drafts/cv.html"]
+        },
+        {
+          "id": "ip-llm-infra",
+          "text": "Build LLM infrastructure: provider routing with fallback, retry and time budgets, and token and latency tracing.",
+          "tags": ["llm", "testing", "infrastructure"],
+          "evidence": ["technical-assets.json:inference-harness", "technical-assets.json:free-llm-harness"]
+        },
+        {
+          "id": "ip-services",
+          "text": "Design and deploy authenticated services and developer tooling in Elixir, Python, Rust, and Swift for clients and my own projects; 150+ projects across eight or more languages.",
+          "tags": ["repos", "developer-tooling", "infrastructure"],
+          "evidence": ["drafts/cv.html", "technical-assets.json:gemini-gate", "technical-assets.json:corpora"]
         }
       ]
     },
@@ -143,6 +265,9 @@
       "id": "earlier-roles",
       "title": "Earlier Data Science, NLP & Software Roles",
       "organization": "Nestlogic, Maverick Medical AI, Athena Portfolio Solutions, Ten-X, Verba, and Finfon",
+      "focus": "NLP, classification, computer vision",
+      "did": "Financial-news signal extraction, medical-text classification, vision pipelines, corpus infrastructure; Tel Aviv, Hong Kong, Prague.",
+      "why": "",
       "dates": "2009-2019",
       "context": "Roles in Tel Aviv, Hong Kong, and Prague.",
       "tags": ["ml", "nlp", "research", "software"],
@@ -191,9 +316,76 @@
       "asset_id": "co-loop"
     },
     {
+      "id": "topo-sonify-public",
+      "name": "topo-sonify",
+      "url": "https://github.com/marchdown/topo-sonify",
+      "text": "Rust library turning persistent homology, Hodge theory, and Morse theory into sound, with documentation chapters on simplicial complexes, homology, and persistence.",
+      "text_short": "Rust library that maps persistent homology, Hodge theory, and Morse theory to sound. The math core was checked against known invariants (β(S²) = (1,0,1), χ = 2) before any audio code; unit-tested, CI green. Public.",
+      "tags": ["ml", "research", "rust", "gloat", "salestech"],
+      "asset_id": "topo-sonify"
+    },
+    {
+      "id": "pocket-live",
+      "name": "pocket",
+      "url": "https://pocket.dissemblage.art/",
+      "text": "Suite of 18 installable PWAs behind one scripted pipeline.",
+      "text_short": "Suite of 18 installable PWAs behind one pipeline: machine-checked rules (offline cache, update banner, safe-area, no critical-path network), content-hash service-worker versions, and a deploy that verifies the live URLs from outside. Live; code private.",
+      "tags": ["infrastructure", "software", "testing", "gloat", "salestech"],
+      "asset_id": "pocket"
+    },
+    {
+      "id": "llm-infra",
+      "name": "LLM routing and quota tooling",
+      "url": "https://gitlab.com/uprootiny/inference_harness",
+      "private": true,
+      "text": "Elixir, Python, and Rust LLM infrastructure.",
+      "text_short": "Elixir, Python, and Rust: provider routing and fallback chains, jittered retry honoring Retry-After, per-client rate limits, token, cost, and latency audit logs. Python harness over 88 requests: 100% success on a quota probe, 83% in an outage probe. Private.",
+      "tags": ["llm", "infrastructure", "gloat", "salestech"],
+      "asset_id": "inference-harness"
+    },
+    {
+      "id": "coggy-private",
+      "name": "coggy",
+      "url": "https://gitlab.com/uprootiny/coggy",
+      "private": true,
+      "text": "Rust cognitive architecture.",
+      "text_short": "Rust cognitive architecture: AtomSpace, PLN inference, and ECAN attention allocation in a parse, ground, attend, infer, reflect loop; 73 unit tests, CI. Private.",
+      "tags": ["ml", "research", "software", "gloat"],
+      "asset_id": "coggy"
+    },
+    {
+      "id": "agda-proofs",
+      "name": "agda-proofs",
+      "url": "https://github.com/marchdown/agda-proofs",
+      "text": "Agda formalizations of enumerated and recursive sets and of the natural numbers (2015).",
+      "tags": ["research", "formal-methods", "gloat", "salestech"],
+      "asset_id": "agda-proofs"
+    },
+    {
+      "id": "pi-harness",
+      "name": "pi-harness",
+      "url": "https://gitlab.com/uprootiny/pi-harness",
+      "private": true,
+      "text": "Eval harness for a coding agent, scoring pass/fail, cost, and wall time per run. A/B of a structural gate: spec-first 0/3 to 3/3 at +26% cost and +80% wall time (n=3, one model).",
+      "tags": ["llm", "testing", "developer-tooling", "salestech"],
+      "text_short": "Evaluation harness for coding agents. Scores pass rate, cost, and runtime per run and A/B-tests configuration changes; one change raised spec-first compliance from 0/3 to 3/3 at +26% cost (n=3).",
+      "asset_id": "pi-harness"
+    },
+    {
+      "id": "free-llm-harness",
+      "name": "free-llm-harness",
+      "url": "https://gitlab.com/uprootiny/free-llm-harness",
+      "private": true,
+      "text": "Python harness running prompt sets against free OpenRouter models, with backoff, model selection, and tool calls. Over n=88 requests: 100% success on the quota probe, 83% in the outage probe, p95 6.4 s.",
+      "tags": ["llm", "testing", "software", "gloat"],
+      "text_short": "Python harness for testing LLM endpoints: backoff, model selection, tool calls. Measured success rate and p95 latency over 88 requests.",
+      "asset_id": "free-llm-harness"
+    },
+    {
       "id": "gemini-gate",
       "name": "gemini-gate",
       "url": "https://gitlab.com/uprootiny/gemini-gate",
+      "private": true,
       "text": "Elixir/Phoenix credential service with authenticated retrieval, Gemini API proxying, and Caddy/systemd deployment.",
       "tags": ["llm", "infrastructure", "security", "elixir", "operations"],
       "asset_id": "gemini-gate"
@@ -202,8 +394,10 @@
       "id": "inference-harness",
       "name": "inference_harness",
       "url": "https://gitlab.com/uprootiny/inference_harness",
+      "private": true,
       "text": "Elixir LLM harness for multi-provider routing, role-specific fallback, token/latency tracing, and bounded concurrent jobs.",
       "tags": ["llm", "infrastructure", "elixir", "testing", "operations"],
+      "text_short": "LLM job runner in Elixir: provider routing and fallback, retry and time budgets, token and latency tracing.",
       "asset_id": "inference-harness"
     },
     {
@@ -248,7 +442,7 @@
     {
       "id": "llm-routing",
       "heading": "LLM platforms and routing",
-      "text": "Claude, Gemini, Groq, OpenRouter, Ollama, and Cloudflare Workers AI; role-specific fallback, time/token budgets, and latency tracing. Modal and Railway in brief LLM research.",
+      "text": "Claude, Gemini, OpenRouter, Ollama, and Cloudflare Workers AI; role-specific fallback, time/token budgets, and latency tracing. Modal and Railway in brief LLM research.",
       "tags": ["llm", "infrastructure", "operations", "testing"],
       "evidence_asset_ids": ["inference-harness"],
       "evidence_role_ids": ["move38"]
@@ -273,6 +467,44 @@
       "text": "Financial-market monitoring, data analysis, signal representations and transformations, feature engineering, model selection, and model training.",
       "tags": ["ml", "research", "data-analysis", "feature-engineering"],
       "evidence_role_ids": ["spring-research"]
+    }
+  ],
+  "skills": [
+    {
+      "id": "sk-llm",
+      "heading": "LLM systems",
+      "text": "Tool calling, provider routing and fallback, quota and rate-limit handling, cost and latency tracing. Claude, Gemini, OpenRouter, Ollama, Cloudflare Workers AI.",
+      "tags": ["llm"]
+    },
+    {
+      "id": "sk-ml",
+      "heading": "Machine learning",
+      "text": "NLP, text classification and extraction, feature engineering, model selection and training.",
+      "tags": ["ml"]
+    },
+    {
+      "id": "sk-math",
+      "heading": "Mathematics and ML",
+      "text": "Topological data analysis, quantitative modelling, NLP, feature engineering, model training.",
+      "tags": ["ml"]
+    },
+    {
+      "id": "sk-foundations",
+      "heading": "Foundations",
+      "text": "Programming, analytics, systems design, architecture since 2009; research, applied math.",
+      "tags": ["software"]
+    },
+    {
+      "id": "sk-lang",
+      "heading": "Languages",
+      "text": "Rust, Elixir, Python, Swift, Clojure, TypeScript; earlier Haskell and Agda.",
+      "tags": ["software"]
+    },
+    {
+      "id": "sk-infra",
+      "heading": "Infrastructure",
+      "text": "Nix, Caddy, systemd, CI, PWA build and deploy tooling.",
+      "tags": ["infrastructure"]
     }
   ],
   "education": [

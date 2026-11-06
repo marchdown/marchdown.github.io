@@ -87,13 +87,22 @@ function profileEvidence(items, focusTags, excludedTags) {
 
 function renderDocument(model) {
   const {
-    person, title, summary, scope, experience, capabilities, technicalStack, selectedWork, education, provenance
+    person, title, summary, scope, experience, capabilities, technicalStack, selectedWork, education, provenance, headings = {}, print = {}, skills = [], shortText = false, formula = false, workNotes = {}
   } = model;
+  const skillsHtml = skills.map((item) => `
+      <p class="skill"><span class="label">${escapeHtml(item.heading)}:</span> ${escapeHtml(item.text)}</p>`).join("\n");
+  const heading = (key, fallback) => escapeHtml(headings[key] ?? fallback);
+  const printOverrides = [
+    print.paper === "A4" ? "@page { size:A4; margin:12mm 14mm; }" : "",
+    print.compact ? `.skill { margin:3px 0; } body { font-size:${print.hideFooter ? "9.7" : "9.4"}pt; line-height:${print.hideFooter ? "1.38" : "1.34"}; } h1 { font-size:22pt; } h2 { margin-top:${print.hideFooter ? "13" : "11"}px; } .job { margin-top:${print.hideFooter ? "10" : "8"}px; } .job-head { flex-wrap:nowrap; } footer { margin-top:9px; padding-top:6px; font-size:6.3pt; }` : ""
+  ].filter(Boolean);
+  const formulaCss = formula ? "\n  .focus { margin:2px 0 0; color:var(--accent); font-size:.92em; font-weight:600; } .did, .why { margin:3px 0 0; } .why { color:var(--muted); } .project em { color:var(--accent); font-style:normal; font-weight:600; }" : "";
+  const printCss = formulaCss + (printOverrides.length === 0 ? "" : `\n  @media print { ${printOverrides.join(" ")} }`);
   const contact = [
     escapeHtml(person.location),
     `<a href="mailto:${escapeHtml(person.contact.email)}">${escapeHtml(person.contact.email)}</a>`,
     `<a href="${escapeHtml(person.contact.github)}">github.com/marchdown</a>`,
-    `<a href="${escapeHtml(person.contact.website)}">hyperstitious.org</a>`
+    `<a href="${escapeHtml(person.contact.website)}">${escapeHtml(new URL(person.contact.website).host)}</a>`
   ].join('<span class="separator">|</span>');
   const scopeHtml = scope.map((item) => `<li>${escapeHtml(item.text)}</li>`).join("\n");
   const experienceHtml = experience.map((role) => `
@@ -102,8 +111,10 @@ function renderDocument(model) {
           <span class="job-title">${escapeHtml(role.title)} <span class="organization">- ${escapeHtml(role.organization)}</span></span>
           <span class="dates">${escapeHtml(role.dates)}</span>
         </div>
-        <p class="context">${escapeHtml(role.context)}</p>
-        <ul>${role.bullets.map((bullet) => `<li>${escapeHtml(bullet.text)}</li>`).join("")}</ul>
+${formula && role.did ? `        <p class="focus">${escapeHtml(role.focus)}</p>
+        <p class="did">${escapeHtml(role.did)}</p>
+${role.why ? `        <p class="why">${escapeHtml(role.why)}</p>` : ""}` : `        <p class="context">${escapeHtml(role.context)}</p>
+        <ul>${role.bullets.map((bullet) => `<li>${escapeHtml(bullet.text)}</li>`).join("")}</ul>`}
       </article>`).join("\n");
   const capabilitiesHtml = capabilities.map((item) => `
         <div class="capability">
@@ -115,8 +126,13 @@ function renderDocument(model) {
           <h3>${escapeHtml(item.heading)}</h3>
           <p>${escapeHtml(item.text)}</p>
         </div>`).join("\n");
-  const workHtml = selectedWork.map((item) => `
-      <p class="project"><strong><a href="${escapeHtml(item.url)}">${escapeHtml(item.name)}</a></strong> <span>- ${escapeHtml(item.text)}</span></p>`).join("\n");
+  const workHtml = selectedWork.map((item) => {
+    const name = item.private
+      ? `<strong>${escapeHtml(item.name)}</strong>`
+      : `<strong><a href="${escapeHtml(item.url)}">${escapeHtml(item.name)}</a></strong>`;
+    return `
+      <p class="project">${name} <span>- ${escapeHtml(shortText && item.text_short ? item.text_short : item.text)}${workNotes[item.id] ? ` <em>${escapeHtml(workNotes[item.id])}</em>` : ""}</span></p>`;
+  }).join("\n");
   const provenanceLine = [
     `project_name=${provenance.project_name}`,
     `repo_path=${provenance.repo_path}`,
@@ -157,7 +173,7 @@ function renderDocument(model) {
   .project { margin:7px 0; }.project strong { color:var(--ink); }.project span { color:var(--muted); }.details { display:grid; grid-template-columns:1fr 1fr; gap:8px 30px; }.details p { margin:0; }.label { color:var(--muted); font-weight:650; }
   footer { margin-top:28px; padding-top:11px; border-top:1px solid var(--rule); color:var(--faint); font:10px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace; }footer p { margin:.25em 0; }
   @media (max-width:620px) { .page { width:100%; margin:0; padding:28px 22px; border:0; box-shadow:none; } h1 { font-size:27px; }.scope,.capabilities,.details { grid-template-columns:1fr; } }
-  @media print { @page { margin:14mm 15mm; } body { background:#fff; font-size:10.3pt; line-height:1.42; }.page { width:auto; margin:0; padding:0; border:0; box-shadow:none; }h1 { font-size:23pt; }h2 { margin-top:18px; break-after:avoid; }a { color:var(--ink); text-decoration:none; }.job,.capability { break-inside:avoid; }footer { font-size:7.5pt; } }
+  @media print { @page { margin:14mm 15mm; } body { background:#fff; font-size:10.3pt; line-height:1.42; }.page { width:auto; margin:0; padding:0; border:0; box-shadow:none; }h1 { font-size:23pt; }h2 { margin-top:18px; break-after:avoid; }a { color:var(--ink); text-decoration:none; }.job,.capability { break-inside:avoid; }footer { font-size:7.5pt; } }${printCss}
 </style>
 </head>
 <body>
@@ -171,35 +187,40 @@ function renderDocument(model) {
       <h2 id="summary-heading">Profile</h2>
       <p class="summary">${escapeHtml(summary.text)}</p>
     </section>
-    <section aria-labelledby="scope-heading">
-      <h2 id="scope-heading">Fractional Scope</h2>
+${skills.length === 0 ? "" : `    <section aria-labelledby="skills-heading">
+      <h2 id="skills-heading">${heading("skills", "Skills")}</h2>${skillsHtml}
+    </section>
+`}${scope.length === 0 ? "" : `    <section aria-labelledby="scope-heading">
+      <h2 id="scope-heading">${heading("scope", "Fractional Scope")}</h2>
       <ul class="scope">${scopeHtml}</ul>
-    </section>
+    </section>`}
     <section aria-labelledby="experience-heading">
-      <h2 id="experience-heading">Selected Experience</h2>${experienceHtml}
-    </section>
+      <h2 id="experience-heading">${heading("experience", "Selected Experience")}</h2>${experienceHtml}
+    </section>${capabilities.length === 0 ? "" : `
     <section aria-labelledby="capabilities-heading">
-      <h2 id="capabilities-heading">Operating Capabilities</h2>
+      <h2 id="capabilities-heading">${heading("capabilities", "Operating Capabilities")}</h2>
       <div class="capabilities">${capabilitiesHtml}</div>
-    </section>
+    </section>`}${technicalStack.length === 0 ? "" : `
     <section aria-labelledby="stack-heading">
-      <h2 id="stack-heading">Technical Stack</h2>
+      <h2 id="stack-heading">${heading("stack", "Technical Stack")}</h2>
       <div class="capabilities">${technicalStackHtml}</div>
-    </section>
+    </section>`}
     <section aria-labelledby="work-heading">
-      <h2 id="work-heading">Selected Open Source</h2>${workHtml}
+      <h2 id="work-heading">${heading("work", "Selected Open Source")}</h2>${workHtml}
     </section>
     <section aria-labelledby="background-heading">
-      <h2 id="background-heading">Background</h2>
+      <h2 id="background-heading">${heading("background", "Background")}</h2>
       <div class="details">
         <p><span class="label">Education:</span> ${escapeHtml(education.join(" "))}</p>
         <p><span class="label">Languages:</span> ${escapeHtml(person.spoken_languages)}</p>
       </div>
     </section>
-    <footer>
+${print.hideFooter
+    ? `    <!-- provenance (also in the adjacent .provenance.json): ${provenanceLine}. ${sessionLine}. -->`.replaceAll("--", "- -")
+    : `    <footer>
       <p>Artifact provenance: ${provenanceLine}.</p>
       <p>${sessionLine}.</p>
-    </footer>
+    </footer>`}
   </main>
 </body>
 </html>
@@ -236,7 +257,9 @@ const scope = profileEvidence(valueByIds(knowledgeBase.scope_items, profile.scop
 const experience = valueByIds(knowledgeBase.experience, profile.experience_ids, "experience")
   .map((role) => ({
     ...role,
-    bullets: profileEvidence(role.bullets, focusTags, excludedTags).slice(0, profile.max_bullets_per_role ?? 2)
+    bullets: profile.bullet_ids?.[role.id]
+      ? valueByIds(role.bullets, profile.bullet_ids[role.id], `bullet of ${role.id}`)
+      : profileEvidence(role.bullets, focusTags, excludedTags).slice(0, profile.max_bullets_per_role ?? 2)
   }))
   .filter((role) => role.bullets.length > 0)
   .slice(0, maxRoles);
@@ -269,7 +292,8 @@ for (const item of technicalStack) {
   }
 }
 
-if (scope.length === 0 || experience.length === 0 || capabilities.length === 0 || selectedWork.length === 0) {
+const skills = valueByIds(knowledgeBase.skills ?? [], profile.skill_ids ?? [], "skill");
+if ((scope.length === 0 && skills.length === 0) || experience.length === 0 || selectedWork.length === 0 || (capabilities.length === 0 && (profile.capability_ids ?? []).length > 0)) {
   throw new Error("The selected focus/exclusion filter removed a required CV section. Broaden --focus or --exclude.");
 }
 
@@ -311,7 +335,13 @@ const document = renderDocument({
   technicalStack,
   selectedWork,
   education: knowledgeBase.education,
-  provenance
+  provenance,
+  headings: profile.headings,
+  print: profile.print,
+  skills,
+  shortText: Boolean(profile.short_text),
+  formula: Boolean(profile.formula),
+  workNotes: profile.work_notes ?? {}
 });
 
 await mkdir(path.dirname(outputPath), { recursive: true });

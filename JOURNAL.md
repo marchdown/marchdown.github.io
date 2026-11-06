@@ -2,6 +2,40 @@
 
 Newest first.
 
+## 2026-11-06 — The CV, redone
+
+**Ask (owner):** "the cvs themselves, redo them again, you could do much better than
+what's already in there."
+
+**What was there:** thirteen editions in `drafts/` (severe, professional, plain,
+Hebrew, magazine, academic, fractional, two targeted one-pagers from the
+`cv-salestech-ai` branch, merged here as abbe6f0) plus a Node generator over
+`cv/knowledge-base.json`. The generated ones are factual but read as lists of nouns:
+"Tool calling, provider routing and fallback, quota and rate-limit handling…"; the
+measured results sit at the bottom under Selected Work; the contact block links
+hyperstitious.org (404) or marchdown.hyperstitious.org (timeout).
+
+**Decision:** one canonical `cv.html` at the root, hand-authored, evidence first.
+Lede states the offer in one breath. Then "Recent work, with what it showed": six items,
+each with the claim, the measured result where one exists (88 requests, 100 % / 83 %,
+p95 6.4 s), and an italic one-line takeaway. Then roles, newest first, one paragraph
+each. Then stack, education, languages in a two-column block. Paper on screen, A4 in
+print, name and contacts from `site.js` so the legal name change touches one file.
+Facts are transcribed from `cv/knowledge-base.json`; nothing new was claimed.
+pi-harness numbers stay out (commit 5821af3 removed them on purpose); topo-sonify is
+labelled a research prototype that stopped after the WASM build (owner's status).
+
+**Verified:** renders in Chrome with no console errors; headless Chrome prints it to
+one A4 page (`cv.pdf`, checked by page count after three rounds of print-CSS
+tightening: 2 → 2 → 1). Mobile layout collapses to one column (CSS only; not viewed
+on a phone).
+
+**Left as is:** `drafts/` and its editions index, linked from the CV footer as "older
+editions". The Node generator still exists; `cv.html` does not use it.
+
+**Open:** the CV branch's knowledge base says `marchdown@gmail.com`; the owner gave
+`uprootiny@gmail.com` today and `site.js` uses that. Decide which the CV carries.
+
 ## 2026-11-06 — The band, the gallery, the tools, the letter
 
 **Ask (owner, in pieces across the session):** the landing band becomes

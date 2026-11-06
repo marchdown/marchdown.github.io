@@ -39,6 +39,11 @@ performed on his own creativity.
   Fix the knowledge base (person.contact.website) or revive the .org.
 - Status of the extra live pieces not yet listed (verse-garden, profane, hyle, ruby, hermesbase,
   doctrine): included only the ones whose own page presents finished work. Say which others belong.
+- **Which email the CV carries**: `cv/knowledge-base.json` (from the cv-salestech-ai branch) says
+  `marchdown@gmail.com`; `site.js` says `uprootiny@gmail.com` (owner, 2026-11-06). `cv.html` follows
+  `site.js`. Settle the knowledge base either way.
+- **Review `cv.html`** (the one canonical CV, 2026-11-06) and say what is wrong or missing; the
+  thirteen older editions in `drafts/` stay reachable from its footer until retired.
 
 ## Resolved
 - Structure (2026-11-06): the landing stays the artpiece; the legible pages are separate and reached

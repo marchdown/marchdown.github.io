@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CV · {{name}}</title>
+<meta name="description" content="LLM systems engineer; applied ML and NLP since 2009. Routing, fallback, budgets, evaluation, and the review process around them.">
+<style>
+/* cv.html — the one CV. Paper on screen, paper in print. Facts come from
+   cv/knowledge-base.json; identity from site.js. Every claim here traces to a
+   line there. Print: A4, one sheet. */
+:root {
+  --paper: #f7f5f0;
+  --ink: #1a1d22;
+  --soft: #4a5160;
+  --faint: #8a8f99;
+  --accent: #2b4a7a;
+  --rule: #d9d5cc;
+  --serif: "Charter", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { background: #e9e6df; }
+body {
+  font-family: var(--serif);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.5;
+  padding: 40px 16px 64px;
+  -webkit-font-smoothing: antialiased;
+}
+.sheet {
+  background: var(--paper);
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 56px 60px 48px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 12px 40px rgba(0,0,0,.08);
+}
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(43,74,122,.25); }
+a:hover { border-bottom-color: var(--accent); }
+
+header { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+h1 { font-weight: 400; font-size: 30px; letter-spacing: -0.01em; line-height: 1.1; }
+.role { color: var(--soft); font-size: 15.5px; margin-top: 4px; }
+.contact {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+  color: var(--soft);
+  text-align: right;
+  line-height: 1.7;
+}
+.contact a { color: var(--soft); border: 0; }
+.contact a:hover { color: var(--accent); }
+
+.lede {
+  margin: 26px 0 8px;
+  font-size: 16.5px;
+  line-height: 1.5;
+  max-width: 60ch;
+}
+
+h2 {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin: 34px 0 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule);
+}
+
+/* evidence list: name, then the claim, then what it shows */
+.work { list-style: none; }
+.work li { display: grid; grid-template-columns: 150px 1fr; gap: 6px 18px; padding: 8px 0; }
+.work .name { font-size: 15px; line-height: 1.4; }
+.work .name small { display: block; font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); margin-top: 2px; }
+.work .claim { color: var(--ink); }
+.work .claim em { color: var(--soft); font-style: italic; }
+
+/* roles */
+.roles { list-style: none; }
+.roles li { display: grid; grid-template-columns: 150px 1fr; gap: 4px 18px; padding: 8px 0; }
+.roles .when { font-family: var(--sans); font-size: 11.5px; color: var(--faint); letter-spacing: 0.04em; padding-top: 3px; }
+.roles .what b { font-weight: 500; }
+.roles .what span { color: var(--soft); }
+.roles .what p { color: var(--ink); margin-top: 2px; }
+
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }
+.two p { margin: 0 0 6px; }
+.two b { font-weight: 500; }
+
+footer {
+  margin-top: 36px;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 10.5px;
+  color: var(--faint);
+  line-height: 1.8;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+footer a { color: var(--faint); border: 0; }
+footer a:hover { color: var(--accent); }
+
+@media (max-width: 640px) {
+  .sheet { padding: 36px 24px 32px; }
+  .work li, .roles li { grid-template-columns: 1fr; gap: 2px; }
+  .two { grid-template-columns: 1fr; }
+  header { display: block; }
+  .contact { text-align: left; margin-top: 10px; }
+}
+
+@page { size: A4; margin: 10mm 12mm; }
+@media print {
+  html, body { background: #fff; padding: 0; font-size: 9.4pt; line-height: 1.28; }
+  .sheet { max-width: none; box-shadow: none; padding: 0; background: #fff; }
+  h1 { font-size: 19pt; }
+  .role { font-size: 10pt; margin-top: 1pt; }
+  .contact { font-size: 8pt; line-height: 1.5; }
+  .lede { font-size: 10.2pt; margin: 8pt 0 2pt; max-width: none; }
+  h2 { font-size: 7.5pt; margin: 6pt 0 1pt; padding-top: 3pt; }
+  .work li, .roles li { padding: 1pt 0; gap: 1pt 12pt; grid-template-columns: 96pt 1fr; }
+  .roles .what p { margin-top: 0; }
+  .work .name { font-size: 9.6pt; }
+  .work .name small, .roles .when { font-size: 7.2pt; }
+  .two { gap: 0 18pt; grid-template-columns: 1fr 1fr 1fr; }
+  .two > div { display: contents; }
+  .two p { margin-bottom: 1pt; }
+  footer { margin-top: 5pt; padding-top: 3pt; font-size: 7.2pt; }
+  footer .screen-only { display: none; }
+  a { border: 0; color: inherit; }
+  .contact a, .work .name a { color: var(--accent); }
+}
+</style>
+</head>
+<body>
+<article class="sheet">
+  <header>
+    <div>
+      <h1 data-site="name">Pavel Vasilyev</h1>
+      <div class="role">LLM systems engineer · applied ML and NLP since 2009</div>
+    </div>
+    <div class="contact">
+      Jerusalem, Israel<br>
+      <a data-site="email"></a> · <a data-site="telegram"></a><br>
+      <a data-site="github"></a> · <a data-site="art"></a>
+    </div>
+  </header>
+
+  <p class="lede">I build the part of an AI product that has to be correct before it ships: provider
+    routing and fallback, budgets and rate limits, evaluation benches, and the review process around
+    them. Fifteen years in NLP and applied machine learning before that, and the habit of writing the
+    specification first and leaving a repository someone else can run.</p>
+
+  <h2>Recent work, with what it showed</h2>
+  <ul class="work">
+    <li>
+      <div class="name">LLM inference harness<small>Elixir · Python · Rust · private</small></div>
+      <div class="claim">Provider routing with role-specific fallback chains, jittered retry honouring
+        <code>Retry-After</code>, per-client rate limits, bounded concurrency, and token, cost and latency
+        audit logs per call. Measured over 88 requests: 100&thinsp;% success on a quota probe, 83&thinsp;% in an
+        outage probe, p95 latency 6.4&thinsp;s. <em>Cost, latency and quota visible per call.</em></div>
+    </li>
+    <li>
+      <div class="name">gemini-gate<small>Elixir / Phoenix · private</small></div>
+      <div class="claim">A credential service in front of the Gemini API: authenticated retrieval,
+        constant-time token comparison, atomic credential replacement, deployed under Caddy and systemd.
+        <em>Enforced boundaries around agents, not prompt rules.</em></div>
+    </li>
+    <li>
+      <div class="name"><a href="https://pocket.dissemblage.art">pocket</a><small>PWA pipeline · live, code private</small></div>
+      <div class="claim">Eighteen installable, offline-first web apps behind one pipeline: a machine-checked
+        rule set (offline cache, update banner, safe-area, no network on the critical path), content-hash
+        service-worker versions, and a deploy that verifies the live URLs from outside.
+        <em>End-to-end delivery, build to verified deploy.</em></div>
+    </li>
+    <li>
+      <div class="name"><a href="https://github.com/marchdown/co-loop">co-loop</a><small>protocol · public</small></div>
+      <div class="claim">A fork-based protocol for parallel agentic work: several agents on one codebase
+        without stepping on each other's files, and clean integration afterwards.
+        <em>How I run more than one coding agent at once.</em></div>
+    </li>
+    <li>
+      <div class="name"><a href="https://dissemblage.art">dissemblage.art</a><small>ten interactive pieces · live</small></div>
+      <div class="claim">First-person rooms in hyperbolic 3-space, an aperiodic binary tiling, generative
+        card decks that compose a system prompt or an AGENTS.md from twenty choices. Each is one HTML file
+        with no build step. <em>Craft, and geometry, in public.</em></div>
+    </li>
+    <li>
+      <div class="name"><a href="https://github.com/marchdown/topo-sonify">topo-sonify</a><small>Rust · research prototype, Apr–Jul 2026</small></div>
+      <div class="claim">Persistent homology, Hodge theory and Morse theory mapped to sound. The mathematical
+        core was checked against known invariants (β(S²) = (1,0,1), χ = 2) before any audio code; stopped
+        after the WASM build. <em>Applied-mathematics depth behind the engineering.</em></div>
+    </li>
+  </ul>
+
+  <h2>Experience</h2>
+  <ul class="roles">
+    <li>
+      <div class="when">2010 – present</div>
+      <div class="what"><b>Independent software engineer</b> <span>· consulting and open source</span>
+        <p>Design, build and ship software for clients and my own projects: 150+ projects across eight or
+          more languages, with LLM coding agents as my main tool since 2022. The recent work targets what
+          makes AI-assisted development safe to rely on: routing and fallback, quota handling, and deploy
+          pipelines that check themselves.</p></div>
+    </li>
+    <li>
+      <div class="when">2026</div>
+      <div class="what"><b>LLM research contract</b> <span>· Move38</span>
+        <p>Explored and tested LLM strategies for an API-centred research angle: ontologies, prompt sets,
+          test benches and harnesses across OpenRouter, Modal and Railway.</p></div>
+    </li>
+    <li>
+      <div class="when">2024</div>
+      <div class="what"><b>Technical infrastructure consultant</b> <span>· LevEhad, retainer</span>
+        <p>Worked through infrastructure decisions in calls with developers and designers for an Israeli
+          disability-inclusion NGO; contributed to the Google Cloud to AWS migration and a parallel
+          hardware track.</p></div>
+    </li>
+    <li>
+      <div class="when">2020 – 2022</div>
+      <div class="what"><b>Research lead</b> <span>· Spring Research, quantitative research</span>
+        <p>Owned applied research on financial-market data end to end: monitoring and analysis, new signal
+          representations and transformations, feature engineering, model selection, training; carried
+          findings from exploratory analysis into the team's shared modelling.</p></div>
+    </li>
+    <li>
+      <div class="when">2009 – 2019</div>
+      <div class="what"><b>Data science, NLP and software roles</b> <span>· Nestlogic, Maverick Medical AI,
+        Athena Portfolio Solutions, Ten-X, Verba, Finfon</span>
+        <p>Financial-news NLP and signal extraction, medical-text classification and information extraction,
+          computer-vision pipelines, corpus-linguistics infrastructure. Tel Aviv, Hong Kong, Prague.</p></div>
+    </li>
+  </ul>
+
+  <h2>Stack, education, languages</h2>
+  <div class="two">
+    <div>
+      <p><b>Languages.</b> Rust, Elixir/OTP and Phoenix, Python, Swift, Clojure, TypeScript; earlier
+        Haskell and Agda.</p>
+      <p><b>Models and routing.</b> Claude, Gemini, OpenRouter, Ollama, Cloudflare Workers AI; tool
+        calling, fallback, time and token budgets, latency tracing.</p>
+      <p><b>Operations.</b> Nix, Caddy, systemd, CI, authenticated HTTP APIs, credential-service design.</p>
+    </div>
+    <div>
+      <p><b>Machine learning.</b> NLP, text classification and extraction, feature engineering, model
+        selection and training; topological data analysis.</p>
+      <p><b>Education.</b> MSc Computational Linguistics, RSUH, Moscow, 2015. BSc Nuclear Physics, Czech
+        Technical University, Prague, 2009.</p>
+      <p><b>Spoken.</b> English, Hebrew, Russian; working German and French.</p>
+    </div>
+  </div>
+
+  <footer>
+    <span>Facts from <code>cv/knowledge-base.json</code>, 2026-11-06. Private repositories: walkthrough on a call.</span>
+    <span class="screen-only"><a href="hire.html">the letter</a> · <a href="drafts/index-cv.html">older editions</a> · <a href="index.html">home</a> · <a href="javascript:print()">print</a></span>
+  </footer>
+</article>
+<script src="site.js"></script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 {
-  "_about": "Source for gallery.html and tools.html (rendered by feed.js). Only finished, reachable work belongs here. kind: gallery | tool. status: live (a page a stranger can open) | repo (public source) | private (named, walkthrough on request). Order is the order shown. Evidence: dissemblage.art vitrine and each subdomain fetched 2026-11-06 (all 200); GitHub/GitLab listings fetched 2026-11-06. era: ai (prominent, in the feed) | earlier (compressed under a fold).",
+  "_about": "Source for gallery.html and tools.html (rendered by feed.js). Only finished, reachable work belongs here. kind: gallery | tool. status: live (a page a stranger can open) | repo (public source) | private (named, walkthrough on request). Order is the order shown. Evidence: dissemblage.art vitrine and each subdomain fetched 2026-11-06 (all 200); GitHub/GitLab listings fetched 2026-11-06. era: ai (prominent, in the feed) | earlier (compressed under a fold). status offline: real work whose host is currently down. thumb: thumbs/<slug>.jpg, captured 2026-11-06 with headless Chrome.",
   "items": [
     {
       "kind": "gallery",
@@ -12,7 +12,8 @@
         "WebGL"
       ],
       "status": "live",
-      "era": "ai"
+      "era": "ai",
+      "thumb": "thumbs/enfilade.jpg"
     },
     {
       "kind": "gallery",
@@ -25,7 +26,8 @@
         "WebGL"
       ],
       "status": "live",
-      "era": "ai"
+      "era": "ai",
+      "thumb": "thumbs/cascade.jpg"
     },
     {
       "kind": "gallery",
@@ -37,7 +39,8 @@
         "22 arcana → a spread"
       ],
       "status": "live",
-      "era": "ai"
+      "era": "ai",
+      "thumb": "thumbs/arcana-swipe.jpg"
     },
     {
       "kind": "gallery",
@@ -49,7 +52,8 @@
         "22 plates → an SVG"
       ],
       "status": "live",
-      "era": "ai"
+      "era": "ai",
+      "thumb": "thumbs/arcana.jpg"
     },
     {
       "kind": "gallery",
@@ -61,7 +65,8 @@
         "25 cards → a reading"
       ],
       "status": "live",
-      "era": "ai"
+      "era": "ai",
+      "thumb": "thumbs/arcana-spread.jpg"
     },
     {
       "kind": "gallery",
@@ -73,7 +78,8 @@
         "8 pairs → a match"
       ],
       "status": "live",
-      "era": "ai"
+      "era": "ai",
+      "thumb": "thumbs/arcana-flip.jpg"
     },
     {
       "kind": "gallery",
@@ -86,7 +92,8 @@
         "seamless by construction"
       ],
       "status": "live",
-      "era": "ai"
+      "era": "ai",
+      "thumb": "thumbs/landing.jpg"
     },
     {
       "kind": "gallery",
@@ -99,7 +106,8 @@
         "sound",
         "hyperbolic lattice"
       ],
-      "status": "live"
+      "status": "live",
+      "thumb": "thumbs/halap.jpg"
     },
     {
       "kind": "gallery",
@@ -112,7 +120,8 @@
         "WebGL2",
         "field study 01"
       ],
-      "status": "live"
+      "status": "live",
+      "thumb": "thumbs/gravity-maze.jpg"
     },
     {
       "kind": "gallery",
@@ -124,7 +133,8 @@
         "2026",
         "studio index"
       ],
-      "status": "live"
+      "status": "live",
+      "thumb": "thumbs/hyperstitious.jpg"
     },
     {
       "kind": "gallery",
@@ -136,7 +146,8 @@
         "dissemblage.art"
       ],
       "status": "live",
-      "era": "ai"
+      "era": "ai",
+      "thumb": "thumbs/vitrine.jpg"
     },
     {
       "kind": "tool",
@@ -153,6 +164,78 @@
     },
     {
       "kind": "tool",
+      "era": "ai",
+      "name": "pi-harness",
+      "url": null,
+      "line": "Custody of a coding agent: a pinned, checksum-verified install, versioned configuration and doctrine, and one command that proves it still works. Eleven behaviour probes and an A/B bench for prompt and gate changes (n=3, one model: enough to see a change, not to claim a better outcome).",
+      "meta": [
+        "2026",
+        "Clojure · shell"
+      ],
+      "status": "private"
+    },
+    {
+      "kind": "tool",
+      "era": "ai",
+      "name": "tidy-harness",
+      "url": null,
+      "line": "A small LLM harness core in Swift, built from evidence: conformance tests run against real session logs rather than imagined ones.",
+      "meta": [
+        "2026",
+        "Swift"
+      ],
+      "status": "private"
+    },
+    {
+      "kind": "tool",
+      "era": "ai",
+      "name": "free-llm-harness",
+      "url": null,
+      "line": "A reliability harness for routing across free OpenRouter models: retries, tool loops, quota probes. The 88-request measurement on the CV comes from here.",
+      "meta": [
+        "2026",
+        "Python"
+      ],
+      "status": "private"
+    },
+    {
+      "kind": "tool",
+      "era": "ai",
+      "name": "api.hyle.lol",
+      "url": null,
+      "line": "A Rust/Axum proxy in front of OpenRouter with per-client rate limits, an audit log and SSE relay. Meant to live at hyle.lol; the host is down as of 2026-11-06, so it is listed as what it is, not as live.",
+      "meta": [
+        "2026",
+        "Rust"
+      ],
+      "status": "offline"
+    },
+    {
+      "kind": "tool",
+      "era": "ai",
+      "name": "The doctrine",
+      "url": null,
+      "line": "WISDOM, AGENTS and LIFECYCLE: the short, versioned rule set every agent session here reads first. Six load-bearing rules, thirty-eight lessons each tied to a real failure, and twelve lifecycle gates. Private until it is published.",
+      "meta": [
+        "2025–26",
+        "markdown"
+      ],
+      "status": "private"
+    },
+    {
+      "kind": "tool",
+      "era": "ai",
+      "name": "Agent configurations",
+      "url": null,
+      "line": "Reproducible configuration for three agents: pi (the custody repo above), Hermes (soul, skills, provider fallback) and opencode (a local LM Studio fallback provider). Configuration, not software of my own; kept so a machine can be rebuilt in an hour.",
+      "meta": [
+        "2026",
+        "config"
+      ],
+      "status": "private"
+    },
+    {
+      "kind": "tool",
       "name": "Pick Your Poison",
       "url": "https://pick-your-poison.dissemblage.art",
       "line": "Twenty forks of temperament: terse or thorough, warm or cool, sparring partner or right hand. Swipe them and it writes the system prompt you just described.",
@@ -161,7 +244,8 @@
         "20 cards → system prompt"
       ],
       "status": "live",
-      "era": "ai"
+      "era": "ai",
+      "thumb": "thumbs/pick-your-poison.jpg"
     },
     {
       "kind": "tool",
@@ -173,7 +257,8 @@
         "20 cards → AGENTS.md"
       ],
       "status": "live",
-      "era": "ai"
+      "era": "ai",
+      "thumb": "thumbs/md-forge.jpg"
     },
     {
       "kind": "tool",
@@ -185,7 +270,8 @@
         "16 cards → DEPLOY.md"
       ],
       "status": "live",
-      "era": "ai"
+      "era": "ai",
+      "thumb": "thumbs/substrate.jpg"
     },
     {
       "kind": "tool",
@@ -197,7 +283,8 @@
         "20 cards → charter + gates"
       ],
       "status": "live",
-      "era": "ai"
+      "era": "ai",
+      "thumb": "thumbs/strand-forge.jpg"
     },
     {
       "kind": "tool",
@@ -218,8 +305,7 @@
       "line": "An Elixir/OTP harness for LLM jobs: multi-provider routing, role-specific fallback chains, time budgets and retry ceilings, a token and latency ledger, bounded concurrency.",
       "meta": [
         "2025–26",
-        "Elixir",
-        "private"
+        "Elixir"
       ],
       "status": "private",
       "era": "ai"
@@ -231,8 +317,7 @@
       "line": "A small Elixir/Phoenix credential vault and Gemini API proxy: authenticated retrieval, constant-time token comparison, atomic credential replacement, deployed under Caddy and systemd.",
       "meta": [
         "2025–26",
-        "Elixir",
-        "private"
+        "Elixir"
       ],
       "status": "private",
       "era": "ai"
@@ -244,8 +329,7 @@
       "line": "A native macOS app for browsing, searching and composing context from AI conversation history: live ingestion, provenance per artifact, a corpus you can actually find things in.",
       "meta": [
         "2026",
-        "Swift",
-        "private"
+        "Swift"
       ],
       "status": "private",
       "era": "ai"
@@ -261,7 +345,8 @@
         "hyperbolic geometry",
         "in-browser"
       ],
-      "status": "live"
+      "status": "live",
+      "thumb": "thumbs/umbra.jpg"
     },
     {
       "kind": "tool",
@@ -274,7 +359,8 @@
         "PWA",
         "offline-first"
       ],
-      "status": "live"
+      "status": "live",
+      "thumb": "thumbs/pocket.jpg"
     },
     {
       "kind": "tool",
@@ -286,7 +372,8 @@
         "2026",
         "in-browser"
       ],
-      "status": "live"
+      "status": "live",
+      "thumb": "thumbs/ledger.jpg"
     },
     {
       "kind": "tool",
@@ -298,7 +385,8 @@
         "2026",
         "bench index"
       ],
-      "status": "live"
+      "status": "live",
+      "thumb": "thumbs/lab.jpg"
     },
     {
       "kind": "tool",

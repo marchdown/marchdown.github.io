@@ -2,6 +2,39 @@
 
 Newest first.
 
+## 2026-11-06 — Iteration: phone, thumbnails, the harnesses
+
+**Ask (owner):** "iterate", then "we have better harnesses. we have the harnesses [that
+should be] at hyle.lol and our opencode and pi and hermes configuration repos and
+wisdom.md and so, so much more".
+
+**Phone (emulated with 390 px same-origin iframes; Chrome would not shrink the window):**
+gallery, CV and letter collapse cleanly; the landing band orphaned "hire me" on a second
+line. Fixed: under 640 px the name takes its own line above the three words.
+
+**Thumbnails:** the gallery was text-only. Headless Chrome captured all nineteen live
+pages (`thumbs/`, 640 px JPEGs, ~500 KB total). The extension route failed twice (blocked
+on arcana.dissemblage.art, then a frozen renderer), and the first headless pass rendered
+Enfilade as a grey slab (WebGL under software GL); a second pass with
+`--use-angle=metal` fixed it. `feed.js` renders a thumb on the right at desktop width,
+above the text on phones.
+
+**The harnesses:** a search agent inventoried pi-harness, pi-doctrine, pi-agent-config,
+hermesbase, the Hermes and opencode configurations, api-hyle-lol, hyle-api,
+tidy-harness, free-llm-harness, and the doctrine files. Findings that shape the page:
+every one is private or has no remote; api.hyle.lol times out and hyle.lol is a GitHub
+Pages 404 despite the proxy README's "deployed, 99.5 % uptime"; hermesbase's own README
+says there is no application in it yet; Hermes and opencode are configurations of other
+people's agents. So `tools.html` now carries six named, unlinked entries near the top
+(pi-harness, tidy-harness, free-llm-harness, api.hyle.lol as *offline*, the doctrine,
+agent configurations) with wording that matches each repo's own claims, and `cv.html`
+gains a pi-harness line without the n=3 numbers (kept out since commit 5821af3).
+Nothing links anywhere until something is made public.
+
+**Verified:** no console errors on gallery or tools; CV re-printed to one page (it
+spilled to two with the new line; trimmed a sentence that repeated the lede and a few
+points of print spacing).
+
 ## 2026-11-06 — The CV, redone
 
 **Ask (owner):** "the cvs themselves, redo them again, you could do much better than

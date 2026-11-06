@@ -44,6 +44,11 @@ performed on his own creativity.
   `site.js`. Settle the knowledge base either way.
 - **Review `cv.html`** (the one canonical CV, 2026-11-06) and say what is wrong or missing; the
   thirteen older editions in `drafts/` stay reachable from its footer until retired.
+- **Make a harness public** so the tools page and CV can link one: pi-harness or pi-doctrine are
+  the natural candidates (checked 2026-11-06: every harness repo is private or has no remote;
+  api.hyle.lol times out; hyle.lol is a Pages 404). Until then they are named, not linked.
+- **hyle.lol**: decide whether to bring the proxy host back or retire the "live, 99.5 % uptime"
+  claim in `~/api-hyle-lol/README.md`; the tools page says "offline".
 
 ## Resolved
 - Structure (2026-11-06): the landing stays the artpiece; the legible pages are separate and reached

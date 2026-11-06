@@ -28,7 +28,7 @@
   sentinel.className = 'sentinel';
   main.after(sentinel);
 
-  const statusText = { live: 'live', repo: 'source', private: 'private · walkthrough on request' };
+  const statusText = { live: 'live', repo: 'source', private: 'private · walkthrough on request', offline: 'offline · source private' };
   let cursor = 0;
 
   function renderOne(it) {
@@ -38,10 +38,15 @@
       ? `<a href="${it.url}"${it.url.startsWith('http') ? ' rel="noopener"' : ''}>${it.name}</a>`
       : `<span class="private">${it.name}</span>`;
     const meta = it.meta.map((m) => `<span>${m}</span>`).join('');
-    el.innerHTML = `
+    const thumb = it.thumb
+      ? (it.url ? `<a class="thumb" href="${it.url}" tabindex="-1" aria-hidden="true"><img src="${it.thumb}" alt="" loading="lazy" decoding="async"></a>`
+                : `<div class="thumb"><img src="${it.thumb}" alt="" loading="lazy" decoding="async"></div>`)
+      : '';
+    if (thumb) el.classList.add('has-thumb');
+    el.innerHTML = `${thumb}<div class="text">
       <div class="title">${title}</div>
       <p class="line">${it.line}</p>
-      <div class="meta">${meta}<span class="status ${it.status}">${statusText[it.status] || it.status}</span></div>`;
+      <div class="meta">${meta}<span class="status ${it.status}">${statusText[it.status] || it.status}</span></div></div>`;
     main.appendChild(el);
     requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('in')));
   }

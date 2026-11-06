@@ -2,6 +2,50 @@
 
 Newest first.
 
+## 2026-11-06 — The working note, and two repos made public
+
+**Ask (owner):** "i kinda like the CV we worked out sitting with a colleague
+`~/Downloads/landing/index.html` but oh please *rephrase it* so it reads better and use at
+least two examples from our latest projects and make them into proper repos and publish on
+github".
+
+**The page:** "Oracles for AI Systems", a typeset working note (position, retainer offer,
+calibration bench, booking widget on a Cloudflare worker, record of roles). Now
+`oracles.html` here, with `worker/` beside it. Rephrased sentence by sentence without
+changing structure or voice; a 2026 Move38 row added to the record from the knowledge
+base; Telegram and email now come from `site.js`; WhatsApp, LinkedIn and the booking
+endpoint stay empty until supplied (the page hides what it lacks). Its facts disagree with
+`cv/knowledge-base.json` in three places; both versions stand and NEEDS.md names them.
+
+**Which projects:** an audit agent checked tidy-harness, api-hyle-lol, free-llm-harness
+and pi-harness for secrets, private data, licence, tests and claims. Chosen: tidy-harness
+(Swift verifier for agent behaviour) and free-llm-harness (Python reliability harness).
+Rejected: api-hyle-lol, because a real OpenRouter key is committed in its history (the
+key must be revoked and the history rewritten before any public remote; the README's
+"deployed, 99.5 % uptime" is also unverifiable); pi-harness, because it is custody of one
+Mac's agent install with fleet hostnames in its notes.
+
+**tidy-harness** (`github.com/marchdown/tidy-harness`, full history, v0.1.0): the reference
+scorecard threw on a tested claim with no mutation; now it reports false, as the Swift
+core does. The catalog and conformance checks skip loudly without their local inputs and
+`check.sh` ends with `GREEN WITH SKIPS` naming them. MIT licence, README without private
+project names, Actions running `check.sh`. With the real inputs: 21 tests, 11 probes
+agreed, Swift and Babashka agree exactly on 151 sessions, `ALL GREEN`.
+
+**free-llm-harness** (`github.com/marchdown/free-llm-harness`, fresh history, v0.1.0): home
+paths replaced by `~` expansion, two docs listing private project paths removed, local
+run dirs ignored, MIT licence, pytest workflow. Published from an orphan branch so the
+GitLab history (which carries those paths) stays private; the code is the same.
+
+**Verified from outside:** fresh clones of both in a temp dir with a fake `HOME`:
+tidy-harness `GREEN WITH SKIPS (5b3046a): skipped catalog conformance`; free-llm-harness
+`5 passed`; no tracked file in either contains a home path or a key-shaped string.
+GitHub Actions green on `main` and on the tag for both.
+
+**Linked:** oracles.html §3.2 opens with the two as worked examples of oracles; tools.html
+entries now link them; cv.html swaps the private pi-harness line for tidy-harness and links
+the Python part of the harness work.
+
 ## 2026-11-06 — Iteration: phone, thumbnails, the harnesses
 
 **Ask (owner):** "iterate", then "we have better harnesses. we have the harnesses [that

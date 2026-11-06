@@ -178,25 +178,25 @@
       "kind": "tool",
       "era": "ai",
       "name": "tidy-harness",
-      "url": null,
-      "line": "A small LLM harness core in Swift, built from evidence: conformance tests run against real session logs rather than imagined ones.",
+      "url": "https://github.com/marchdown/tidy-harness",
+      "line": "A small LLM harness core in Swift, built from evidence: rules as data, a pure deterministic lens over agent session logs, and a Babashka reference that must agree with it exactly on real logs before a number is believed (151 sessions today). Public, MIT, CI on every push.",
       "meta": [
         "2026",
         "Swift"
       ],
-      "status": "private"
+      "status": "repo"
     },
     {
       "kind": "tool",
       "era": "ai",
       "name": "free-llm-harness",
-      "url": null,
-      "line": "A reliability harness for routing across free OpenRouter models: retries, tool loops, quota probes. The 88-request measurement on the CV comes from here.",
+      "url": "https://github.com/marchdown/free-llm-harness",
+      "line": "A reliability harness for routing across free OpenRouter models: bounded retries with decorrelated jitter, tool loops, a fallback chain, quota and outage probes. The 88-request measurement on the CV comes from here. Public, MIT, tests on every push.",
       "meta": [
         "2026",
         "Python"
       ],
-      "status": "private"
+      "status": "repo"
     },
     {
       "kind": "tool",

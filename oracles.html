@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oracles for AI Systems · uprootiny</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Oracles for AI systems: components other parts of a system can trust within stated limits. Retainer offer, record of work, and booking.">
+<style>
+/* Layout: a typeset article. Section numbers hang in the left margin, notes sit in the right margin (Tufte-style floats), footnotes at the end. One face throughout: Menlo and its relatives. */
+:root{
+  --paper:#F6F5F1;      /* page */
+  --paper-warm:#F0EDE6; /* tables, bench */
+  --paper-cool:#EDEEEB; /* code, widget */
+  --ink:#23231F;        /* body text, 15:1 on paper */
+  --ink-2:#4F4E48;      /* secondary, 8:1 */
+  --ink-3:#66645D;      /* margin notes, captions, 5.6:1 */
+  --rule:#D6D3C9;
+  --rule-strong:#A9A69C;
+  --link:#2E4653;       /* slate with a trace of blue */
+  --mark:#E9E6DC;       /* selected state */
+  --mono:Menlo,"DejaVu Sans Mono","Bitstream Vera Sans Mono",ui-monospace,SFMono-Regular,Consolas,monospace;
+  --fs:15px; --fs-s:13px; --fs-xs:12px; --fs-l:17px; --fs-xl:22px;
+  --lh:1.62;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#1D1D1B;--paper-warm:#242421;--paper-cool:#212322;--ink:#E3E1D9;--ink-2:#BDBAB0;--ink-3:#9D9A90;
+  --rule:#3A3935;--rule-strong:#5C5A54;--link:#AFC2CA;--mark:#2E2E2A;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#1D1D1B;--paper-warm:#242421;--paper-cool:#212322;--ink:#E3E1D9;--ink-2:#BDBAB0;--ink-3:#9D9A90;
+  --rule:#3A3935;--rule-strong:#5C5A54;--link:#AFC2CA;--mark:#2E2E2A;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--mono);font-size:var(--fs);line-height:var(--lh);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  font-feature-settings:"calt" 0;}
+::selection{background:var(--mark)}
+a{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:var(--rule-strong)}
+a:hover{text-decoration-color:var(--link)}
+:focus-visible{outline:1px dashed var(--ink);outline-offset:3px}
+
+.page{max-width:66ch;margin:0 auto;padding-block:28px 64px;position:relative}
+@media (min-width:820px){.page{margin-left:max(9ch,calc(50% - 50ch));}}
+
+/* running head */
+.rh{display:flex;justify-content:space-between;gap:2ch;font-size:var(--fs-xs);color:var(--ink-3);
+  letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--rule);padding-bottom:6px;margin-bottom:56px}
+.rh span:last-child{text-align:right}
+
+/* title block */
+.title{text-align:center;margin-bottom:40px}
+.title h1{font-size:var(--fs-xl);font-weight:700;letter-spacing:-.01em;margin:0 0 10px;text-wrap:balance;line-height:1.3}
+.title .sub{color:var(--ink-2);margin:0 0 18px;text-wrap:balance}
+.title .by{font-size:var(--fs-s);color:var(--ink-2);margin:0}
+.sc{text-transform:uppercase;letter-spacing:.09em;font-size:.82em}
+
+.abstract{margin:0 auto 40px;max-width:58ch;font-size:var(--fs-s);color:var(--ink-2)}
+.abstract h2{text-align:center;font-size:var(--fs-s);font-weight:700;margin:0 0 6px}
+.abstract p{margin:0;text-indent:2ch;hyphens:auto}
+
+/* contents */
+.toc{border-top:1px solid var(--ink);border-bottom:1px solid var(--rule);padding-block:14px;margin-bottom:56px;font-size:var(--fs-s)}
+.toc h2{font-size:var(--fs-s);margin:0 0 8px}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc ol ol{padding-left:4ch;color:var(--ink-2)}
+.toc li{display:flex;flex-wrap:wrap}
+.toc li>a{flex:1;display:flex;gap:1ch;text-decoration:none;color:inherit}
+.toc li>a:hover .t{text-decoration:underline;text-underline-offset:3px}
+.toc li>ol{flex-basis:100%}
+.toc .n{min-width:4ch;color:var(--ink-3)}
+
+/* sections */
+section{margin-bottom:52px}
+h2,h3,h4{position:relative;text-wrap:balance;line-height:1.4}
+h2.s{font-size:var(--fs-l);font-weight:700;margin:0 0 18px}
+h3.s{font-size:var(--fs);font-weight:700;margin:30px 0 10px}
+h4.s{font-size:var(--fs);font-weight:400;font-style:italic;margin:22px 0 6px}
+.n{font-weight:400;color:var(--ink-3);font-style:normal}
+h2.s .n,h3.s .n,h4.s .n{margin-right:1.5ch}
+@media (min-width:820px){
+  h2.s .n,h3.s .n,h4.s .n{position:absolute;right:100%;margin-right:2ch;white-space:nowrap}
+}
+p{margin:0 0 12px;hyphens:auto}
+p+p{text-indent:2ch}
+p.noi{text-indent:0}
+strong{font-weight:700}
+em{font-style:italic}
+.rule{border:0;border-top:1px solid var(--rule);margin:28px 0}
+
+/* margin notes */
+.mn{display:block;font-size:var(--fs-xs);line-height:1.5;color:var(--ink-3);margin:6px 0 14px;padding-left:2ch;text-indent:0}
+.mn .k{color:var(--ink-2)}
+@media (min-width:1240px){
+  .mn{float:right;clear:right;width:26ch;margin:3px -31ch 10px 0;padding-left:0}
+}
+
+/* footnote refs */
+sup.fn{font-size:.7em;line-height:0;vertical-align:.55em;margin-left:1px}
+sup.fn a{text-decoration:none}
+
+/* lists */
+ul.dash{list-style:none;padding:0;margin:0 0 12px}
+ul.dash li{padding-left:3ch;position:relative;margin-bottom:4px}
+ul.dash li::before{content:"–";position:absolute;left:0;color:var(--ink-3)}
+
+/* definitions */
+dl.defs{margin:0 0 12px}
+dl.defs dt{font-weight:700;margin-top:12px}
+dl.defs dd{margin:2px 0 0 4ch}
+code,.math{font-family:var(--mono);background:var(--paper-cool);padding:0 .35ch;border-radius:2px;font-size:.94em}
+.display{display:block;text-align:center;margin:14px 0;padding:8px 0;overflow-x:auto;white-space:nowrap}
+.display .math{background:none}
+
+/* tables */
+.tbl{overflow-x:auto;margin:6px 0 14px}
+table{border-collapse:collapse;width:100%;font-size:var(--fs-s);font-variant-numeric:tabular-nums}
+caption{caption-side:top;text-align:left;color:var(--ink-3);font-size:var(--fs-xs);padding-bottom:6px}
+thead th{border-top:1.5px solid var(--ink);border-bottom:1px solid var(--ink);font-weight:700;text-align:left;padding:5px 1.5ch 5px 0}
+tbody td{padding:7px 1.5ch 7px 0;vertical-align:top;border-bottom:1px solid var(--rule)}
+tbody tr:last-child td{border-bottom:1.5px solid var(--ink)}
+td.y{white-space:nowrap;color:var(--ink-2);width:11ch}
+td.gap{font-weight:700;color:var(--ink)}
+
+/* bench & widget (shared "plate" treatment) */
+.plate{background:var(--paper-warm);border-top:1px solid var(--rule-strong);border-bottom:1px solid var(--rule-strong);padding:18px 2ch 16px;margin:10px 0 14px}
+.plate.cool{background:var(--paper-cool)}
+.plate fieldset{border:0;margin:0 0 16px;padding:0;min-width:0}
+.plate legend{padding:0;margin-bottom:6px;font-weight:700;font-size:var(--fs-s)}
+.opt{display:flex;gap:1.2ch;align-items:baseline;font-size:var(--fs-s);padding:3px 0;cursor:pointer}
+.opt input{margin:0;accent-color:var(--ink);flex:none;transform:translateY(1px)}
+.verdict{border-top:1px solid var(--rule-strong);padding-top:12px;font-size:var(--fs-s)}
+.verdict p{text-indent:0}
+.verdict .lab{color:var(--ink-3)}
+button,.btn{font:inherit;font-size:var(--fs-s);color:var(--ink);background:transparent;border:1px solid var(--rule-strong);
+  border-radius:2px;padding:5px 1.4ch;cursor:pointer;text-decoration:none;display:inline-block;line-height:1.4}
+button:hover,.btn:hover{border-color:var(--ink)}
+button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+button:disabled{cursor:default;color:var(--ink-3);border-style:dashed}
+button:disabled:hover{border-color:var(--rule-strong)}
+.linkish{border:0;padding:0;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--rule-strong);color:var(--link)}
+
+.status{font-size:var(--fs-s);margin:0 0 10px;text-indent:0}
+.days{display:grid;gap:14px}
+.day h5{font-size:var(--fs-xs);font-weight:700;margin:0 0 6px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.slots{display:flex;flex-wrap:wrap;gap:6px}
+.slots button{font-variant-numeric:tabular-nums}
+.sample-tag{font-size:var(--fs-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);border:1px dashed var(--rule-strong);padding:2px 1ch;display:inline-block;margin-bottom:10px}
+.compose{margin-top:16px;border-top:1px solid var(--rule-strong);padding-top:12px}
+.compose textarea{width:100%;font:inherit;font-size:var(--fs-s);background:var(--paper);color:var(--ink);border:1px solid var(--rule);padding:8px 1ch;min-height:9.5em;resize:vertical;border-radius:2px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+.tz{font-size:var(--fs-xs);color:var(--ink-3)}
+
+/* contact */
+.contact{border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);padding-block:14px;margin:8px 0 14px}
+.contact table{font-size:var(--fs)}
+.contact td{border-bottom:1px solid var(--rule);padding:8px 1.5ch 8px 0;vertical-align:baseline}
+.contact tr:last-child td{border-bottom:0}
+.contact td:first-child{width:14ch;color:var(--ink-2)}
+.contact td:last-child{text-align:right;width:1%;white-space:nowrap}
+.ph{color:var(--ink-3)}
+.val{word-break:break-all}
+
+/* footnotes */
+.notes{border-top:1px solid var(--rule);padding-top:10px;font-size:var(--fs-xs);color:var(--ink-2);margin-top:40px;max-width:44em}
+.notes ol{padding-left:3ch;margin:0}
+.notes li{margin-bottom:6px}
+.colophon{margin-top:28px;font-size:var(--fs-xs);color:var(--ink-3);display:flex;justify-content:space-between;gap:2ch;flex-wrap:wrap;border-top:1px solid var(--rule);padding-top:6px}
+
+@media (max-width:480px){
+  :root{--fs:14px;--fs-s:12.5px;--fs-xs:11.5px;--fs-l:16px;--fs-xl:19px}
+  .rh{margin-bottom:36px}
+  .rh span:last-child{display:none}
+  td.y{width:auto}
+  .contact td:first-child{width:auto}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+
+<div class="page">
+<header class="rh"><span><a href="index.html" style="text-decoration:none;color:inherit">uprootiny</a></span><span>Oracles for AI systems &middot; a working note</span></header>
+
+<div class="title">
+  <h1>Oracles for AI Systems</h1>
+  <p class="sub">On bounded trust between components, and an offer of help</p>
+  <p class="by"><span class="sc">uprootiny</span> &middot; November 2026</p>
+</div>
+
+<div class="abstract">
+  <h2 class="sc">Abstract</h2>
+  <p>A system built around a language model does not repeat itself: the same input can give a different output, and no output vouches for itself. Such a system needs parts it can ask and believe, within limits it knows. I build those parts and help teams decide where they belong. This note says what such a part is (&sect;1), offers a retainer for three kinds of trouble (&sect;2), shows the work behind the offer, two of it in public (&sect;3), and ends with a way to talk (&sect;5).</p>
+</div>
+
+<nav class="toc" aria-label="Contents">
+  <h2 class="sc">Contents</h2>
+  <ol>
+    <li><a href="#s1"><span class="n">1</span><span class="t">Position</span></a>
+      <ol>
+        <li><a href="#s1-1"><span class="n">1.1</span><span class="t">What an oracle is</span></a></li>
+        <li><a href="#s1-2"><span class="n">1.2</span><span class="t">Bounded trust</span></a></li>
+        <li><a href="#s1-3"><span class="n">1.3</span><span class="t">Definitions</span></a></li>
+      </ol></li>
+    <li><a href="#s2"><span class="n">2</span><span class="t">The offer</span></a>
+      <ol>
+        <li><a href="#s2-1"><span class="n">2.1</span><span class="t">Three kinds of trouble</span></a></li>
+        <li><a href="#s2-2"><span class="n">2.2</span><span class="t">Terms of the retainer</span></a></li>
+        <li><a href="#s2-3"><span class="n">2.3</span><span class="t">Which offer fits</span></a></li>
+      </ol></li>
+    <li><a href="#s3"><span class="n">3</span><span class="t">Work</span></a>
+      <ol>
+        <li><a href="#s3-1"><span class="n">3.1</span><span class="t">Record</span></a></li>
+        <li><a href="#s3-2"><span class="n">3.2</span><span class="t">Current work</span></a></li>
+        <li><a href="#s3-3"><span class="n">3.3</span><span class="t">Research interest</span></a></li>
+      </ol></li>
+    <li><a href="#s4"><span class="n">4</span><span class="t">Particulars</span></a></li>
+    <li><a href="#s5"><span class="n">5</span><span class="t">Talk to me</span></a>
+      <ol>
+        <li><a href="#s5-1"><span class="n">5.1</span><span class="t">Write or call</span></a></li>
+        <li><a href="#s5-2"><span class="n">5.2</span><span class="t">Propose a time</span></a></li>
+      </ol></li>
+  </ol>
+</nav>
+
+<!-- 1 -->
+<section id="s1">
+  <h2 class="s"><span class="n">1</span>Position</h2>
+  <p class="noi">I build oracles for AI systems: parts the rest of a system can trust, within limits that are stated, measured and kept.</p>
+
+  <h3 class="s" id="s1-1"><span class="n">1.1</span>What an oracle is</h3>
+  <span class="mn"><span class="k">Origin.</span> The word comes from computability theory and software testing; see note 1.</span>
+  <p class="noi">An oracle is a component that a system asks instead of computing the answer itself, and whose answer it accepts under a known contract.<sup class="fn"><a href="#fn1" id="r1">1</a></sup> The contract says which questions it takes, how often it is right, what it costs, how long it takes, and what it does when it does not know.</p>
+  <p>Being an oracle is a role, not a kind of software. A test suite, a proof checker, a database, a smaller model, a reviewer on another team, a court: each can serve. What is inside may stay closed. It need not be right every time; it has to keep its contract.</p>
+
+  <h3 class="s" id="s1-2"><span class="n">1.2</span>Bounded trust</h3>
+  <p class="noi">I do not rebuild anyone&rsquo;s AI from scratch. I make it possible for the parts of a system to rely on each other to a known degree, and I write the degree down. Four limits make it up:</p>
+  <ul class="dash">
+    <li><strong>Domain.</strong> Which questions the part accepts, and which it must refuse.</li>
+    <li><strong>Reliability.</strong> How often it is right, and whether its stated confidence matches that rate (calibration<sup class="fn"><a href="#fn2" id="r2">2</a></sup>).</li>
+    <li><strong>Cost and latency.</strong> What one answer costs in money, tokens and time.</li>
+    <li><strong>Behaviour at the edge.</strong> What it returns when it does not know: an abstention, an escalation, or a wrong answer delivered with confidence.</li>
+  </ul>
+  <span class="mn"><span class="k">Placement rule.</span> Put an oracle where checking is cheaper than guessing, or where the truth is owned by someone outside the system.</span>
+  <p>The useful asymmetry is between predicting and checking. No general procedure can decide non-trivial properties of arbitrary programs (Rice&rsquo;s theorem), but checking one proposed answer against a specification is often cheap. Most of the engineering in this field is placing checks where that asymmetry holds.</p>
+
+  <h3 class="s" id="s1-3"><span class="n">1.3</span>Definitions</h3>
+  <p class="noi">The working vocabulary, for readers who want it exact. <code>Q</code> is a set of questions, <code>A</code> a set of answers.</p>
+  <dl class="defs">
+    <dt>Oracle</dt>
+    <dd><code>O : Q &rarr; A</code>, together with a contract on price, latency and reliability.</dd>
+    <dt>Verifier</dt>
+    <dd><code>V : (x, y) &rarr; accept | reject(reason)</code>. Worth having when checking <code>y</code> costs less than producing it.</dd>
+    <dt>Decision oracle</dt>
+    <dd><code>D : (state, questions) &rarr; a probability for each answer</code>.</dd>
+    <dt>Witness</dt>
+    <dd><code>W : constraints &rarr; example | &perp;</code>, where <code>&perp;</code> means the constraints contradict each other.</dd>
+    <dt>Fast reject</dt>
+    <dd>A cheap filter that is sometimes wrong, placed in front of an expensive one that is rarely wrong.</dd>
+  </dl>
+  <h4 class="s" id="s1-3-1"><span class="n">1.3.1</span>Cascades</h4>
+  <p class="noi">Chain oracles cheapest first. If stage <em>i</em> costs <em>c<sub>i</sub></em> and passes a case on to the next stage with probability <em>p<sub>i</sub></em>, the expected cost of one case through three stages is</p>
+  <span class="display"><span class="math">E[cost] = c&#8321; + p&#8321;&middot;c&#8322; + p&#8321;&middot;p&#8322;&middot;c&#8323;</span></span>
+  <p class="noi">so most of the saving comes from making the early stages cheap and letting them hand on few cases.</p>
+</section>
+
+<!-- 2 -->
+<section id="s2">
+  <h2 class="s"><span class="n">2</span>The offer</h2>
+  <p class="noi">I work on retainer with teams that build and run such systems. The first conversation costs nothing; after it, both sides know whether a retainer makes sense.</p>
+
+  <h3 class="s" id="s2-1"><span class="n">2.1</span>Three kinds of trouble</h3>
+
+  <h4 class="s" id="s2-1-1"><span class="n">2.1.1</span>A system on its last breath</h4>
+  <p class="noi">It still runs, but every change is a risk and nobody is sure how long it will hold. I look at it with you and say how long it is likely to hold, what is holding it up, and what to do first.</p>
+
+  <h4 class="s" id="s2-1-2"><span class="n">2.1.2</span>People on parts of one system</h4>
+  <p class="noi">Several people or teams each own a part, and the parts no longer fit. I talk to each of them, find where their assumptions contradict one another, and make the shared work easier.</p>
+
+  <h4 class="s" id="s2-1-3"><span class="n">2.1.3</span>AI that is costly and wrong</h4>
+  <span class="mn"><span class="k">Typical tools.</span> Verifiers, cascades with a fast reject in front, and explicit token budgets per loop (&sect;1.3).</span>
+  <p class="noi">A model-based feature costs too much per answer and is wrong too often. I help make it cheaper and more often right by deciding what gets checked, by what, and in which order.</p>
+
+  <h3 class="s" id="s2-2"><span class="n">2.2</span>Terms of the retainer</h3>
+  <div class="tbl"><table>
+    <caption>Table 1. What a retainer includes.</caption>
+    <thead><tr><th>Item</th><th>Terms</th></tr></thead>
+    <tbody>
+      <tr><td>Regular time</td><td>Two days a week, about two hours each, alongside the engineers doing the work.</td></tr>
+      <tr><td>Before a decision</td><td>Two sessions with the team before each design decision that worries you.</td></tr>
+      <tr><td>Capacity</td><td>At most two retainers at a time, so each gets real attention.</td></tr>
+      <tr><td>First step</td><td>One conversation, free of charge.</td></tr>
+      <tr><td>Fee</td><td>Discussed in that conversation. A draft contract is ready on request.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="noi">I do not take fixed-scope project contracts. The retainer suits a team that builds the system itself and wants a second pair of eyes at a steady rhythm.</p>
+
+  <h3 class="s" id="s2-3"><span class="n">2.3</span>Which offer fits</h3>
+  <span class="mn"><span class="k">Scope.</span> Four questions give a rough match, not a diagnosis. Nothing you choose here leaves your browser.</span>
+  <p class="noi">A short calibration bench. Answer four questions; the result updates as you go.</p>
+  <form class="plate" id="bench" autocomplete="off">
+    <fieldset>
+      <legend>(a) What is closest to your situation?</legend>
+      <label class="opt"><input type="radio" name="q1" id="q1a" value="breath"> A system that still runs but feels close to failing.</label>
+      <label class="opt"><input type="radio" name="q1" id="q1b" value="people"> Several people or teams whose parts no longer fit together.</label>
+      <label class="opt"><input type="radio" name="q1" id="q1c" value="ai"> An AI feature that costs too much and is wrong too often.</label>
+      <label class="opt"><input type="radio" name="q1" id="q1d" value="other"> Something else.</label>
+    </fieldset>
+    <fieldset>
+      <legend>(b) Who will make the changes?</legend>
+      <label class="opt"><input type="radio" name="q2" id="q2a" value="team"> Our own engineers.</label>
+      <label class="opt"><input type="radio" name="q2" id="q2b" value="none"> We need someone to build it for us.</label>
+    </fieldset>
+    <fieldset>
+      <legend>(c) What form of help are you after?</legend>
+      <label class="opt"><input type="radio" name="q3" id="q3a" value="steady"> Steady advice over weeks or months.</label>
+      <label class="opt"><input type="radio" name="q3" id="q3b" value="project"> A fixed-scope project with a delivery date.</label>
+    </fieldset>
+    <fieldset>
+      <legend>(d) Can the team set aside a few hours a week to talk?</legend>
+      <label class="opt"><input type="radio" name="q4" id="q4a" value="yes"> Yes.</label>
+      <label class="opt"><input type="radio" name="q4" id="q4b" value="no"> Not really.</label>
+    </fieldset>
+    <div class="verdict" aria-live="polite" id="verdict"><p><span class="lab">Result.</span> Answer the questions above to see which offer, if any, is closest.</p></div>
+  </form>
+</section>
+
+<!-- 3 -->
+<section id="s3">
+  <h2 class="s"><span class="n">3</span>Work</h2>
+
+  <h3 class="s" id="s3-1"><span class="n">3.1</span>Record</h3>
+  <div class="tbl"><table>
+    <caption>Table 2. Roles, most recent last.</caption>
+    <thead><tr><th>Years</th><th>Role and substance</th></tr></thead>
+    <tbody>
+      <tr><td class="y">2010s</td><td>About a decade of language technology and data science in Tel Aviv, Hong Kong and Prague: signals from financial news, medical-text classification, vision pipelines, corpus infrastructure.</td></tr>
+      <tr><td class="y">2020&ndash;22</td><td><strong>Research Lead</strong> at a quantitative fund in Israel. Led a team of about six and built the forecasting systems from scratch: language processing, sentiment, signals drawn from text corpora, correlations across time series of different kinds. Deployed the ML pipelines myself.</td></tr>
+      <tr><td class="y">2023</td><td><strong>Stamina AI.</strong> Early guardrails for a conversational product: a finite-state machine that gives a session its shape, a second model that supervises the first, and an ontology that catches hallucinated statements. The product did not launch.</td></tr>
+      <tr><td class="y">2024</td><td><strong>Acting CTO</strong> at LevEhad. Led the product team; ran the assessment, budget and first phase of a move from Google Cloud to AWS.</td></tr>
+      <tr><td class="y">2026</td><td><strong>LLM research contract</strong> for Move38: ontologies, prompt sets, test benches and harnesses across OpenRouter, Modal and Railway.</td></tr>
+      <tr><td class="y">Now</td><td>Independent work on oracles for model output (&sect;3.2).</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="s" id="s3-2"><span class="n">3.2</span>Current work</h3>
+  <span class="mn"><span class="k">In public.</span> The first two are on GitHub under <a href="https://github.com/marchdown">marchdown</a>. Each has a one-command check, and neither claims more than its check shows.</span>
+  <ul class="dash">
+    <li><strong>A verifier for agent behaviour</strong> (<a href="https://github.com/marchdown/tidy-harness">tidy-harness</a>, Swift). The input is an agent&rsquo;s session log; the contract is a set of rules written as data; the output says, per rule, pass, fail or not applicable. Two independent implementations, a Swift core and a Babashka script, must agree exactly on real logs before a number is believed; today they agree on 151 sessions. A rule that does not apply says so instead of passing.</li>
+    <li><strong>A reliability contract made measurable</strong> (<a href="https://github.com/marchdown/free-llm-harness">free-llm-harness</a>, Python). A routing layer over free models with bounded retries, a fallback chain and explicit success criteria: a maximum failure rate and a p95 latency. Probes test whether the contract holds. Over 88 requests: 100&thinsp;% success on the quota probe, 83&thinsp;% under an outage probe, p95 6.4&thinsp;s. The numbers are the contract, not the wish.</li>
+    <li><strong>Proofs as oracles.</strong> A model proposes; a proof checked by Lean<sup class="fn"><a href="#fn3" id="r3">3</a></sup> accepts the result or reports the step where it fails. The checker is the oracle for the model&rsquo;s output.</li>
+    <li><strong>Short feedback loops.</strong> Small cycles of propose, check and correct that keep a system consistent with its own specification, each with a fixed token budget so spend stays bounded.</li>
+  </ul>
+
+  <h3 class="s" id="s3-3"><span class="n">3.3</span>Research interest</h3>
+  <p class="noi">How attention behaves in sustained work with AI: how long it holds, how it moves, and how that differs between roles. I would like practitioners to share a common, tested picture of it, and I am open to a research position on the question.</p>
+</section>
+
+<!-- 4 -->
+<section id="s4">
+  <h2 class="s"><span class="n">4</span>Particulars</h2>
+  <div class="tbl"><table>
+    <caption>Table 3. Facts for the practical reader.</caption>
+    <tbody>
+      <tr><td class="y">Education</td><td>MSc Computational Linguistics, Russian State University for the Humanities, 2015.<br>BSc Nuclear Physics, Czech Technical University in Prague, 2009.</td></tr>
+      <tr><td class="y">Languages</td><td>Fluent: English, French, Russian. Working: Hebrew, Czech, German.</td></tr>
+      <tr><td class="y">On site</td><td>Jerusalem, Jaffa, Haifa, Amsterdam, The Hague, Prague, Munich, Berlin, Basel, Krak&oacute;w, Lviv.</td></tr>
+      <tr><td class="y">Moving toward</td><td>Clean energy, logistics, human&ndash;computer interaction. These are directions of interest; I have no track record in them yet.</td></tr>
+      <tr><td class="y">Daily tools</td><td>PyTorch, Claude Code, OpenRouter, Cloudflare, open-weight models.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- 5 -->
+<section id="s5">
+  <h2 class="s"><span class="n">5</span>Talk to me</h2>
+  <p class="noi">If one of the situations in &sect;2.1 sounds familiar, write a few lines about it. I answer myself, and the first conversation costs nothing.</p>
+
+  <h3 class="s" id="s5-1"><span class="n">5.1</span>Write or call</h3>
+  <div class="contact"><table>
+    <tbody>
+      <tr><td>Telegram</td><td class="val" data-k="telegramText"></td><td><a class="btn" data-href="telegram" target="_blank" rel="noopener">Open</a></td></tr>
+      <tr><td>WhatsApp<br><span class="tz">in Israel</span></td><td class="val" data-k="whatsappText"></td><td><a class="btn" data-href="whatsapp" target="_blank" rel="noopener">Open</a></td></tr>
+      <tr><td>LinkedIn</td><td class="val" data-k="linkedinText"></td><td><a class="btn" data-href="linkedin" target="_blank" rel="noopener">Open</a></td></tr>
+      <tr><td>Email</td><td class="val" data-k="emailText"></td><td><button type="button" id="copyEmail">Copy</button></td></tr>
+    </tbody>
+  </table></div>
+  <p class="noi tz">Telegram is the quickest. Times are in Israel (Asia/Jerusalem).</p>
+
+  <h3 class="s" id="s5-2"><span class="n">5.2</span>Propose a time</h3>
+  <span class="mn"><span class="k">How it works.</span> Free hours are read from my calendar as busy/free only, never event details. Choosing a time drafts a message; nothing is booked until I reply.</span>
+  <p class="noi">Times between two days and two weeks from today, within working hours.</p>
+  <div class="plate cool" id="booking">
+    <p class="status" id="bkStatus" aria-live="polite">Checking the calendar&hellip;</p>
+    <div id="bkSample" hidden><span class="sample-tag">Sample layout &middot; not real availability</span></div>
+    <div class="days" id="bkDays"></div>
+    <div class="compose" id="bkCompose" hidden>
+      <label for="bkMsg" class="tz">Your message (edit freely, then send it through any channel above):</label>
+      <textarea id="bkMsg"></textarea>
+      <div class="row">
+        <button type="button" id="bkCopy">Copy message</button>
+        <a class="btn" id="bkMail" target="_blank" rel="noopener">Open in email</a>
+        <a class="btn" id="bkWa" target="_blank" rel="noopener">Open in WhatsApp</a>
+        <span class="tz" id="bkCopied" aria-live="polite"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="notes" role="doc-endnotes">
+  <ol>
+    <li id="fn1">Turing introduced oracle machines in 1939: a machine that may ask an external &ldquo;oracle&rdquo; questions it cannot compute itself. In software testing, a test oracle is whatever decides whether an observed output is correct. The usage here combines both. <a href="#r1" aria-label="Back to text">&#8617;</a></li>
+    <li id="fn2">A component is calibrated when, among the answers it gives with confidence 0.8, about 80% are correct; likewise at every confidence level. <a href="#r2" aria-label="Back to text">&#8617;</a></li>
+    <li id="fn3">Lean is a proof assistant: a program that checks each step of a mathematical proof mechanically. <a href="#r3" aria-label="Back to text">&#8617;</a></li>
+  </ol>
+</div>
+
+<footer class="colophon"><span>Set in Menlo and its relatives. <a href="index.html">home</a> &middot; <a href="cv.html">cv</a> &middot; <a href="tools.html">tools</a></span><span>&copy; uprootiny, 2026</span></footer>
+</div>
+
+<script src="site.js"></script>
+<script>
+/* ---------- Configuration ----------
+   Telegram and email come from site.js (one place for the whole site).
+   WhatsApp, LinkedIn and the booking endpoint are empty until supplied:
+   the page hides what it does not have. See worker/README.md for the endpoint. */
+const CONFIG = {
+  telegram: (window.SITE && SITE.telegram) || "",
+  whatsapp: "",          // international digits only, e.g. "9725XXXXXXXX"
+  linkedin: "",          // full profile URL
+  email:    (window.SITE && SITE.email) || "",
+  endpoint: ""           // Cloudflare Worker URL, e.g. "https://slots.example.workers.dev/slots"
+};
+const TZ = "Asia/Jerusalem";
+
+/* ---------- Contact block ---------- */
+const PH = {telegram:"[TELEGRAM HANDLE]", whatsapp:"[WHATSAPP NUMBER]", linkedin:"[LINKEDIN URL]", email:"[EMAIL ADDRESS]"};
+function txt(k){
+  const v = CONFIG[k];
+  if(!v) return `<span class="ph">${PH[k]}</span>`;
+  if(k==="telegram") return "@"+esc(v);
+  if(k==="whatsapp") return "+"+esc(v);
+  return esc(v);
+}
+function href(k){
+  const v = CONFIG[k]; if(!v) return null;
+  if(k==="telegram") return "https://t.me/"+encodeURIComponent(v);
+  if(k==="whatsapp") return "https://wa.me/"+encodeURIComponent(v);
+  if(k==="linkedin") return v;
+  return null;
+}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+document.querySelectorAll("[data-k]").forEach(el=>{el.innerHTML = txt(el.dataset.k.replace("Text",""))});
+document.querySelectorAll("[data-href]").forEach(a=>{
+  const h = href(a.dataset.href);
+  if(h){a.href=h}else{a.removeAttribute("href");a.setAttribute("aria-disabled","true");a.style.visibility="hidden"}
+});
+async function copy(text, btn, done){
+  try{ await navigator.clipboard.writeText(text); done("Copied."); }
+  catch(e){ done("Select the text and copy it manually."); }
+}
+const ce = document.getElementById("copyEmail");
+if(!CONFIG.email){ce.disabled=true}
+ce.addEventListener("click",()=>copy(CONFIG.email, ce, m=>{ce.textContent = m==="Copied." ? "Copied" : "Copy"; setTimeout(()=>ce.textContent="Copy",1600)}));
+
+/* ---------- Calibration bench ---------- */
+const OFFERS = {
+  breath:["2.1.1","A system on its last breath"],
+  people:["2.1.2","People on parts of one system"],
+  ai:["2.1.3","AI that is costly and wrong"]
+};
+const bench = document.getElementById("bench"), verdict = document.getElementById("verdict");
+bench.addEventListener("submit",e=>e.preventDefault());
+bench.addEventListener("change",()=>{
+  const f = new FormData(bench), a = {q1:f.get("q1"),q2:f.get("q2"),q3:f.get("q3"),q4:f.get("q4")};
+  const answered = Object.values(a).filter(Boolean).length;
+  let out;
+  if(a.q2==="none") out = "<strong>None of the three fits well.</strong> The retainer assumes your own engineers make the changes; I advise and review, I do not build the system for you. If you are about to hire, I can still help you think about what to hire for.";
+  else if(a.q3==="project") out = "<strong>None of the three fits well.</strong> I do not take fixed-scope project contracts. If steady advice alongside the project would help, the retainer may still make sense.";
+  else if(a.q4==="no") out = "<strong>Probably not a fit yet.</strong> The retainer works through regular conversations with the team. If time frees up later, write then.";
+  else if(answered<4) out = `<span class="lab">Result.</span> ${4-answered} question${answered===3?"":"s"} left.`;
+  else if(a.q1==="other") out = "<strong>Unclear from these questions.</strong> Your situation is not one of the three, which does not rule anything out. Describe it in a few lines (&sect;5) and I will say plainly whether I can help.";
+  else { const [n,t] = OFFERS[a.q1]; out = `<strong>Closest: &sect;${n}, ${t}.</strong> On these answers a retainer looks plausible. The first conversation will tell whether that holds.`; }
+  verdict.innerHTML = "<p>"+out+"</p>";
+});
+
+/* ---------- Booking widget ---------- */
+const st = document.getElementById("bkStatus"), daysEl = document.getElementById("bkDays"),
+      compose = document.getElementById("bkCompose"), msg = document.getElementById("bkMsg");
+const viewerTZ = (()=>{try{return Intl.DateTimeFormat().resolvedOptions().timeZone}catch(e){return TZ}})();
+const fmtDay = new Intl.DateTimeFormat("en-GB",{timeZone:TZ,weekday:"long",day:"numeric",month:"long"});
+const fmtTime = (tz)=>new Intl.DateTimeFormat("en-GB",{timeZone:tz,hour:"2-digit",minute:"2-digit",hour12:false});
+const dayKey = new Intl.DateTimeFormat("en-CA",{timeZone:TZ,year:"numeric",month:"2-digit",day:"2-digit"});
+
+function fallback(reason){
+  st.innerHTML = reason + ` Please write instead (&sect;5.1) and suggest two or three times that suit you. <button type="button" class="linkish" id="bkShowSample">See how the picker looks</button>`;
+  document.getElementById("bkShowSample").addEventListener("click",showSample);
+}
+function render(slots, sample){
+  daysEl.innerHTML = "";
+  const groups = new Map();
+  slots.forEach(s=>{const d=new Date(s.start); const k=dayKey.format(d); if(!groups.has(k)) groups.set(k,[]); groups.get(k).push(s)});
+  groups.forEach(list=>{
+    const day = document.createElement("div"); day.className="day";
+    day.innerHTML = `<h5>${fmtDay.format(new Date(list[0].start))}</h5>`;
+    const row = document.createElement("div"); row.className="slots";
+    list.forEach(s=>{
+      const b = document.createElement("button"); b.type="button";
+      b.textContent = fmtTime(TZ).format(new Date(s.start))+"–"+fmtTime(TZ).format(new Date(s.end));
+      b.setAttribute("aria-pressed","false");
+      if(sample){b.disabled=true}
+      else b.addEventListener("click",()=>{daysEl.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed","false"));b.setAttribute("aria-pressed","true");choose(s)});
+      row.appendChild(b);
+    });
+    day.appendChild(row); daysEl.appendChild(day);
+  });
+}
+function choose(s){
+  const a=new Date(s.start), b=new Date(s.end);
+  const il = `${fmtDay.format(a)}, ${fmtTime(TZ).format(a)}–${fmtTime(TZ).format(b)} (Israel time)`;
+  const local = viewerTZ!==TZ ? `\nThat is ${new Intl.DateTimeFormat("en-GB",{timeZone:viewerTZ,weekday:"long",day:"numeric",month:"long"}).format(a)}, ${fmtTime(viewerTZ).format(a)} in ${viewerTZ}.` : "";
+  msg.value = `Hello,\n\nI would like a first conversation. Does this time suit you?\n${il}${local}\n\nIn short, our situation:\n[two or three lines]\n\nName, company:\n`;
+  compose.hidden = false;
+  const subj = "First conversation: "+fmtDay.format(a)+", "+fmtTime(TZ).format(a);
+  const mail = document.getElementById("bkMail"), wa = document.getElementById("bkWa");
+  if(CONFIG.email){mail.href=`mailto:${CONFIG.email}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(msg.value)}`;mail.hidden=false}else mail.hidden=true;
+  if(CONFIG.whatsapp){wa.href=`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg.value)}`;wa.hidden=false}else wa.hidden=true;
+}
+msg.addEventListener("input",()=>{const a=document.querySelector('#bkDays button[aria-pressed="true"]'); if(!a) return;
+  const mail=document.getElementById("bkMail"), wa=document.getElementById("bkWa");
+  if(CONFIG.email) mail.href = mail.href.replace(/&body=.*$/,"&body="+encodeURIComponent(msg.value));
+  if(CONFIG.whatsapp) wa.href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg.value)}`;});
+document.getElementById("bkCopy").addEventListener("click",()=>copy(msg.value,null,m=>{document.getElementById("bkCopied").textContent=m}));
+
+function showSample(){
+  document.getElementById("bkSample").hidden=false;
+  st.innerHTML = "The calendar is not connected, so these times are invented to show the layout. They cannot be chosen. Please write instead (&sect;5.1).";
+  const out=[], now=new Date();
+  for(let d=2, n=0; d<=14 && n<4; d++){
+    const day=new Date(now.getTime()+d*864e5);
+    const wd=new Intl.DateTimeFormat("en-US",{timeZone:TZ,weekday:"short"}).format(day);
+    if(wd==="Fri"||wd==="Sat") continue; n++;
+    [10,13,16].forEach((h,i)=>{ if((d+i)%3===0) return;
+      const base=new Date(day); base.setUTCHours(h-2,0,0,0); out.push({start:base.toISOString(),end:new Date(base.getTime()+36e5).toISOString()})});
+  }
+  render(out,true);
+}
+
+async function load(){
+  if(!CONFIG.endpoint){ fallback("Online booking is not connected yet."); return; }
+  try{
+    const ctl = new AbortController(); const t=setTimeout(()=>ctl.abort(),8000);
+    const r = await fetch(CONFIG.endpoint,{signal:ctl.signal}); clearTimeout(t);
+    if(!r.ok) throw new Error("HTTP "+r.status);
+    const j = await r.json();
+    const slots = (j.slots||[]).filter(s=>s&&s.start&&s.end);
+    if(!slots.length){ fallback("No free times are left in the next two weeks."); return; }
+    st.textContent = `Free times, Israel time${viewerTZ!==TZ?` (you appear to be in ${viewerTZ})`:""}. Choose one to draft a message.`;
+    render(slots,false);
+  }catch(e){ fallback("The calendar could not be reached just now."); }
+}
+load();
+</script>

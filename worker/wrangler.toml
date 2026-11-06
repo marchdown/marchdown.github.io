@@ -1,0 +1,19 @@
+name = "uprootiny-slots"
+main = "src/index.js"
+compatibility_date = "2024-09-23"
+
+# The calendar feed URL is a secret. Set it with:
+#   npx wrangler secret put ICS_URL
+# Never put it in this file.
+
+[vars]
+ALLOWED_ORIGINS   = "[YOUR SITE ORIGIN, e.g. https://work.hyperstitious.art]"
+WORK_DAYS         = "0,1,2,3,4"   # 0=Sunday ... 6=Saturday (Sun-Thu)
+WORK_START        = "10:00"       # Asia/Jerusalem
+WORK_END          = "18:00"
+SLOT_MINUTES      = "45"
+STEP_MINUTES      = "60"
+BUFFER_MINUTES    = "15"
+MIN_DAYS_AHEAD    = "2"
+MAX_DAYS_AHEAD    = "14"
+MAX_SLOTS_PER_DAY = "4"

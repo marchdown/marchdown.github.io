@@ -44,11 +44,21 @@ performed on his own creativity.
   `site.js`. Settle the knowledge base either way.
 - **Review `cv.html`** (the one canonical CV, 2026-11-06) and say what is wrong or missing; the
   thirteen older editions in `drafts/` stay reachable from its footer until retired.
-- **Make a harness public** so the tools page and CV can link one: pi-harness or pi-doctrine are
-  the natural candidates (checked 2026-11-06: every harness repo is private or has no remote;
-  api.hyle.lol times out; hyle.lol is a Pages 404). Until then they are named, not linked.
+- **Revoke the OpenRouter key committed in `~/api-hyle-lol` and `~/api-hyle-lol-w3`** (`.env`,
+  tracked since the "add .env (credentials)" commit; found by the 2026-11-06 audit, value not
+  copied anywhere). Then rewrite history before that repo gets any public remote.
 - **hyle.lol**: decide whether to bring the proxy host back or retire the "live, 99.5 % uptime"
   claim in `~/api-hyle-lol/README.md`; the tools page says "offline".
+- Published 2026-11-06: `github.com/marchdown/tidy-harness` (v0.1.0) and
+  `github.com/marchdown/free-llm-harness` (v0.1.0, fresh history; GitLab keeps the old one).
+  pi-harness and pi-doctrine stay private; the tools page names them without links.
+
+- **oracles.html** (the working note from `~/Downloads/landing`, 2026-11-06): WhatsApp number and
+  LinkedIn URL if they should show; the booking endpoint once `worker/` is deployed (`worker/README.md`);
+  whether §3.3 "open to a research position" stays public; the "2010s" row's exact years and employers.
+  Its facts differ from `cv/knowledge-base.json` in three places and both pages now carry their own
+  version: LevEhad as *Acting CTO* (kb: infrastructure consultant, retainer), Spring Research *led a team
+  of about six* (kb: no headcount), languages *fluent French, working Hebrew* (kb: the reverse). Settle.
 
 ## Resolved
 - Structure (2026-11-06): the landing stays the artpiece; the legible pages are separate and reached

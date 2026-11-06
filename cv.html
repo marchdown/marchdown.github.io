@@ -161,7 +161,7 @@ footer a:hover { color: var(--accent); }
   <h2>Recent work, with what it showed</h2>
   <ul class="work">
     <li>
-      <div class="name">LLM inference harness<small>Elixir · Python · Rust · private</small></div>
+      <div class="name">LLM inference harness<small>Elixir · Rust · private; <a href="https://github.com/marchdown/free-llm-harness">Python part public</a></small></div>
       <div class="claim">Provider routing with role-specific fallback chains, jittered retry honouring
         <code>Retry-After</code>, per-client rate limits, bounded concurrency, and token, cost and latency
         audit logs per call. Measured over 88 requests: 100&thinsp;% success on a quota probe, 83&thinsp;% in an
@@ -174,10 +174,10 @@ footer a:hover { color: var(--accent); }
         <em>Enforced boundaries around agents, not prompt rules.</em></div>
     </li>
     <li>
-      <div class="name">pi-harness<small>agent custody · private</small></div>
-      <div class="claim">Custody of a coding agent: pinned, checksum-verified install, versioned configuration
-        and doctrine, a one-command check, eleven behaviour probes, and an A/B bench for prompt and gate
-        changes. <em>A prompt edit is a hypothesis; the bench decides.</em></div>
+      <div class="name"><a href="https://github.com/marchdown/tidy-harness">tidy-harness</a><small>Swift · public</small></div>
+      <div class="claim">A verifier for agent behaviour: rules as data, a pure deterministic lens over session logs,
+        and a Babashka reference that must agree with the Swift core exactly before a number is believed.
+        They agree on 151 real sessions. <em>Two implementations, one answer, or no answer.</em></div>
     </li>
     <li>
       <div class="name"><a href="https://pocket.dissemblage.art">pocket</a><small>PWA pipeline · live, code private</small></div>

@@ -30,14 +30,28 @@ performed on his own creativity.
 - none
 
 ## Needs
-- One structural decision: does the legible statement live as a calm section the garden
-  **settles into** (same page), or as a **separate clean page** linked from the garden? (rec: settles-into)
-- Owner's real `{{ }}` values eventually (name, location) — site can ship with tasteful defaults first.
+- **Donation addresses** for the gallery unfold and gallery.html: which chains, which addresses.
+  `site.js` → `donations`; empty addresses render as "address pending" (visible, not silent).
+- **Name forms**: confirm the Hebrew spelling in `site.js` (`פבל וסילייב`, owner's own) and whether
+  the landing should drift through all three scripts (current) or sit on one (`nameCycle: ['en']`).
+- **hyperstitious.org is a 404** (empty GitHub Pages site, checked 2026-11-06) while
+  **hyperstitious.art is live**. `cv/knowledge-base.json` and the CV editions link the dead one.
+  Fix the knowledge base (person.contact.website) or revive the .org.
+- Status of the extra live pieces not yet listed (verse-garden, profane, hyle, ruby, hermesbase,
+  doctrine): included only the ones whose own page presents finished work. Say which others belong.
+
+## Resolved
+- Structure (2026-11-06): the landing stays the artpiece; the legible pages are separate and reached
+  from the band at the bottom: gallery · tools · name · hire me (→ cv, letter, contacts).
 
 ## Notes
 - Landing (`index.html`, 2026-11-05): seeded hypergraph on an 8 s phase clock, seamless by
   construction (`render(0)` ≡ `render(2π)`); motion budget and seam check in `JOURNAL.md`.
   Not yet checked on a phone or on the live Pages host.
+- Identity lives in `site.js` only (name in three scripts, email, telegram, links, donations);
+  every page fills `data-site` slots from it. A legal name change is a one-line edit there.
+- `projects.json` is the single source for gallery.html and tools.html (`feed.js` renders it;
+  `era: earlier` folds up at the end). Only reachable, finished work goes in.
 - Local preview: `ruby -run -e httpd . -p 8731` then http://localhost:8731/
 
 ## CV status (2026-06-28)

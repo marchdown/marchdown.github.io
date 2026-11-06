@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pavel Vasilyev</title>
+<title>{{name}}</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -24,55 +24,66 @@ canvas {
   height: 100%;
 }
 
+/* The band: gallery · tools · name · hire me. Each word either links out or
+   unfolds one row beneath it; one row open at a time. */
 .ui {
   position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 36px;
+  left: 0;
+  right: 0;
   text-align: center;
   z-index: 100;
-  opacity: 0.5;
-  transition: opacity 0.3s;
-}
-
-.ui:hover {
-  opacity: 1;
-}
-
-.ui-text {
-  font-size: 14px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #e8eaec;
-  margin-bottom: 12px;
   font-family: -apple-system, "Segoe UI", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  transition: opacity 0.4s;
 }
-
-.ui-link {
-  display: inline-block;
-  color: #2b4a7a;
-  text-decoration: none;
-  font-size: 14px;
-  padding: 8px 16px;
-  border: 1px solid #2b4a7a;
-  border-radius: 3px;
-  transition: all 0.2s;
+.ui:hover, .ui:focus-within, .ui.open { opacity: 1; }
+.ui .row { display: flex; justify-content: center; align-items: baseline; gap: 28px; flex-wrap: wrap; padding: 0 16px; }
+.ui .word {
+  background: none; border: 0; padding: 0;
+  font: inherit; letter-spacing: inherit; text-transform: inherit;
+  color: #8a93a3; cursor: pointer; text-decoration: none;
+  border-bottom: 1px solid transparent;
 }
-
-.ui-link:hover {
-  background: #2b4a7a;
-  color: #0a0e14;
-}
+.ui .word:hover, .ui .word[aria-expanded="true"] { color: #e8eaec; border-bottom-color: #2b4a7a; }
+.ui .name { color: #e8eaec; font-size: 14px; letter-spacing: 0.14em; min-width: 13ch; transition: opacity 0.65s; }
+.ui .name.fade { opacity: 0; }
+.ui .unfold { margin-top: 14px; display: flex; justify-content: center; align-items: baseline; gap: 22px; flex-wrap: wrap; padding: 0 16px; color: #8a93a3; }
+.ui .unfold[hidden] { display: none; }
+.ui .unfold a { color: #8cc9ff; text-decoration: none; border-bottom: 1px solid rgba(74, 158, 255, 0.25); }
+.ui .unfold a:hover { color: #fff; }
+.ui .addr { font-family: ui-monospace, Menlo, monospace; font-size: 11px; letter-spacing: 0.04em; text-transform: none; display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; }
+.ui .addr .chain { color: #4f5868; letter-spacing: 0.1em; margin-right: 6px; }
+.ui .addr button { background: none; border: 0; padding: 0; font: inherit; color: #8a93a3; cursor: pointer; border-bottom: 1px dotted #4f5868; }
+.ui .addr button:hover { color: #8cc9ff; }
+.ui .addr .pending { color: #4f5868; font-style: italic; }
 </style>
 </head>
 <body>
 
 <canvas id="canvas"></canvas>
 
-<div class="ui">
-  <div class="ui-text">Pavel Vasilyev</div>
-  <a href="drafts/index-cv.html" class="ui-link">View CV Editions</a>
-</div>
+<nav class="ui" id="ui" aria-label="site">
+  <div class="row">
+    <button class="word" type="button" data-unfold="gallery" aria-expanded="false" aria-controls="unfold-gallery">gallery</button>
+    <a class="word" href="tools.html">tools</a>
+    <span class="name" data-site="name" dir="auto">Pavel Vasilyev</span>
+    <button class="word" type="button" data-unfold="hire" aria-expanded="false" aria-controls="unfold-hire">hire me</button>
+  </div>
+  <div class="unfold" id="unfold-gallery" hidden>
+    <a href="gallery.html">open the gallery →</a>
+    <div class="addr" title="support the art"></div>
+  </div>
+  <div class="unfold" id="unfold-hire" hidden>
+    <a href="drafts/index-cv.html">cv</a>
+    <a href="hire.html">hire me to tune AI for you</a>
+    <a data-site="telegram"></a>
+    <a data-site="email"></a>
+  </div>
+</nav>
 
 <script>
 // Landing background: a slow, seamless 8-second cinematic loop.
@@ -153,6 +164,24 @@ for (let i = 0; i < 14; i++) {
   addEdge(Math.floor(rand() * NODE_COUNT), Math.floor(rand() * NODE_COUNT), true);
 }
 
+// ---------------------------------------------------------------------------
+// The wrongness budget. A few things are slightly off, each too small to point
+// at, all on the same clock so the loop still closes:
+//   contrary  nodes whose parallax runs against the camera sway
+//   counter   nodes that breathe against the rest
+//   absent    nodes that, for a stretch of the loop, are not there
+//   offhue    one node of a colour that does not belong
+//   short     filaments that stop a varying hair before their node
+//   ripple    the space itself, very faintly (in render)
+nodes.forEach((n) => {
+  n.contrary = rand() < 0.10;
+  n.counter = rand() < 0.06;
+  n.absent = rand() < 0.05 ? rand() * TAU : null;
+  n.offhue = false;
+});
+nodes[Math.floor(rand() * NODE_COUNT)].offhue = true;
+edges.forEach((e) => { e.short = rand() < 0.12 ? rand() * TAU : null; });
+
 // Fine dust. Each mote has its own position in the loop: it fades in, drifts
 // a few percent of the frame, fades out, and resets while invisible.
 const PARTICLE_COUNT = 170;
@@ -205,14 +234,21 @@ function render(phi) {
   const cosY = Math.cos(yaw), sinY = Math.sin(yaw);
   const cosX = Math.cos(pitch), sinX = Math.sin(pitch);
 
+  const rip = 0.0025 * unit;  // the ripple in the space itself
   const proj = nodes.map((n) => {
-    const x = (n.hx + n.ax * Math.sin(n.kx * phi + n.px)) * breath;
-    const y = (n.hy + n.ay * Math.sin(n.ky * phi + n.py)) * breath;
-    const z = (n.hz + n.az * Math.sin(n.kz * phi + n.pz)) * breath;
-    const x1 = x * cosY - z * sinY, z1 = x * sinY + z * cosY;
-    const y1 = y * cosX - z1 * sinX, z2 = y * sinX + z1 * cosX;
+    const br = n.counter ? 2 - breath : breath;
+    const x = (n.hx + n.ax * Math.sin(n.kx * phi + n.px)) * br;
+    const y = (n.hy + n.ay * Math.sin(n.ky * phi + n.py)) * br;
+    const z = (n.hz + n.az * Math.sin(n.kz * phi + n.pz)) * br;
+    const sY = n.contrary ? -sinY : sinY, sX = n.contrary ? -sinX : sinX;
+    const x1 = x * cosY - z * sY, z1 = x * sY + z * cosY;
+    const y1 = y * cosX - z1 * sX, z2 = y * sX + z1 * cosX;
     const s = camDist / (camDist + z2);
-    return { x: cx + x1 * s * unit, y: cy + y1 * s * unit, s, z: z2 };
+    let px = cx + x1 * s * unit, py = cy + y1 * s * unit;
+    px += rip * Math.sin(((py - cy) / unit) * 9 + phi);
+    py += rip * 0.6 * Math.sin(((px - cx) / unit) * 7 - phi);
+    const vis = n.absent === null ? 1 : clamp01((0.5 + 0.5 * Math.cos(phi - n.absent) - 0.25) / 0.35);
+    return { x: px, y: py, s, z: z2, vis };
   });
   const depthFade = (z) => 0.3 + 0.7 * clamp01(0.5 - z);
 
@@ -223,12 +259,20 @@ function render(phi) {
     const A = proj[e.a], B = proj[e.b];
     const fade = depthFade((A.z + B.z) / 2);
     const pulse = 0.5 + 0.5 * Math.sin(e.k * phi + e.p);
-    const alpha = (e.long ? 0.035 + 0.03 * pulse : 0.09 + 0.07 * pulse) * fade;
+    const alpha = (e.long ? 0.035 + 0.03 * pulse : 0.09 + 0.07 * pulse) * fade
+      * (0.5 + 0.5 * A.vis) * (0.5 + 0.5 * B.vis);
+    let bx = B.x, by = B.y;
+    if (e.short !== null) {
+      const dx = B.x - A.x, dy = B.y - A.y, len = Math.hypot(dx, dy) || 1;
+      const gap = (3 + 2 * Math.sin(phi + e.short)) * unit / 900;
+      bx -= (dx / len) * gap;
+      by -= (dy / len) * gap;
+    }
     ctx.strokeStyle = `rgba(74, 158, 255, ${alpha})`;
     ctx.lineWidth = e.long ? 0.6 : 0.9;
     ctx.beginPath();
     ctx.moveTo(A.x, A.y);
-    ctx.lineTo(B.x, B.y);
+    ctx.lineTo(bx, by);
     ctx.stroke();
 
     if (!e.lit) continue;
@@ -261,9 +305,10 @@ function render(phi) {
     const nx = (P.x - cx) / unit, ny = (P.y - cy) / unit;
     const sweep = 0.5 + 0.5 * Math.cos(phi - TAU * 0.7 * (nx * 0.8 + ny * 0.6));
     const glow = 0.5 + 0.5 * Math.sin(n.gk * phi + n.gp);
-    const lum = depthFade(P.z) * (0.55 + 0.25 * glow + 0.2 * sweep);
+    if (P.vis <= 0) continue;
+    const lum = depthFade(P.z) * (0.55 + 0.25 * glow + 0.2 * sweep) * P.vis;
     const r = n.r * unit * P.s;
-    const rgb = n.bright ? '140, 201, 255' : '74, 158, 255';
+    const rgb = n.offhue ? '201, 162, 214' : n.bright ? '140, 201, 255' : '74, 158, 255';
     const halo = ctx.createRadialGradient(P.x, P.y, 0, P.x, P.y, r * 5);
     halo.addColorStop(0, `rgba(${rgb}, ${0.35 * lum})`);
     halo.addColorStop(1, `rgba(${rgb}, 0)`);
@@ -271,7 +316,7 @@ function render(phi) {
     ctx.beginPath();
     ctx.arc(P.x, P.y, r * 5, 0, TAU);
     ctx.fill();
-    ctx.fillStyle = `rgba(${rgb}, ${0.55 + 0.45 * lum})`;
+    ctx.fillStyle = `rgba(${rgb}, ${(0.55 + 0.45 * lum) * P.vis})`;
     ctx.beginPath();
     ctx.arc(P.x, P.y, r, 0, TAU);
     ctx.fill();
@@ -302,6 +347,44 @@ if (stillOnly) render(0); else requestAnimationFrame(frame);
 
 // Exposed for the seam check (see JOURNAL.md): render(0) must equal render(TAU).
 window.__loop = { render, PERIOD_MS, TAU };
+</script>
+<script src="site.js"></script>
+<script src="feed.js"></script>
+<script>
+// The band. One unfolded row at a time; the name drifts through its scripts.
+(function band() {
+  const ui = document.getElementById('ui');
+  const toggles = ui.querySelectorAll('[data-unfold]');
+  toggles.forEach((b) => {
+    b.addEventListener('click', () => {
+      const open = b.getAttribute('aria-expanded') !== 'true';
+      toggles.forEach((o) => {
+        o.setAttribute('aria-expanded', 'false');
+        document.getElementById('unfold-' + o.dataset.unfold).hidden = true;
+      });
+      if (open) {
+        b.setAttribute('aria-expanded', 'true');
+        document.getElementById('unfold-' + b.dataset.unfold).hidden = false;
+      }
+      ui.classList.toggle('open', open);
+    });
+  });
+
+  const nameEl = ui.querySelector('.name');
+  const cycle = SITE.nameCycle.filter((k) => SITE.name[k]);
+  nameEl.textContent = SITE.name[cycle[0] || 'en'];
+  if (cycle.length > 1 && !stillOnly) {
+    let i = 0;
+    setInterval(() => {
+      nameEl.classList.add('fade');
+      setTimeout(() => {
+        i = (i + 1) % cycle.length;
+        nameEl.textContent = SITE.name[cycle[i]];
+        nameEl.classList.remove('fade');
+      }, 650);
+    }, 12000);
+  }
+})();
 </script>
 
 </body>

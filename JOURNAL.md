@@ -2,6 +2,47 @@
 
 Newest first.
 
+## 2026-11-06 — The band, the gallery, the tools, the letter
+
+**Ask (owner, in pieces across the session):** the landing band becomes
+`[gallery] [tools] · name · [hire me]`; gallery and tools are scroll-fed lists of the
+better-baked projects, AI-era work prominent and older work folded; `hire me` unfolds
+into `cv`, a letter-style "hire me to tune AI for you" page (rephrased from the owner's
+own paragraph), and contacts; `gallery` unfolds into donation addresses; the name is a
+placeholder in one place, in Latin, Cyrillic and Hebrew, easy to replace before a legal
+name change; and the landing geometry gets slightly Lovecraftian, "weird things you
+can't quite point out".
+
+**Sources, verified live 2026-11-06:** dissemblage.art (the vitrine, ten pieces on
+subdomains, all 200), hyperstitious.art (studio index, 200), umbra/pocket/ledger/lab
+(200), GitHub and GitLab public listings. hyperstitious.org is a GitHub Pages 404 even
+though the CVs link it; flagged in NEEDS.md. Excluded on purpose: topo-sonify (owner
+calls it abandoned early; see memory), profane (its own page says "first commit
+pending"), hermesbase ("not a running agent system yet"), verse-garden and hyle (pages
+say too little to vouch for), ruby and doctrine (not portfolio-shaped).
+
+**Shape:** `site.js` (identity + donations, fills `data-site` slots), `site.css`,
+`projects.json` + `feed.js` (batches of three on an IntersectionObserver; an `earlier`
+era folds into `<details>` at the end; an empty donation address renders "pending"),
+`gallery.html`, `tools.html`, `hire.html`. The letter follows the six moves of the
+letters genre (`letters/README.md` on the letters-not-cvs branch) with the
+target-specific moves left open and the owner's brief paragraph as "the brief".
+
+**Wrongness budget on the landing** (all on the 8 s clock, loop still pixel-exact):
+10 % of nodes take the camera sway with the opposite sign; 6 % breathe against the rest;
+5 % are absent for about a third of the loop (their filaments go to half); one node is
+violet; 12 % of filaments stop 1–5 px short of their node; and the whole projection
+rides a 2 px ripple at harmonic 1.
+
+**Verified (Chrome, local server):** no console errors on any page; seam check still 0
+differing channels; 1.5 ms per frame; both unfolds open one at a time; gallery renders
+all 11 then its end note; tools renders 13 then "earlier work · 4" then its end note.
+One bug found and fixed on the way: the sentinel stayed in view after a batch so the
+observer never re-fired; now it re-observes after each batch.
+
+**Not verified:** phone layout; the live Pages host; clipboard copy of a real address
+(no addresses yet).
+
 ## 2026-11-05 — Landing background: seamless 8-second cinematic loop
 
 **Ask (owner):** slow, continuous, seamless cinematic motion; structures breathe

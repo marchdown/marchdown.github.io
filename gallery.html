@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gallery · {{name}}</title>
+<meta name="description" content="Generative, interactive and sonic works, each one HTML file you can open and keep.">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker"><a href="index.html">← home</a> &nbsp;·&nbsp; gallery &nbsp;·&nbsp; <a href="tools.html">tools</a></div>
+    <h1>Gallery</h1>
+    <p class="lede">Rooms in hyperbolic space, decks that read you back, a rāga on a lattice. Each piece is one file:
+      open it and it runs, save it and it still runs in ten years. Made by <span data-site="name">Pavel Vasilyev</span>.</p>
+  </header>
+
+  <main class="feed" data-kind="gallery"></main>
+
+  <section class="support" id="support">
+    <div class="label">support the art</div>
+    <p class="lede">If something here stayed with you, a small donation keeps the hosts up and the next piece coming. Click an address to copy it.</p>
+    <div class="addr"></div>
+  </section>
+
+  <footer>
+    <a data-site="art"></a> &nbsp;·&nbsp; <a data-site="github"></a> &nbsp;·&nbsp; <a data-site="gitlab"></a>
+    <details>
+      <summary>provenance</summary>
+      <div class="prov">
+        project marchdown.github.io · github.com/marchdown/marchdown.github.io<br>
+        source projects.json, rendered by feed.js · list verified live 2026-11-06<br>
+        session ~/.claude/projects/-Users-uprootiny-marchdown-github-io · job 0e536177
+      </div>
+    </details>
+  </footer>
+</div>
+<script src="site.js"></script>
+<script src="feed.js"></script>
+</body>
+</html>

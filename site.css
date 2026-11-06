@@ -1,0 +1,195 @@
+/* site.css — shared skin for the pages behind the landing: gallery, tools,
+   the letter. Same night palette as index.html; serif body, spaced small
+   caps for labels. No webfonts, no frameworks. */
+
+:root {
+  --bg: #0a0e14;
+  --ink: #e8eaec;
+  --muted: #8a93a3;
+  --dim: #4f5868;
+  --blue: #4a9eff;
+  --pale: #8cc9ff;
+  --line: #2b4a7a;
+  --rule: rgba(74, 158, 255, 0.14);
+  --serif: "Charter", "Iowan Old Style", Georgia, serif;
+  --sans: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { background: var(--bg); }
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(900px 520px at 50% -10%, rgba(43, 74, 122, 0.18), transparent 60%),
+    var(--bg);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.6;
+  padding: 56px 24px 72px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: 680px; margin: 0 auto; }
+
+a { color: var(--pale); text-decoration: none; border-bottom: 1px solid var(--rule); }
+a:hover { color: #fff; border-bottom-color: var(--blue); }
+
+.kicker, .label {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.kicker a { color: var(--dim); border: 0; }
+.kicker a:hover { color: var(--muted); }
+
+h1 {
+  font-weight: 400;
+  font-size: clamp(28px, 5vw, 40px);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin: 14px 0 10px;
+}
+h2 {
+  font-weight: 400;
+  font-size: 13px;
+  font-family: var(--sans);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 44px 0 10px;
+}
+.lede { color: var(--muted); font-style: italic; max-width: 56ch; }
+
+p { margin: 0 0 1.1em; }
+p + p { text-indent: 0; }
+
+/* ---- feed (gallery, tools) ---------------------------------------------- */
+
+.feed { margin-top: 40px; }
+.item {
+  padding: 26px 0;
+  border-top: 1px solid var(--rule);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.item.in { opacity: 1; transform: none; }
+.item .title { font-size: 22px; line-height: 1.25; }
+.item .title a { border: 0; color: var(--ink); }
+.item .title a:hover { color: var(--pale); }
+.item .title .private { color: var(--ink); }
+.item .line { color: var(--muted); margin: 6px 0 8px; max-width: 60ch; }
+.item .meta {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.item .meta .status { color: var(--muted); }
+.item .meta .live::before {
+  content: "";
+  display: inline-block;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 6px var(--blue);
+  margin-right: 7px;
+  vertical-align: 2px;
+}
+
+/* earlier work, compressed */
+.earlier { margin-top: 28px; border-top: 1px solid var(--rule); padding-top: 14px; }
+.earlier summary {
+  cursor: pointer; list-style: none;
+  font-family: var(--sans); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim);
+}
+.earlier summary::-webkit-details-marker { display: none; }
+.earlier summary:hover { color: var(--muted); }
+.earlier ul { list-style: none; margin-top: 12px; }
+.earlier li { padding: 7px 0; color: var(--muted); font-size: 15px; }
+.earlier li a { color: var(--ink); border: 0; }
+.earlier li .meta { font-family: var(--sans); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin: 0 8px; }
+.earlier li .line { color: var(--dim); }
+
+.sentinel {
+  padding: 40px 0 0;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--dim);
+  min-height: 1px;
+}
+.sentinel a { color: var(--muted); border: 0; }
+
+/* ---- letter -------------------------------------------------------------- */
+
+.letter p { max-width: 62ch; }
+.letter .move {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--dim);
+  display: block;
+  margin: 34px 0 6px;
+}
+.letter .open { color: var(--muted); font-style: italic; }
+.menu { list-style: none; margin: 10px 0 18px; }
+.menu li { padding: 6px 0; border-top: 1px solid var(--rule); }
+.menu li:last-child { border-bottom: 1px solid var(--rule); }
+
+/* ---- support / donations ------------------------------------------------- */
+
+.support { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule); }
+.support .label { margin-bottom: 10px; }
+.addr {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+}
+.addr .chain { color: var(--dim); letter-spacing: 0.1em; margin-right: 8px; }
+.addr button {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 1px dotted var(--dim);
+}
+.addr button:hover { color: var(--pale); }
+.addr .pending { color: var(--dim); font-style: italic; }
+
+/* ---- footer -------------------------------------------------------------- */
+
+footer {
+  margin-top: 64px;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--dim);
+  line-height: 1.9;
+}
+footer a { color: var(--dim); border: 0; }
+footer a:hover { color: var(--muted); }
+footer details summary { cursor: pointer; list-style: none; text-transform: uppercase; letter-spacing: 0.22em; }
+footer details summary::-webkit-details-marker { display: none; }
+footer .prov { margin-top: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .item { transition: none; transform: none; }
+}

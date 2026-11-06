@@ -1,0 +1,351 @@
+{
+  "_about": "Source for gallery.html and tools.html (rendered by feed.js). Only finished, reachable work belongs here. kind: gallery | tool. status: live (a page a stranger can open) | repo (public source) | private (named, walkthrough on request). Order is the order shown. Evidence: dissemblage.art vitrine and each subdomain fetched 2026-11-06 (all 200); GitHub/GitLab listings fetched 2026-11-06. era: ai (prominent, in the feed) | earlier (compressed under a fold).",
+  "items": [
+    {
+      "kind": "gallery",
+      "name": "Enfilade",
+      "url": "https://enfilade.dissemblage.art",
+      "line": "First-person inside the {4,3,5} honeycomb of hyperbolic 3-space: five cubic rooms about every edge, doorways aligned to infinity in every direction. Light rays are true geodesics; walk, and the excess of space unfolds.",
+      "meta": [
+        "2026",
+        "one HTML file",
+        "WebGL"
+      ],
+      "status": "live",
+      "era": "ai"
+    },
+    {
+      "kind": "gallery",
+      "name": "Cascade",
+      "url": "https://cascade.dissemblage.art",
+      "line": "Böröczky's binary tiling: congruent rooms, one parent above, four children below, forever. No arrangement of these rooms admits any translational symmetry. An aperiodic order you fall through, doubling at every level.",
+      "meta": [
+        "2026",
+        "one HTML file",
+        "WebGL"
+      ],
+      "status": "live",
+      "era": "ai"
+    },
+    {
+      "kind": "gallery",
+      "name": "Psychic Mirrorscape",
+      "url": "https://arcana-swipe.dissemblage.art",
+      "line": "Twenty-two arcana, each drawn as generative art. Keep the ones that pull at you; it measures not only what you chose but how, the pressure and velocity behind the flick, and reads the spread back to you.",
+      "meta": [
+        "2026",
+        "22 arcana → a spread"
+      ],
+      "status": "live",
+      "era": "ai"
+    },
+    {
+      "kind": "gallery",
+      "name": "Fixations of the Arcana",
+      "url": "https://arcana.dissemblage.art",
+      "line": "Not a deck but an instrument. Twenty-two cards run through a synthetic scanpath model (saliency, inhibition of return, saccade amplitude) and rendered as leaded glass. Eight parameters, six layers, and the SVG is yours.",
+      "meta": [
+        "2026",
+        "22 plates → an SVG"
+      ],
+      "status": "live",
+      "era": "ai"
+    },
+    {
+      "kind": "gallery",
+      "name": "Arcana Spread",
+      "url": "https://arcana-spread.dissemblage.art",
+      "line": "A seven-screen guided reading. Answer each card, name what held your eye, then accept or refuse the threads it proposes between them. The trace of those choices becomes the reading you take away.",
+      "meta": [
+        "2026",
+        "25 cards → a reading"
+      ],
+      "status": "live",
+      "era": "ai"
+    },
+    {
+      "kind": "gallery",
+      "name": "Arcana Recall",
+      "url": "https://arcana-flip.dissemblage.art",
+      "line": "Eight pairs dealt fresh from the twenty-two, face down. Tap to mirror one against its twin: the same glass-facet engine as Mirrorscape, rendered still instead of adrift, revealed instead of drawn.",
+      "meta": [
+        "2026",
+        "8 pairs → a match"
+      ],
+      "status": "live",
+      "era": "ai"
+    },
+    {
+      "kind": "gallery",
+      "name": "The landing loop",
+      "url": "index.html",
+      "line": "The page you came from: a seeded hypergraph on an eight-second phase clock. It breathes, its filaments carry light, dust drifts through it, and the loop closes to the pixel because every motion is an integer harmonic of one phase.",
+      "meta": [
+        "2026",
+        "canvas 2D",
+        "seamless by construction"
+      ],
+      "status": "live",
+      "era": "ai"
+    },
+    {
+      "kind": "gallery",
+      "era": "ai",
+      "name": "H³ ālāp",
+      "url": "https://halap.dissemblage.art",
+      "line": "A rāga walked along the struts of a Coxeter lattice, over a tanpura. Drag to turn the lattice; tap a note on the rail to send the voice there, or tap toward a bright strut to steer.",
+      "meta": [
+        "2026",
+        "sound",
+        "hyperbolic lattice"
+      ],
+      "status": "live"
+    },
+    {
+      "kind": "gallery",
+      "era": "ai",
+      "name": "GRAVITY//MAZE",
+      "url": "https://gravity-maze.dissemblage.art",
+      "line": "A dodecahedral toy. A small world, one way out: the rover follows the direction of the field, one cell at a time through etched corridors. Walls hold. The route is fixed.",
+      "meta": [
+        "2026",
+        "WebGL2",
+        "field study 01"
+      ],
+      "status": "live"
+    },
+    {
+      "kind": "gallery",
+      "era": "ai",
+      "name": "hyperstitious.art",
+      "url": "https://hyperstitious.art",
+      "line": "The studio. A hyperstition is an idea that makes itself real by being built; this is where they get built. Generative, interactive and sonic works: less gallery, more workshop.",
+      "meta": [
+        "2026",
+        "studio index"
+      ],
+      "status": "live"
+    },
+    {
+      "kind": "gallery",
+      "name": "The Vitrine",
+      "url": "https://dissemblage.art",
+      "line": "The lobby for all of the above. Every deck behind it is one HTML file with no build step and no dependency on its siblings: open one and it runs; save it and it still runs in ten years. Nothing phones home.",
+      "meta": [
+        "2026",
+        "dissemblage.art"
+      ],
+      "status": "live",
+      "era": "ai"
+    },
+    {
+      "kind": "tool",
+      "name": "co-loop",
+      "url": "https://github.com/marchdown/co-loop",
+      "line": "A seed repository for agentic collaboration between forks. Fork it, run your agent flow, then merge, branch and pull across forks without stepping on each other's files. The how behind this site's why.",
+      "meta": [
+        "2026",
+        "protocol",
+        "git"
+      ],
+      "status": "repo",
+      "era": "ai"
+    },
+    {
+      "kind": "tool",
+      "name": "Pick Your Poison",
+      "url": "https://pick-your-poison.dissemblage.art",
+      "line": "Twenty forks of temperament: terse or thorough, warm or cool, sparring partner or right hand. Swipe them and it writes the system prompt you just described.",
+      "meta": [
+        "2026",
+        "20 cards → system prompt"
+      ],
+      "status": "live",
+      "era": "ai"
+    },
+    {
+      "kind": "tool",
+      "name": "AGENTS.md Forge",
+      "url": "https://md-forge.dissemblage.art",
+      "line": "The same twenty axes, aimed at a file. Names itself, groups your answers into voice, work and collaboration, and hands you an AGENTS.md to drop into a project root.",
+      "meta": [
+        "2026",
+        "20 cards → AGENTS.md"
+      ],
+      "status": "live",
+      "era": "ai"
+    },
+    {
+      "kind": "tool",
+      "name": "The Substrate Forge",
+      "url": "https://substrate.dissemblage.art",
+      "line": "Sixteen infrastructure decisions, stateful or stateless, hosted or self-run, RAG or full transcript, cast into a DEPLOY.md you could actually hand to someone.",
+      "meta": [
+        "2026",
+        "16 cards → DEPLOY.md"
+      ],
+      "status": "live",
+      "era": "ai"
+    },
+    {
+      "kind": "tool",
+      "name": "The Strand Forge",
+      "url": "https://strand-forge.dissemblage.art",
+      "line": "Twenty forks between folklore and a load-bearing project. Scores the trade you made as a rigor/velocity tuple, then emits a charter, a NEEDS ledger, and the gates a machine can check for you.",
+      "meta": [
+        "2026",
+        "20 cards → charter + gates"
+      ],
+      "status": "live",
+      "era": "ai"
+    },
+    {
+      "kind": "tool",
+      "name": "job-sift",
+      "url": "https://github.com/marchdown/marchdown.github.io/tree/main/tools/job-sift",
+      "line": "A Rust CLI that scores live RemoteOK and Hacker News “Who is hiring?” listings against a weighted skill profile, to surface contract-shaped work worth an hour of looking.",
+      "meta": [
+        "2026",
+        "Rust"
+      ],
+      "status": "repo",
+      "era": "ai"
+    },
+    {
+      "kind": "tool",
+      "name": "inference_harness",
+      "url": null,
+      "line": "An Elixir/OTP harness for LLM jobs: multi-provider routing, role-specific fallback chains, time budgets and retry ceilings, a token and latency ledger, bounded concurrency.",
+      "meta": [
+        "2025–26",
+        "Elixir",
+        "private"
+      ],
+      "status": "private",
+      "era": "ai"
+    },
+    {
+      "kind": "tool",
+      "name": "gemini-gate",
+      "url": null,
+      "line": "A small Elixir/Phoenix credential vault and Gemini API proxy: authenticated retrieval, constant-time token comparison, atomic credential replacement, deployed under Caddy and systemd.",
+      "meta": [
+        "2025–26",
+        "Elixir",
+        "private"
+      ],
+      "status": "private",
+      "era": "ai"
+    },
+    {
+      "kind": "tool",
+      "name": "corpora",
+      "url": null,
+      "line": "A native macOS app for browsing, searching and composing context from AI conversation history: live ingestion, provenance per artifact, a corpus you can actually find things in.",
+      "meta": [
+        "2026",
+        "Swift",
+        "private"
+      ],
+      "status": "private",
+      "era": "ai"
+    },
+    {
+      "kind": "tool",
+      "era": "ai",
+      "name": "Umbra",
+      "url": "https://umbra.hyperstitious.art",
+      "line": "A hyperbolic workspace: notes as nodes on the Poincaré disk, Klein model or tree, with a command palette, inspector and link mode. Room for more than a flat canvas can hold.",
+      "meta": [
+        "2026",
+        "hyperbolic geometry",
+        "in-browser"
+      ],
+      "status": "live"
+    },
+    {
+      "kind": "tool",
+      "era": "ai",
+      "name": "Pocket",
+      "url": "https://pocket.dissemblage.art",
+      "line": "Small apps that work offline, installable to a phone home screen: a draft chat traced in ink, a relay messenger with an honest outbox, flip-cards, runnable loops.",
+      "meta": [
+        "2026",
+        "PWA",
+        "offline-first"
+      ],
+      "status": "live"
+    },
+    {
+      "kind": "tool",
+      "era": "ai",
+      "name": "ledger",
+      "url": "https://ledger.dissemblage.art",
+      "line": "A humble, no-frills in-browser knowledge base for project notes, entities, relations and prompt snippets. LocalStorage plus JSON export and import; nothing leaves the page.",
+      "meta": [
+        "2026",
+        "in-browser"
+      ],
+      "status": "live"
+    },
+    {
+      "kind": "tool",
+      "era": "ai",
+      "name": "lab.dissemblage.art",
+      "url": "https://lab.dissemblage.art",
+      "line": "The tooling bench: command-line tools, fleet plumbing and data instruments. Unglamorous and load-bearing, the small sharp things that make the rest of the work possible.",
+      "meta": [
+        "2026",
+        "bench index"
+      ],
+      "status": "live"
+    },
+    {
+      "kind": "tool",
+      "era": "earlier",
+      "name": "nixbloom",
+      "url": "https://github.com/marchdown/nixbloom",
+      "line": "An ephemeral NixOS-based workspace: reproducible development environments that come up clean and leave nothing behind.",
+      "meta": [
+        "2023",
+        "Nix"
+      ],
+      "status": "repo"
+    },
+    {
+      "kind": "tool",
+      "era": "earlier",
+      "name": "market-monitoring",
+      "url": "https://github.com/marchdown/market-monitoring",
+      "line": "Market monitoring demo.",
+      "meta": [
+        "2024"
+      ],
+      "status": "repo"
+    },
+    {
+      "kind": "tool",
+      "era": "earlier",
+      "name": "harmony",
+      "url": "https://github.com/marchdown/harmony",
+      "line": "Haskell, from the years when the practice was NLP and data science.",
+      "meta": [
+        "2015",
+        "Haskell"
+      ],
+      "status": "repo"
+    },
+    {
+      "kind": "tool",
+      "era": "earlier",
+      "name": "agda-proofs",
+      "url": "https://github.com/marchdown/agda-proofs",
+      "line": "Dependently typed proofs in Agda.",
+      "meta": [
+        "2015",
+        "Agda"
+      ],
+      "status": "repo"
+    }
+  ]
+}
